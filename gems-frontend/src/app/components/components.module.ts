@@ -13,7 +13,6 @@ import { NucleoiconsComponent } from './nucleoicons/nucleoicons.component';
 import { ComponentsComponent } from './components.component';
 import { NotificationComponent } from './notification/notification.component';
 import { NgbdModalBasic } from './modal/modal.component';
-import { TestComponent } from './test/test.component';
 
 @NgModule({
     imports: [
@@ -32,7 +31,7 @@ import { TestComponent } from './test/test.component';
         NucleoiconsComponent,
         NotificationComponent,
         NgbdModalBasic,
-        TestComponent
+   
     ],
     exports:[ ComponentsComponent ]
 })
