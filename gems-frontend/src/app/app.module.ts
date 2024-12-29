@@ -9,11 +9,14 @@ import { ExamplesModule } from './examples/examples.module';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { EventFormComponent } from './pages/organiser_dashboard/event-form/event-form.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        NavbarComponent
+        NavbarComponent,
+        EventFormComponent,
+
     ],
     imports: [
         BrowserAnimationsModule,
