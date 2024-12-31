@@ -19,7 +19,8 @@ export class EventListComponent implements OnInit {
       numberOfPlaces: 100,
       prices: 50,
       category: 'Conference',
-      hover: false
+      hover: false,
+      backgroundColor: '#ffffff'
     },
     {
       eventName: 'Event 2',
@@ -32,10 +33,13 @@ export class EventListComponent implements OnInit {
       numberOfPlaces: 200,
       prices: 100,
       category: 'Workshop',
-      hover: false
+      hover: false,
+      backgroundColor: '#ffffff'
     },
     // Add more events as needed
   ];
+
+  showForm = false;
 
   constructor() { }
 
@@ -49,7 +53,41 @@ export class EventListComponent implements OnInit {
 
   deleteEvent(event) {
     // Logic to delete event
+    this.events = this.events.filter(e => e !== event);
     console.log('Delete event:', event);
+  }
+
+  addEvent() {
+    // Logic to add a new event
+    const newEvent = {
+      eventName: 'New Event',
+      eventDescription: 'Description for New Event',
+      location: 'New Location',
+      startDate: new Date(),
+      startTime: '12:00 PM',
+      endDate: new Date(),
+      endTime: '6:00 PM',
+      numberOfPlaces: 150,
+      prices: 75,
+      category: 'Meetup',
+      hover: false,
+      backgroundColor: '#ffffff'
+    };
+    this.events.push(newEvent);
+    console.log('Add event:', newEvent);
+  }
+
+  posterView(event) {
+    // Logic to handle poster view
+    console.log('Poster view for event:', event);
+  }
+
+  isAnyEventHovered() {
+    return this.events.some(event => event.hover);
+  }
+
+  changeBackgroundColor(event, colorEvent) {
+    event.backgroundColor = colorEvent.target.value;
   }
 
 }

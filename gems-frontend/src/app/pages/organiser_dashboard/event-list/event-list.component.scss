@@ -1,7 +1,7 @@
 .event-list-container {
   border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 20px;
+  border-radius: 15px;
+  padding: 30px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -13,11 +13,20 @@
   padding: 10px;
   margin-bottom: 10px;
   position: relative;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.3s, filter 0.3s;
 }
 
 .event-item:hover {
   background-color: #f9f9f9;
+}
+
+.event-item.hovered {
+  transform: scale(1.05);
+  z-index: 1;
+}
+
+.event-list-container.blurred .event-item:not(.hovered) {
+  filter: blur(2px);
 }
 
 .event-details {
@@ -26,7 +35,8 @@
 
 .event-actions {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-end;
   position: absolute;
   top: 15px;
   right: 15px;

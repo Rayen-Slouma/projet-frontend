@@ -1,8 +1,8 @@
 <div class="container mt-5 mb-5">
   <div class="row justify-content-center">
     <div class="col-md-10">
-      <div class="event-list-container">
-        <div *ngFor="let event of events" class="event-item" (mouseover)="event.hover = true" (mouseleave)="event.hover = false">
+      <div class="event-list-container" [class.blurred]="isAnyEventHovered()">
+        <div *ngFor="let event of events" class="event-item" [class.hovered]="event.hover" [style.backgroundColor]="event.backgroundColor" (mouseover)="event.hover = true" (mouseleave)="event.hover = false">
           <div class="event-details">
             <div class="row">
               <div class="col-md-6">
@@ -25,10 +25,15 @@
             </div>
           </div>
           <div class="event-actions" *ngIf="event.hover">
-            <button class="btn btn-primary mr-2" (click)="editEvent(event)">Edit</button>
-            <button class="btn btn-danger" (click)="deleteEvent(event)">Delete</button>
+            <button class="btn btn-info mb-2" (click)="posterView(event)">Poster View</button>
+            <button class="btn btn-primary mb-2" (click)="editEvent(event)">Edit</button>
+            <button class="btn btn-danger mb-2" (click)="deleteEvent(event)">Delete</button>
+            <input type="color" class="form-control mb-2" (input)="changeBackgroundColor(event, $event)">
           </div>
         </div>
+      </div>
+      <div class="d-flex justify-content-end mt-3">
+        <button class="btn btn-success" (click)="addEvent()">Add Event</button>
       </div>
     </div>
   </div>
