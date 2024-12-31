@@ -1,0 +1,38 @@
+.event-list-container {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.event-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+  position: relative;
+  transition: background-color 0.3s;
+}
+
+.event-item:hover {
+  background-color: #f9f9f9;
+}
+
+.event-details {
+  flex: 1;
+}
+
+.event-actions {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.vertical-line {
+  border-left: 2px solid black;
+  height: 100%;
+}

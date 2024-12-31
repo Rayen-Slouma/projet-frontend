@@ -10,12 +10,14 @@ import { ExamplesModule } from './examples/examples.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { EventFormComponent } from './pages/organiser_dashboard/event-form/event-form.component';
+import { EventListComponent } from './pages/organiser_dashboard/event-list/event-list.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         NavbarComponent,
         EventFormComponent,
+        EventListComponent,
 
     ],
     imports: [

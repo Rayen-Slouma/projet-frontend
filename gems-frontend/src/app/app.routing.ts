@@ -9,6 +9,7 @@ import { LoginComponent } from './examples/login/login.component';
 import { ProfileComponent } from './examples/profile/profile.component';
 import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.component';
 import { EventFormComponent } from './pages/organiser_dashboard/event-form/event-form.component';
+import { EventListComponent } from './pages/organiser_dashboard/event-list/event-list.component';
 
 const routes: Routes =[
     { path: '', redirectTo: 'index', pathMatch: 'full' },
@@ -17,7 +18,8 @@ const routes: Routes =[
     { path: 'examples/landing',     component: LandingComponent },
     { path: 'examples/login',       component: LoginComponent },
     { path: 'examples/profile',     component: ProfileComponent },
-    { path: 'event',     component: EventFormComponent }
+    { path: 'event',     component: EventFormComponent },
+    { path: 'list',     component: EventListComponent }
 ];
 
 @NgModule({

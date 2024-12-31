@@ -46,6 +46,10 @@ export class EventFormComponent implements OnInit {
     this.progressValue = (filledFields / 10) * 100;
   }
 
+  updateLocation() {
+    this.updateProgress();
+  }
+
   onFileChange(event) {
     this.eventPictures = event.target.files;
     const input = event.target as HTMLInputElement;
