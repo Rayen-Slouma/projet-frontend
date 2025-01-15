@@ -9,6 +9,7 @@ import { ExamplesModule } from './examples/examples.module';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { AdminDashboardModule } from './admin-dashboard/admin-dashboard.module';  
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
         RouterModule,
         AppRoutingModule,
         ComponentsModule,
-        ExamplesModule
+        ExamplesModule,
+        AdminDashboardModule 
     ],
     providers: [],
     bootstrap: [AppComponent]

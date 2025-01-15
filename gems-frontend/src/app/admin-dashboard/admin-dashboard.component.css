@@ -1,0 +1,65 @@
+/* Style pour le tableau de bord de l'administrateur */
+.admin-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin: 20px;
+  }
+  
+  .dashboard-header {
+    background-color: #343a40;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 2rem;
+  }
+  
+  .dashboard-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .dashboard-section h3 {
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  .dashboard-section .section-content {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .dashboard-section .section-content .section-box {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 1;
+  }
+  
+  .dashboard-section .section-content .section-box h4 {
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  .dashboard-section .section-content .section-box p {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  /* Style pour les boutons d'action */
+  .dashboard-section .section-content .section-box button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .dashboard-section .section-content .section-box button:hover {
+    background-color: #0056b3;
+  }
+  

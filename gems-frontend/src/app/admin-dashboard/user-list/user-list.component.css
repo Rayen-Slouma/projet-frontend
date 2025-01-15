@@ -1,0 +1,50 @@
+/* Style pour la liste des utilisateurs */
+.user-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px;
+  }
+  
+  .user-item {
+    background-color: #f1f1f1;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-item h4 {
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  .user-item .user-actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .user-item .user-actions button {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .user-item .user-actions .edit-btn {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .user-item .user-actions .delete-btn {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .user-item .user-actions button:hover {
+    opacity: 0.8;
+  }
+  
