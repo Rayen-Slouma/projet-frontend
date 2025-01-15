@@ -7,11 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminDashboardComponent implements OnInit {
 
-  data: Date = new Date();
+  data: Date = new Date(); // Current date for footer copyright
 
   constructor() { }
 
   ngOnInit() {
+    // Add specific body or navbar class modifications here if needed
     var body = document.getElementsByTagName('body')[0];
     body.classList.add('login-page');
 
@@ -20,6 +21,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   ngOnDestroy() {
+    // Clean up classes when leaving the page
     var body = document.getElementsByTagName('body')[0];
     body.classList.remove('login-page');
 
