@@ -1,10 +1,8 @@
-// src/app/admin-dashboard/admin-dashboard.module.ts
-
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminDashboardComponent } from './admin-dashboard.component';
-import { UserListComponent } from './user-list/user-list.component'; // Importer ici si vous avez ce composant
-import { EventListComponent } from './event-list/event-list.component'; // Importer ici si vous avez ce composant
+import { UserListComponent } from './user-list/user-list.component'; // Assurez-vous que ce fichier existe
+import { EventListComponent } from './event-list/event-list.component'; // Assurez-vous que ce fichier existe
 
 @NgModule({
   declarations: [
