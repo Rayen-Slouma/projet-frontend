@@ -84,4 +84,8 @@
     margin-top: 20px;
     font-size: 0.9rem;
   }
+  a.active {
+    background-color: #007bff;  /* Example: Change background color when active */
+    color: white;                /* Example: Change text color when active */
+  }
   

@@ -14,10 +14,11 @@
         </div>
         <div class="content">
           <h1>Admin Dashboard</h1>
-          <!-- Dashboard actions -->
+          <!-- Dashboard actions with navigation links -->
           <div class="dashboard-actions">
-            <button routerLink="/users" class="btn btn-primary btn-round btn-lg btn-block">Manage Users</button>
-            <button routerLink="/events" class="btn btn-primary btn-round btn-lg btn-block">Manage Events</button>
+            <!-- Adding routerLinkActive to manage active states -->
+            <a routerLink="./users" routerLinkActive="active" class="btn btn-primary btn-round btn-lg btn-block">Manage Users</a>
+            <a routerLink="./events" routerLinkActive="active" class="btn btn-primary btn-round btn-lg btn-block">Manage Events</a>
           </div>
         </div>
       </div>
