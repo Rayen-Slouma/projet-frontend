@@ -15,14 +15,12 @@
         <div class="content">
           <h1>User List</h1>
           <!-- User List content -->
-          <ul>
-            <li *ngFor="let user of users">
-              {{ user.name }}
-            </li>
-          </ul>
-
-          <!-- Actions like in the Admin Dashboard -->
-           
+          <div class="user-list">
+            <div class="user-block" *ngFor="let user of users" (click)="navigateToUser(user.id)">
+              <h3>{{ user.name }}</h3>
+              <p>{{ user.job || 'No job title' }}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

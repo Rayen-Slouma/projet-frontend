@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -7,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserListComponent implements OnInit {
   users = [
-    { id: 1, name: 'John Doe' },
-    { id: 2, name: 'Jane Smith' },
+    { id: 1, name: 'John Doe', job: 'Software Engineer' },
+    { id: 2, name: 'Jane Smith', job: 'Designer' },
     // Add more users or fetch them dynamically via a service
   ];
+
+  constructor(private router: Router) {}
+
+  // Function to navigate to user detail page
+  navigateToUser(userId: number) {
+    this.router.navigate([`/user/${userId}`]);
+  }
 
   // Function to return the current year
   currentYear() {
