@@ -1,8 +1,49 @@
-<!-- src/app/admin-dashboard/user-list/user-list.component.html -->
+<div class="page-header" filter-color="orange">
+  <!-- Background image for User List -->
+  <div class="page-header-image" style="background-image: url('assets/img/login.jpg')"></div>
+  
+  <div class="container">
+    <div class="col-md-8 content-center">
+      <!-- Card for User List content -->
+      <div class="card card-login card-plain">
+        <div class="header header-primary text-center">
+          <div class="logo-container">
+            <!-- Logo image, if any -->
+            <img src="assets/img/now-logo.png" alt="Logo">
+          </div>
+        </div>
+        <div class="content">
+          <h1>User List</h1>
+          <!-- User List content -->
+          <ul>
+            <li *ngFor="let user of users">
+              {{ user.name }}
+            </li>
+          </ul>
 
-<h2>Users List</h2>
-<ul>
-  <li *ngFor="let user of users">
-    {{ user.name }}
-  </li>
-</ul>
+          <!-- Actions like in the Admin Dashboard -->
+           
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Footer section -->
+  <footer class="footer">
+    <div class="container">
+      <nav>
+        <ul>
+          <li><a href="https://www.creative-tim.com">Creative Tim</a></li>
+          <li><a href="https://www.creative-tim.com/about-us">About Us</a></li>
+          <li><a href="http://blog.creative-tim.com">Blog</a></li>
+          <li><a href="https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md">MIT License</a></li>
+        </ul>
+      </nav>
+      <div class="copyright">
+        &copy; {{ currentYear() }}, Designed by
+        <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by
+        <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
+      </div>
+    </div>
+  </footer>
+</div>

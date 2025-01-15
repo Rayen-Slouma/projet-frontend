@@ -1,50 +1,122 @@
-/* Style pour la liste des utilisateurs */
+/* Style for the User List page */
+.page-header {
+  position: relative;
+  height: 100vh; /* Full height */
+  background-color: #f8f9fa;
+}
+
+.page-header-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: -1; /* Ensure content is above the image */
+}
+
+/* Card for User List */
+.card-login {
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.header-primary {
+  background-color: transparent; /* No background color */
+  color: white; /* Keep the text color as white */
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.card-login .content {
+  text-align: center;
+}
+
+/* Buttons for actions in the User List */
+.dashboard-actions button {
+  margin-top: 20px;
+  background-color: #ff5722; /* Orange color */
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.dashboard-actions button:hover {
+  background-color: #e64a19; /* Darker orange color for hover */
+}
+
+/* Footer section */
+.footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  background-color: #343a40;
+  color: white;
+  padding: 20px 0;
+}
+
+.footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer ul li {
+  display: inline;
+  margin-right: 10px;
+}
+
+.footer ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer .copyright {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9rem;
+}
+
+a.active {
+  background-color: #007bff; /* Change background color when active */
+  color: white; /* Change text color when active */
+}
+
+/* Styling for the user blocks */
 .user-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin: 20px;
-  }
-  
-  .user-item {
-    background-color: #f1f1f1;
-    padding: 15px;
-    border-radius: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .user-item h4 {
-    font-size: 1.2rem;
-    color: #333;
-  }
-  
-  .user-item .user-actions {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .user-item .user-actions button {
-    padding: 8px 15px;
-    font-size: 0.9rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .user-item .user-actions .edit-btn {
-    background-color: #28a745;
-    color: white;
-  }
-  
-  .user-item .user-actions .delete-btn {
-    background-color: #dc3545;
-    color: white;
-  }
-  
-  .user-item .user-actions button:hover {
-    opacity: 0.8;
-  }
-  
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Space between user blocks */
+}
+
+.user-block {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
+  width: calc(33% - 20px); /* Adjust width for responsive layout */
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-block:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.user-block h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.user-block p {
+  color: #777;
+  font-size: 1rem;
+}
+
