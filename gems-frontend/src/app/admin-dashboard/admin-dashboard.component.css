@@ -24,20 +24,22 @@
   }
   
   .header-primary {
-    background-color: #007bff;
-    color: white;
+    background-color: transparent; /* No background color */
+    color: white; /* Keep the text color as white */
     padding: 20px;
     border-radius: 8px;
   }
+  
   
   .card-login .content {
     text-align: center;
   }
   
   /* Buttons for actions in the Admin Dashboard */
-  .dashboard-actions button {
+  
+.dashboard-actions button {
     margin-top: 20px;
-    background-color: #007bff;
+    background-color: #ff5722; /* Orange color */
     color: white;
     border: none;
     padding: 12px 25px;
@@ -47,8 +49,9 @@
   }
   
   .dashboard-actions button:hover {
-    background-color: #0056b3;
+    background-color: #e64a19; /* Darker orange color for hover */
   }
+  
   
   /* Footer section */
   .footer {
