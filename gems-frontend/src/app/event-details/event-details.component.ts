@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class EventDetailsComponent implements OnInit {
   event: any = {}; // Objet pour stocker les détails de l'événement
   private apiUrl = 'http://localhost:3000/events'; // URL de l'API pour les événements
+  currentYear: number = new Date().getFullYear(); // Année actuelle pour le copyright
 
   constructor(private route: ActivatedRoute, private http: HttpClient) {}
 
