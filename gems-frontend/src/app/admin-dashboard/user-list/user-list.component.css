@@ -18,6 +18,9 @@
 
 /* Card for User List */
 .card-login {
+  width: 80%; /* Adjust the width as needed */
+  max-width: 900px; /* Optionally set a max-width to prevent it from growing too large */
+  margin: auto; /* Center the card horizontally */
   padding: 40px;
   border-radius: 12px;
   box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
@@ -119,3 +122,9 @@ a.active {
   color: #777;
   font-size: 1rem;
 }
+.container {
+  width: 100%; /* Make the container full width */
+  max-width: 1200px; /* Optional: Set a max-width to limit how large it can grow */
+  margin: 0 auto; /* Center the container */
+}
+

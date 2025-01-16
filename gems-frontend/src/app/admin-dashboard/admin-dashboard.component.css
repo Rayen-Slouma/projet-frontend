@@ -18,6 +18,11 @@
   
   /* Card for Admin Dashboard */
   .card-login {
+     
+    width: 100%; /* Increase the width to 90% */
+    max-width: 1000px; /* Set a max-width if you want to limit the card's size */
+    margin: auto; /* Center the card horizontally */
+   
     padding: 40px;
     border-radius: 12px;
     box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
@@ -35,7 +40,15 @@
     text-align: center;
   }
   
-  /* Buttons for actions in the Admin Dashboard */
+  /* Buttons for actions in the Admin Dashboard */* Card for Admin Dashboard */
+  .card-login {
+    width: 90%; /* Increase the width to 90% */
+    max-width: 1000px; /* Set a max-width if you want to limit the card's size */
+    margin: auto; /* Center the card horizontally */
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
+  }
   
 .dashboard-actions button {
     margin-top: 20px;
@@ -62,7 +75,15 @@
     color: white;
     padding: 20px 0;
   }
-  
+  * Card for Admin Dashboard */
+  .card-login {
+    width: 80%; /* Adjust the width as needed */
+    max-width: 900px; /* Optionally set a max-width to prevent it from growing too large */
+    margin: auto; /* Center the card horizontally */
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
+  }
   .footer ul {
     list-style: none;
     padding: 0;
