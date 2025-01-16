@@ -23,7 +23,7 @@ export class UserProfileComponent implements OnInit {
     
     if (userId) {
       // Effectuer une requête HTTP pour récupérer les détails de l'utilisateur
-      this.http.get(`http://localhost:3000/api/users/${userId}`).subscribe(
+      this.http.get(`http://localhost:3000/users/public/${userId}`).subscribe(
         (data) => {
           this.user = data; // Stocker les données de l'utilisateur
           this.isLoading = false; // Désactiver le chargement une fois les données récupérées
