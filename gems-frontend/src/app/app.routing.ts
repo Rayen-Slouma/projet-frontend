@@ -17,7 +17,7 @@ import { EventListComponent } from './admin-dashboard/event-list/event-list.comp
 import { UserProfileComponent } from './user-profile/user-profile.component'; 
 import { EventDetailsComponent } from './event-details/event-details.component';
 import { EventEditComponent } from './event-edit/edit-event.component'; // Import du composant d'édition
- 
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 
 const routes: Routes = [
@@ -29,6 +29,8 @@ const routes: Routes = [
     { path: 'examples/profile', component: ProfileComponent },
     { path: 'user/:id', component: UserProfileComponent }, 
     { path: 'edit/:id', component: EventEditComponent },
+    { path: 'edit-profile/:id', component: EditProfileComponent }, // Nouvelle route
+    { path: '**', redirectTo: 'user-profile' },
     {
         path: 'event/:id',
         component: EventDetailsComponent,
