@@ -1,0 +1,12 @@
+<!-- profile.component.html -->
+<div class="user-profile">
+    <h1>{{ user.username }}'s Profile</h1>
+    
+    <div class="user-details">
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Role:</strong> {{ user.role }}</p>
+      <p><strong>Profile Picture:</strong> <img [src]="user.profilePicture" alt="Profile Picture" width="100"></p>
+      <p><strong>Active:</strong> {{ user.isActive ? 'Yes' : 'No' }}</p>
+    </div>
+  </div>
+  
