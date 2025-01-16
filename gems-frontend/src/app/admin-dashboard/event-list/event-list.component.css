@@ -1,100 +1,32 @@
-/* Style for the User List page */
-.page-header {
-  position: relative;
-  height: 100vh; /* Full height */
-  background-color: #f8f9fa;
+/* Centering the event list container */
+.event-list-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Make it fill the viewport */
+  padding: 20px;
 }
 
-.page-header-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  z-index: -1; /* Ensure content is above the image */
-}
-
-/* Card for User List */
+/* Card for Event List */
 .card-login {
-  width: 80%; /* Adjust the width as needed */
-  max-width: 900px; /* Optionally set a max-width to prevent it from growing too large */
-  margin: auto; /* Center the card horizontally */
+  width: 90%; /* Set width to 90% to make it wider */
+  max-width: 1200px; /* Optional max-width to prevent it from getting too large */
+  margin: 0 auto; /* Center the card horizontally */
   padding: 40px;
   border-radius: 12px;
   box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
-}
-
-.header-primary {
-  background-color: transparent; /* No background color */
-  color: white; /* Keep the text color as white */
-  padding: 20px;
-  border-radius: 8px;
 }
 
 .card-login .content {
   text-align: center;
 }
 
-/* Buttons for actions in the User List */
-.dashboard-actions button {
-  margin-top: 20px;
-  background-color: #ff5722; /* Orange color */
-  color: white;
-  border: none;
-  padding: 12px 25px;
-  font-size: 1.2rem;
-  border-radius: 8px;
-  width: 100%;
-}
-
-.dashboard-actions button:hover {
-  background-color: #e64a19; /* Darker orange color for hover */
-}
-
-/* Footer section */
-.footer {
-  position: relative;
-  bottom: 0;
-  width: 100%;
-  background-color: #343a40;
-  color: white;
-  padding: 20px 0;
-}
-
-.footer ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footer ul li {
-  display: inline;
-  margin-right: 10px;
-}
-
-.footer ul li a {
-  color: white;
-  text-decoration: none;
-}
-
-.footer .copyright {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 0.9rem;
-}
-
-a.active {
-  background-color: #007bff; /* Change background color when active */
-  color: white; /* Change text color when active */
-}
-
-/* Styling for the user blocks */
+/* Styling for the user blocks (event cards) */
 .user-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px; /* Space between user blocks */
+  gap: 20px; /* Space between event blocks */
+  justify-content: center; /* Center the events horizontally */
 }
 
 .user-block {
@@ -121,4 +53,11 @@ a.active {
 .user-block p {
   color: #777;
   font-size: 1rem;
+}
+
+/* Optional: Styling for the Event List title */
+.card-login h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
 }

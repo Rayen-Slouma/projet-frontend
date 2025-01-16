@@ -1,17 +1,17 @@
 <div class="page-header" filter-color="orange">
   <div class="page-header-image" style="background-image: url('assets/img/login.jpg')"></div>
-  
+
   <div class="container">
     <div class="col-md-8 content-center">
       <div class="card card-login card-plain">
         <div class="header header-primary text-center">
-           
+          <h1>Admin Dashboard</h1>
         </div>
         <div class="content">
-          <h1>Admin Dashboard</h1>
+          <!-- Actions in the same row (buttons side by side) -->
           <div class="dashboard-actions">
-            <a routerLink="./users" routerLinkActive="active" class="btn btn-primary btn-round btn-lg btn-block">Manage Users</a>
-            <a routerLink="./events" routerLinkActive="active" class="btn btn-primary btn-round btn-lg btn-block">Manage Events</a>
+            <a routerLink="./users" routerLinkActive="active" class="btn btn-primary btn-round btn-lg">Manage Users</a>
+            <a routerLink="./events" routerLinkActive="active" class="btn btn-primary btn-round btn-lg">Manage Events</a>
           </div>
         </div>
       </div>
@@ -19,8 +19,10 @@
   </div>
 </div>
 
-<!-- Child routes content -->
-<router-outlet></router-outlet>
+<!-- Wrapper for the list (router-outlet content) -->
+<div class="list-wrapper">
+  <router-outlet></router-outlet>
+</div>
 
 <!-- Footer -->
 <footer class="footer">

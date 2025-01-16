@@ -1,44 +1,16 @@
-<div class="page-header" filter-color="orange">
-    <!-- Image de fond pour la liste des événements -->
-    <div class="page-header-image" style="background-image: url('assets/img/events.jpg')"></div>
-    
-    <div class="container">
-      <div class="col-md-8 content-center">
-        <!-- Carte pour le contenu de la liste des événements -->
-        <div class="card card-login card-plain">
-          <div class="header header-primary text-center">
-          </div>
-          <div class="content">
-            <h1>Event List</h1>
-            <!-- Contenu de la liste des événements -->
-            <div class="user-list">
-              <div class="user-block" *ngFor="let event of events" (click)="navigateToEvent(event.id)">
-                <h3>{{ event.title }}</h3>
-                <p>{{ event.location || 'Location not specified' }}</p>
-              </div>
-            </div>
+<!-- Remove the header and footer, keeping only the event list -->
+<div class="event-list-container">
+    <div class="card card-login card-plain">
+      <div class="content">
+        <h1>Event List</h1>
+        <!-- Contenu de la liste des événements -->
+        <div class="user-list">
+          <div class="user-block" *ngFor="let event of events" (click)="navigateToEvent(event.id)">
+            <h3>{{ event.title }}</h3>
+            <p>{{ event.location || 'Location not specified' }}</p>
           </div>
         </div>
       </div>
     </div>
-    
-    <!-- Section du pied de page -->
-    <footer class="footer">
-      <div class="container">
-        <nav>
-          <ul>
-            <li><a href="https://www.creative-tim.com">Creative Tim</a></li>
-            <li><a href="https://www.creative-tim.com/about-us">About Us</a></li>
-            <li><a href="http://blog.creative-tim.com">Blog</a></li>
-            <li><a href="https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md">MIT License</a></li>
-          </ul>
-        </nav>
-        <div class="copyright">
-          &copy; {{ currentYear() }}, Designed by
-          <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by
-          <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
-        </div>
-      </div>
-    </footer>
   </div>
   
