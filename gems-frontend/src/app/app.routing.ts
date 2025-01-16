@@ -23,20 +23,26 @@ const routes: Routes = [
     { path: 'examples/login', component: LoginComponent },
     { path: 'examples/profile', component: ProfileComponent },
 
-    // Routes pour le tableau de bord admin
-    { path: 'admin-dashboard', component: AdminDashboardComponent },
-    { path: 'admin-dashboard/users', component: UserListComponent },
-    { path: 'admin-dashboard/events', component: EventListComponent }
+    {
+        path: 'admin-dashboard',
+        component: AdminDashboardComponent,
+        children: [
+            { path: 'users', component: UserListComponent },
+            { path: 'events', component: EventListComponent },
+            { path: '', redirectTo: 'users', pathMatch: 'full' }, // Redirect to users by default
+        ],
+    },
+    { path: '', redirectTo: '/admin-dashboard', pathMatch: 'full' },
 ];
 
 @NgModule({
     imports: [
         CommonModule,
         BrowserModule,
-        RouterModule.forRoot(routes)
+        RouterModule.forRoot(routes),
     ],
     exports: [
-        RouterModule
+        RouterModule,
     ],
 })
 export class AppRoutingModule { }
