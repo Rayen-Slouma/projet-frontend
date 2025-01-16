@@ -69,7 +69,6 @@
                   </div>
               </div>
               <div class="col-sm-6 col-lg-3">
-                  <div class="input-group" [ngClass]="{'input-group-focus':focus===true}">
                     <div class="input-group-prepend" >
                       <span class="input-group-text">
                           <i class="fa fa-user-circle"></i>
@@ -79,7 +78,6 @@
                   </div>
               </div>
               <div class="col-sm-6 col-lg-3">
-                  <div class="input-group" [ngClass]="{'input-group-focus':focus1===true}">
                       <input type="text" class="form-control" placeholder="Right Nucleo Icon" (focus)="focus1=true" (blur)="focus1=false">
                       <div class="input-group-append">
                         <span class="input-group-text">
@@ -156,18 +154,9 @@
         </div>
           <div class="col-sm-6 col-lg-3">
               <p class="category">Toggle Buttons</p>
-              <bSwitch
-                  [(ngModel)]="state">
-              </bSwitch>
-              <bSwitch> Toggle is off
-              </bSwitch>
+
+             
           </div>
-          <div class="col-sm-6 col-lg-3">
-              <p class="category">Sliders</p>
-              <nouislider class="slider" [min]="0" [max]="100" [step]="1" [(ngModel)]="simpleSlider" [tooltips]="true"></nouislider>
-              <br>
-              <nouislider class="slider slider-primary" [connect]="true" [min]="0" [max]="100" [step]="1" [(ngModel)]="doubleSlider" [tooltips]="true"></nouislider>
-          </div>
+          
       </div>
-    </div>
-</div>
+   

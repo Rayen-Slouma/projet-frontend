@@ -4,6 +4,7 @@ import { DOCUMENT } from '@angular/common';
 import { Location } from '@angular/common';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { filter, Subscription } from 'rxjs';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-root',

@@ -1,0 +1,67 @@
+<p>view-event works!</p>
+<div class="view-event-page" [ngStyle]="{ '--section-color': sectionColor, '--text-color': textColor }">
+    <div class="event-preview">
+      <!-- Cover Photo -->
+      <div class="cover-photo-container">
+        <img *ngIf="event.coverPhoto" [src]="event.coverPhoto" alt="Cover Photo" />
+        <p *ngIf="!event.coverPhoto" class="placeholder">No Cover Photo Available</p>
+      </div>
+  
+      <!-- Event Title -->
+      <div class="event-title-preview">
+        <h1>{{ event.title || 'Event Title' }}</h1>
+      </div>
+  
+      <!-- Event Info -->
+      <div class="event-info-preview">
+        <p>
+          {{ event.startDate | date: 'fullDate' }} - {{ event.endDate | date: 'fullDate' }}
+        </p>
+        <p *ngIf="event.category">
+          <strong>Category:</strong> {{ event.category }}
+        </p>
+        <p *ngIf="event.mode === 'online'">
+          <strong>Mode:</strong> Online
+        </p>
+        <p *ngIf="event.mode === 'onsite'">
+          <strong>Location:</strong> {{ event.location }}
+        </p>
+        <p *ngIf="event.price !== undefined">
+          <strong>Ticket Price:</strong> ${{ event.price }}
+        </p>
+        <p *ngIf="event.ticketLimit !== undefined">
+          <strong>Ticket Limit:</strong> {{ event.ticketLimit }}
+        </p>
+      </div>
+  
+      <!-- Google Map -->
+      <div *ngIf="event.mode === 'onsite'" id="map-container" class="map-container">
+        <agm-map
+          [latitude]="event.latitude"
+          [longitude]="event.longitude"
+          [zoom]="15"
+        >
+          <agm-marker [latitude]="event.latitude" [longitude]="event.longitude"></agm-marker>
+        </agm-map>
+      </div>
+  
+      <!-- Event Description -->
+      <div class="event-description">
+        <h2>Description</h2>
+        <p>{{ event.description }}</p>
+      </div>
+  
+      <!-- Organizers -->
+      <div class="event-organizers">
+        <h2>Organizers</h2>
+        <div class="organizers-list">
+          <span *ngFor="let organizer of event.organizers" class="badge badge-info">
+            {{ organizer }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+console.log('Event:', this.event);
+console.log('Section Color:', this.sectionColor);
+console.log('Text Color:', this.textColor);  

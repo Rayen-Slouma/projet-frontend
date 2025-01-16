@@ -6,23 +6,31 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { ExamplesModule } from './examples/examples.module';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { CommonModule } from '@angular/common';
+import { ViewEventComponent } from './components/view-event/view-event.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        NavbarComponent
+        NavbarComponent,
+        ViewEventComponent,
+        
+
     ],
     imports: [
         BrowserAnimationsModule,
-        NgbModule,
         FormsModule,
+        CommonModule,
+        NgxSliderModule,
+        ReactiveFormsModule,
+        NgbModule,
         RouterModule,
         AppRoutingModule,
-        ComponentsModule,
-        ExamplesModule
+        ExamplesModule,
     ],
     providers: [],
     bootstrap: [AppComponent]
