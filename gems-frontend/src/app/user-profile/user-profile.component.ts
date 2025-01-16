@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http'; // Pour les requêtes HTTP
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-user-profile',
@@ -9,28 +9,28 @@ import { HttpClient } from '@angular/common/http'; // Pour les requêtes HTTP
 })
 export class UserProfileComponent implements OnInit {
   user: any = {}; // Pour stocker les données de l'utilisateur
-  isLoading: boolean = true; // Pour afficher un indicateur de chargement
-  errorMessage: string = ''; // Pour afficher les erreurs
+  isLoading: boolean = true; // Indicateur de chargement
+  errorMessage: string = ''; // Message d'erreur
 
   constructor(
-    private route: ActivatedRoute, // Pour récupérer les paramètres de l'URL
-    private http: HttpClient // Pour les requêtes HTTP
+    private route: ActivatedRoute,
+    private http: HttpClient
   ) {}
 
   ngOnInit() {
-    // Récupérer l'ID de l'utilisateur à partir de l'URL
+    // Récupérer l'ID utilisateur à partir des paramètres de l'URL
     const userId = this.route.snapshot.paramMap.get('id');
     
     if (userId) {
-      // Effectuer une requête HTTP pour récupérer les détails de l'utilisateur
+      // Requête HTTP pour récupérer les détails utilisateur
       this.http.get(`http://localhost:3000/users/public/${userId}`).subscribe(
         (data) => {
-          this.user = data; // Stocker les données de l'utilisateur
-          this.isLoading = false; // Désactiver le chargement une fois les données récupérées
+          this.user = data; // Stocker les données utilisateur
+          this.isLoading = false; // Désactiver l'indicateur de chargement
         },
         (error) => {
           console.error('Erreur lors de la récupération des données utilisateur', error);
-          this.isLoading = false; // Désactiver le chargement
+          this.isLoading = false; // Désactiver l'indicateur de chargement
           this.errorMessage = 'Impossible de récupérer les données utilisateur. Veuillez réessayer plus tard.';
         }
       );
@@ -38,5 +38,11 @@ export class UserProfileComponent implements OnInit {
       this.isLoading = false;
       this.errorMessage = 'L\'ID utilisateur est manquant.';
     }
+  }
+
+  // Gestion de l'erreur de chargement de l'image
+  onImageError(event: Event) {
+    const target = event.target as HTMLImageElement;
+    target.src = 'assets/img/ryan.jpg'; // Image par défaut en cas d'erreur
   }
 }

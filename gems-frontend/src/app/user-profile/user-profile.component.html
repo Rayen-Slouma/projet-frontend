@@ -5,7 +5,11 @@
     <div class="container">
       <div class="content-center">
         <div class="photo-container">
-          <img [src]="user.profilePicture || 'assets/img/ryan.jpg'" alt=''  >
+          <img 
+            [src]="user.profilePicture || 'assets/img/ryan.jpg'" 
+            (error)="onImageError($event)" 
+            alt="User Profile Picture" 
+            class="img-raised">
         </div>
         <h3 class="title">{{ user.username || 'Unknown User' }}</h3>
         <p class="category">{{ user.job || 'No Role Assigned' }}</p>
