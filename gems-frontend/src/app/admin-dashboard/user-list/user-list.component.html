@@ -1,4 +1,5 @@
-<!-- Remove the header and footer, keeping only the user list -->
+<!-- user-list.component.html -->
+
 <div class="user-list-container">
   <div class="card card-login card-plain">
     <div class="content">
@@ -6,8 +7,14 @@
       <!-- User List content -->
       <div class="user-list">
         <div class="user-block" *ngFor="let user of users" (click)="navigateToUser(user.id)">
-          <h3>{{ user.username }}</h3>  <!-- Display the username from API -->
-          <p>{{ user.email || 'No email' }}</p>  <!-- Display the email from API -->
+          <h3>{{ user.username }}</h3>
+          <p>{{ user.email }}</p>
+
+          <!-- View and Delete Buttons -->
+          <div class="user-actions">
+            <button (click)="viewUser(user.id)" class="btn btn-primary">View</button>
+            <button (click)="deleteUser(user.id)" class="btn btn-danger">Delete</button>
+          </div>
         </div>
       </div>
     </div>

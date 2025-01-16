@@ -1,6 +1,8 @@
+// user-list.component.ts
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http'; // Import HttpClient
+import { HttpClient } from '@angular/common/http'; // Pour les requêtes HTTP
 import { Observable } from 'rxjs';
 
 @Component({
@@ -9,28 +11,45 @@ import { Observable } from 'rxjs';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-  users: any[] = [];  // Users array to hold fetched data
+  users: any[] = []; // Tableau d'utilisateurs
 
   constructor(private router: Router, private http: HttpClient) {}
 
-  // Function to navigate to user detail page
+  // Fonction pour naviguer vers la page de détail de l'utilisateur
   navigateToUser(userId: number) {
     this.router.navigate([`/user/${userId}`]);
   }
 
-  // Fetch users from the API
-  fetchUsers() {
+  // Fonction pour supprimer un utilisateur
+  deleteUser(userId: number) {
+    if (confirm('Are you sure you want to delete this user?')) {
+      this.http.delete(`http://localhost:3000/users/${userId}`).subscribe(
+        (response) => {
+          alert('User deleted successfully');
+          this.users = this.users.filter(user => user.id !== userId); // Mise à jour de la liste après suppression
+        },
+        (error) => {
+          console.error('Error deleting user', error);
+          alert('Error deleting user');
+        }
+      );
+    }
+  }
+
+  // Fonction pour afficher les détails d'un utilisateur
+  viewUser(userId: number) {
+    this.router.navigate([`/user/${userId}`]);
+  }
+
+  ngOnInit() {
+    // Exemple d'appel API pour récupérer la liste des utilisateurs
     this.http.get<any[]>('http://localhost:3000/users').subscribe(
       (data) => {
-        this.users = data;  // Assign the fetched data to the users array
+        this.users = data; // Mettre à jour la liste des utilisateurs
       },
       (error) => {
         console.error('Error fetching users', error);
       }
     );
-  }
-
-  ngOnInit() {
-    this.fetchUsers();  // Fetch users when the component initializes
   }
 }
