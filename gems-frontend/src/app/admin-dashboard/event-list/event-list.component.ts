@@ -1,32 +1,26 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-event-list',
   templateUrl: './event-list.component.html',
-  styleUrls: ['./event-list.component.css']
+  styleUrls: ['./event-list.component.css'],
 })
 export class EventListComponent implements OnInit {
-  events = [
-    { id: 1, title: 'Annual Tech Conference', location: 'New York' },
-    { id: 2, title: 'Design Workshop', location: 'San Francisco' },
-    { id: 3, title: 'Startup Pitch Night', location: 'Los Angeles' },
-    // Ajoutez d'autres événements ou récupérez-les dynamiquement via un service
-  ];
+  events: any[] = []; // Liste des événements initialisée comme vide
+  private apiUrl = 'http://localhost:3000/events'; // URL de l'API
 
-  constructor() {}
-
-  // Fonction pour naviguer vers la page de détail d'un événement
-  navigateToEvent(eventId: number) {
-    console.log(`Navigating to event with ID: ${eventId}`);
-    // Vous pouvez implémenter une navigation ici si nécessaire
-  }
-
-  // Fonction pour retourner l'année actuelle
-  currentYear() {
-    return new Date().getFullYear();
-  }
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    // Code d'initialisation si nécessaire
+    // Appel à l'API pour récupérer les événements
+    this.http.get<any[]>(this.apiUrl).subscribe(
+      (data) => {
+        this.events = data; // Assigner les données récupérées
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des événements:', error);
+      }
+    );
   }
 }

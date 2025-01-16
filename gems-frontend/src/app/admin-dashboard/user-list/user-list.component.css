@@ -10,8 +10,8 @@
 
 /* Card for User List */
 .card-login {
-  width: 10000px; /* Fixed width for the card */
-  max-width: 1400px; /* Maximum width */
+  width: 1700px; /* Fixed width for the card */
+  max-width: 7000px; /* Maximum width */
   margin: 0 auto; /* Center the card horizontally */
   padding: 40px;
   border-radius: 12px;

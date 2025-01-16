@@ -9,8 +9,8 @@
 
 /* Card for Event List */
 .card-login {
-  width: 10000px; /* Set width to 90% to make it wider */
-  max-width: 1200px; /* Optional max-width to prevent it from getting too large */
+  width: 1700px; /* Set width to 90% to make it wider */
+  max-width: 10000px; /* Optional max-width to prevent it from getting too large */
   margin: 0 auto; /* Center the card horizontally */
   padding: 40px;
   border-radius: 12px;

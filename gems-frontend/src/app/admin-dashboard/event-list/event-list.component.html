@@ -1,16 +1,14 @@
-<!-- Remove the header and footer, keeping only the event list -->
 <div class="event-list-container">
-    <div class="card card-login card-plain">
-      <div class="content">
-        <h1>Event List</h1>
-        <!-- Contenu de la liste des événements -->
-        <div class="user-list">
-          <div class="user-block" *ngFor="let event of events" (click)="navigateToEvent(event.id)">
-            <h3>{{ event.title }}</h3>
-            <p>{{ event.location || 'Location not specified' }}</p>
-          </div>
+  <div class="card-login">
+    <div class="content">
+      <h1>Events List</h1>
+      <div class="user-list">
+        <div class="user-block" *ngFor="let event of events">
+          <h3>{{ event.name }}</h3>
+          <p><strong>Description :</strong> {{ event.description }}</p>
+          <p><strong>Lieu :</strong> {{ event.location }}</p>
         </div>
       </div>
     </div>
   </div>
-  
+</div>
