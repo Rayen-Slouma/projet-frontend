@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -10,7 +11,7 @@ export class EventListComponent implements OnInit {
   events: any[] = [];
   private apiUrl = 'http://localhost:3000/events';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     this.loadEvents();
@@ -30,8 +31,7 @@ export class EventListComponent implements OnInit {
 
   // Fonction pour afficher les détails d'un événement
   viewEvent(eventId: number): void {
-    console.log(`Afficher l'événement avec l'ID : ${eventId}`);
-    // Implémentez une navigation ou une logique pour voir les détails ici
+    this.router.navigate([`/event/${eventId}`]); // Naviguer vers la page de détails de l'événement
   }
 
   // Fonction pour supprimer un événement

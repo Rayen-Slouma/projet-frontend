@@ -15,6 +15,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { UserListComponent } from './admin-dashboard/user-list/user-list.component';
 import { EventListComponent } from './admin-dashboard/event-list/event-list.component';
 import { UserProfileComponent } from './user-profile/user-profile.component'; // Import the new user profile component
+import { EventDetailsComponent } from './event-details/event-details.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'index', pathMatch: 'full' },
@@ -24,6 +25,7 @@ const routes: Routes = [
     { path: 'examples/login', component: LoginComponent },
     { path: 'examples/profile', component: ProfileComponent },
     { path: 'user/:id', component: UserProfileComponent }, 
+    { path: 'event/:id', component: EventDetailsComponent },
 
     {
         path: 'admin-dashboard',
