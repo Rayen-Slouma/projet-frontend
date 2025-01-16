@@ -41,8 +41,8 @@ export class EventFormComponent implements OnInit {
     if (this.location) filledFields++;
     if (this.numberOfPlaces) filledFields++;
     if (this.prices) filledFields++;
-    if (this.selectedCategory) filledFields++;
-    if (this.selectedCategory === 'Other' && this.otherCategory) filledFields++;
+    if (this.selectedCategory === 'Other' && this.otherCategory) filledFields++
+    else if (this.selectedCategory  && this.selectedCategory !== 'Other' ) filledFields++;
     this.progressValue = (filledFields / 10) * 100;
   }
 
