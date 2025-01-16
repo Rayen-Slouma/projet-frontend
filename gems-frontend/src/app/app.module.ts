@@ -12,11 +12,13 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { AdminDashboardModule } from './admin-dashboard/admin-dashboard.module';  
 
 import { HttpClientModule } from '@angular/common/http';
+import { EventEditComponent } from './event-edit/edit-event.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    EventEditComponent,
   ],
   imports: [
     BrowserAnimationsModule,

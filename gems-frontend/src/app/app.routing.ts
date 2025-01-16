@@ -14,8 +14,11 @@ import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.compo
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { UserListComponent } from './admin-dashboard/user-list/user-list.component';
 import { EventListComponent } from './admin-dashboard/event-list/event-list.component';
-import { UserProfileComponent } from './user-profile/user-profile.component'; // Import the new user profile component
+import { UserProfileComponent } from './user-profile/user-profile.component'; 
 import { EventDetailsComponent } from './event-details/event-details.component';
+import { EventEditComponent } from './event-edit/edit-event.component'; // Import du composant d'édition
+ 
+
 
 const routes: Routes = [
     { path: '', redirectTo: 'index', pathMatch: 'full' },
@@ -25,8 +28,14 @@ const routes: Routes = [
     { path: 'examples/login', component: LoginComponent },
     { path: 'examples/profile', component: ProfileComponent },
     { path: 'user/:id', component: UserProfileComponent }, 
-    { path: 'event/:id', component: EventDetailsComponent },
-
+    { path: 'edit/:id', component: EventEditComponent },
+    {
+        path: 'event/:id',
+        component: EventDetailsComponent,
+        children: [
+            { path: 'edit', component: EventEditComponent }, // Route pour éditer un événement
+        ],
+    },
     {
         path: 'admin-dashboard',
         component: AdminDashboardComponent,
