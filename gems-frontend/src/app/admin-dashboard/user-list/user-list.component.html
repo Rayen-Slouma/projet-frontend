@@ -1,12 +1,10 @@
-<!-- user-list.component.html -->
-
 <div class="user-list-container">
   <div class="card card-login card-plain">
     <div class="content">
       <h1>User List</h1>
       <!-- User List content -->
       <div class="user-list">
-        <div class="user-block" *ngFor="let user of users" (click)="navigateToUser(user.id)">
+        <div class="user-block" *ngFor="let user of users">
           <h3>{{ user.username }}</h3>
           <p>{{ user.email }}</p>
 

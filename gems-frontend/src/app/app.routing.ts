@@ -14,6 +14,7 @@ import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.compo
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { UserListComponent } from './admin-dashboard/user-list/user-list.component';
 import { EventListComponent } from './admin-dashboard/event-list/event-list.component';
+import { UserProfileComponent } from './user-profile/user-profile.component'; // Import the new user profile component
 
 const routes: Routes = [
     { path: '', redirectTo: 'index', pathMatch: 'full' },
@@ -22,6 +23,7 @@ const routes: Routes = [
     { path: 'examples/landing', component: LandingComponent },
     { path: 'examples/login', component: LoginComponent },
     { path: 'examples/profile', component: ProfileComponent },
+    { path: 'user/:id', component: UserProfileComponent }, 
 
     {
         path: 'admin-dashboard',

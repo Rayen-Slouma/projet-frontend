@@ -1,8 +1,6 @@
-// user-list.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http'; // Pour les requêtes HTTP
+import { HttpClient } from '@angular/common/http'; // For HTTP requests
 import { Observable } from 'rxjs';
 
 @Component({
@@ -11,22 +9,22 @@ import { Observable } from 'rxjs';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-  users: any[] = []; // Tableau d'utilisateurs
+  users: any[] = []; // Array to hold the list of users
 
   constructor(private router: Router, private http: HttpClient) {}
 
-  // Fonction pour naviguer vers la page de détail de l'utilisateur
+  // Function to navigate to the user profile page
   navigateToUser(userId: number) {
     this.router.navigate([`/user/${userId}`]);
   }
 
-  // Fonction pour supprimer un utilisateur
+  // Function to delete a user
   deleteUser(userId: number) {
     if (confirm('Are you sure you want to delete this user?')) {
       this.http.delete(`http://localhost:3000/users/${userId}`).subscribe(
         (response) => {
           alert('User deleted successfully');
-          this.users = this.users.filter(user => user.id !== userId); // Mise à jour de la liste après suppression
+          this.users = this.users.filter(user => user.id !== userId); // Update the user list after deletion
         },
         (error) => {
           console.error('Error deleting user', error);
@@ -36,16 +34,16 @@ export class UserListComponent implements OnInit {
     }
   }
 
-  // Fonction pour afficher les détails d'un utilisateur
+  // Function to view a user's details
   viewUser(userId: number) {
     this.router.navigate([`/user/${userId}`]);
   }
 
   ngOnInit() {
-    // Exemple d'appel API pour récupérer la liste des utilisateurs
+    // Example API call to fetch the list of users
     this.http.get<any[]>('http://localhost:3000/users').subscribe(
       (data) => {
-        this.users = data; // Mettre à jour la liste des utilisateurs
+        this.users = data; // Update the user list with the fetched data
       },
       (error) => {
         console.error('Error fetching users', error);
