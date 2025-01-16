@@ -1,0 +1,99 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .page-header {
+    position: relative;
+    background-color: #ff6f00;
+    color: white;
+    padding: 50px 0;
+    text-align: center;
+  }
+  
+  .page-header-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+  }
+  
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .content-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .photo-container img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+  }
+  
+  .category {
+    font-size: 1.2rem;
+    color: #ddd;
+  }
+  
+  .social-description {
+    display: inline-block;
+    margin: 10px;
+  }
+  
+  .social-description h2 {
+    font-size: 2rem;
+    color: #fff;
+  }
+  
+  .btn {
+    margin: 5px;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    border-radius: 25px;
+  }
+  
+  .btn-primary {
+    background-color: #ff6f00;
+    color: white;
+    border: none;
+  }
+  
+  .btn-default {
+    background-color: transparent;
+    border: 2px solid #ff6f00;
+    color: #ff6f00;
+  }
+  
+  .footer {
+    background-color: #222;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  .footer a {
+    color: #ff6f00;
+    text-decoration: none;
+  }
+  
+  .footer a:hover {
+    text-decoration: underline;
+  }
+  

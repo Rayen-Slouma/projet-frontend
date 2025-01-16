@@ -1,0 +1,68 @@
+<div class="container">
+  <h2 class="title">Modifier l'événement</h2>
+  <form (ngSubmit)="saveEvent()">
+    <div class="form-group">
+      <label for="name">Nom</label>
+      <input
+        type="text"
+        id="name"
+        [(ngModel)]="event.name"
+        name="name"
+        class="form-control"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        [(ngModel)]="event.description"
+        name="description"
+        class="form-control"
+        rows="3"
+        required
+      ></textarea>
+    </div>
+    <div class="form-group">
+      <label for="location">Emplacement</label>
+      <input
+        type="text"
+        id="location"
+        [(ngModel)]="event.location"
+        name="location"
+        class="form-control"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="startDate">Date de début</label>
+      <input
+        type="date"
+        id="startDate"
+        [(ngModel)]="event.startDate"
+        name="startDate"
+        class="form-control"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="endDate">Date de fin</label>
+      <input
+        type="date"
+        id="endDate"
+        [(ngModel)]="event.endDate"
+        name="endDate"
+        class="form-control"
+        required
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+    <button
+      type="button"
+      class="btn btn-secondary"
+      (click)="router.navigate(['/events', event.id])"
+    >
+      Annuler
+    </button>
+  </form>
+</div>

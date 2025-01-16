@@ -1,0 +1,112 @@
+/* Make sure the page header takes up full viewport height */
+.page-header {
+  position: relative;
+  height: 200px; /* Adjusted height */
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center;     /* Vertically center */
+  margin-bottom: 1px; /* Small margin between header and buttons */
+}
+
+/* Center content inside the container */
+.page-header .container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center;     /* Center vertically */
+  flex-direction: column;
+  width: 100%;
+  padding: 0;
+}
+
+/* Card to display content */
+.card-login {
+  width: 100%;
+  max-width: 1000px; /* Increased max-width */
+  margin: 10px 0; /* Margin between card and header */
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column; /* Stacked vertically */
+  align-items: center;
+}
+
+/* Header (Admin Dashboard text) and Buttons in the same line */
+.card-login .header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.card-login .header h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.dashboard-actions {
+  display: flex;
+  justify-content: space-between; /* Space out buttons */
+  gap: 20px; /* Add spacing between buttons */
+  margin-top: 1px; /* Small margin between the header and buttons */
+}
+
+/* Button styles */
+.dashboard-actions .btn {
+  width: auto;
+  font-size: 1rem;
+  padding: 12px 20px;
+}
+
+/* Wrapper for the list (router-outlet content) */
+.list-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 280px); /* Adjust height to fit content above (header + buttons) */
+  width: 100%;
+  padding: 20px;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+/* Centered router-outlet */
+router-outlet {
+  display: block;
+  width: 100%;
+  max-width: 800px;
+}
+
+/* Footer section */
+.footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  background-color: #343a40;
+  color: white;
+  padding: 20px 0;
+}
+
+.footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer ul li {
+  display: inline;
+  margin-right: 10px;
+}
+
+.footer ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer .copyright {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9rem;
+}

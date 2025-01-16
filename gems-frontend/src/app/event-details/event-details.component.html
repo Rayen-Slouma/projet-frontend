@@ -1,0 +1,128 @@
+<div class="wrapper">
+  <!-- En-tête avec image et détails de l'événement -->
+  <div class="page-header page-header-small" filter-color="orange">
+    <div
+      class="page-header-image rellax-header"
+      data-rellax-speed="-8"
+      style="background-image: url('assets/img/bg5.jpg');"
+    ></div>
+    <div class="container">
+      <div class="content-center">
+        <div class="photo-container">
+          <!-- Image dynamique de l'événement -->
+          <img [src]="event.imageUrl" alt="Event Image">
+        </div>
+        <h3 class="title">{{ event.name }}</h3>
+        <p class="category">{{ event.category }}</p>
+        <div class="content">
+          <div class="social-description">
+            <h2>{{ event.numberOfComments }}</h2>
+            <p>Comments</p>
+          </div>
+          <div class="social-description">
+            <h2>{{ event.numberOfBookmarks }}</h2>
+            <p>Bookmarks</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Détails de l'événement -->
+  <div class="section">
+    <div class="container">
+      <div class="button-container">
+        <!-- Boutons dynamique de l'événement -->
+        <a href="#button" class="btn btn-primary btn-round btn-lg">Follow</a>
+        <a
+          href="#button"
+          class="btn btn-default btn-round btn-lg btn-icon"
+          rel="tooltip"
+          title="Follow me on Twitter"
+        >
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a
+          href="#button"
+          class="btn btn-default btn-round btn-lg btn-icon"
+          rel="tooltip"
+          title="Follow me on Instagram"
+        >
+          <i class="fab fa-instagram"></i>
+        </a>
+
+        <!-- Bouton Edit -->
+        <a href="#" (click)="editEvent()" class="btn btn-warning btn-round btn-lg">Edit</a>
+      </div>
+
+      <h3 class="title">About this event</h3>
+      <h5 class="description">{{ event.description }}</h5>
+
+      <!-- Affichage des nouvelles propriétés -->
+      <div class="row">
+        <div class="col-md-4">
+          <h5 class="title">Location</h5>
+          <p>{{ event.location }}</p>
+        </div>
+        <div class="col-md-4">
+          <h5 class="title">Start Date</h5>
+          <p>{{ event.startDate }}</p>
+        </div>
+        <div class="col-md-4">
+          <h5 class="title">End Date</h5>
+          <p>{{ event.endDate }}</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <h5 class="title">Price</h5>
+          <p>{{ event.price }}</p>
+        </div>
+        <div class="col-md-4">
+          <h5 class="title">Available Places</h5>
+          <p>{{ event.numberOfPlacesAvailable }}</p>
+        </div>
+        <div class="col-md-4">
+          <h5 class="title">Start Time</h5>
+          <p>{{ event.startTime }}</p>
+        </div>
+        <div class="col-md-4">
+          <h5 class="title">End Time</h5>
+          <p>{{ event.endTime }}</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <h4 class="title text-center">Event Media</h4>
+          <!-- Galerie d'images de l'événement -->
+          <div class="row collections">
+            <div class="col-md-6" *ngFor="let media of event.media">
+              <img [src]="media.url" alt="Event Media" class="img-raised">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer footer-default">
+    <div class="container">
+      <nav>
+        <ul>
+          <li><a href="https://www.creative-tim.com">Creative Tim</a></li>
+          <li><a href="https://www.creative-tim.com/about-us">About Us</a></li>
+          <li><a href="http://blog.creative-tim.com">Blog</a></li>
+          <li><a href="https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md">MIT License</a></li>
+        </ul>
+      </nav>
+      <div class="copyright">
+        &copy; {{ currentYear }}, Designed by
+        <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by
+        <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
+      </div>
+    </div>
+  </footer>
+</div>

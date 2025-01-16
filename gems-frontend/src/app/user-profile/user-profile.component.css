@@ -1,0 +1,61 @@
+.page-header {
+  height: 300px;
+  background-size: cover;
+  position: relative;
+}
+
+.page-header-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+}
+
+.photo-container {
+  margin: 0 auto;
+  margin-top: 70px;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+.img-raised {
+  box-shadow: 0 10px 20px -12px rgba(0, 0, 0, 0.42),
+              0 3px 20px 0px rgba(0, 0, 0, 0.12),
+              0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.title {
+  font-weight: bold;
+  margin-top: 25px;
+  text-align: center;
+}
+
+.category {
+  font-style: italic;
+  color: #999;
+}
+
+.social-description {
+  margin: 15px;
+  text-align: center;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.description {
+  text-align: justify;
+  margin: 20px auto;
+  max-width: 600px;
+  font-size: 16px;
+}

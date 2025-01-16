@@ -12,13 +12,17 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { ViewEventComponent } from './components/view-event/view-event.component';
+import { AdminDashboardModule } from './admin-dashboard/admin-dashboard.module';  
+import { EventEditComponent } from './event-edit/edit-event.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [
         AppComponent,
         NavbarComponent,
         ViewEventComponent,
-        
+        EventEditComponent,
+
 
     ],
     imports: [
@@ -31,8 +35,12 @@ import { ViewEventComponent } from './components/view-event/view-event.component
         RouterModule,
         AppRoutingModule,
         ExamplesModule,
+        AdminDashboardModule,  // Import AdminDashboardModule
+    HttpClientModule,
     ],
     providers: [],
     bootstrap: [AppComponent]
+
+
 })
-export class AppModule { }
+export class AppModule {}

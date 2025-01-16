@@ -1,0 +1,60 @@
+<div class="wrapper">
+  <div class="page-header page-header-small" filter-color="orange">
+    <div class="page-header-image rellax-header" style="background-image: url('assets/img/bg5.jpg');">
+    </div>
+    <div class="container">
+      <div class="content-center">
+        <div class="photo-container">
+          <img 
+            [src]="user.profilePicture || 'assets/img/ryan.jpg'" 
+            (error)="onImageError($event)" 
+            alt="User Profile Picture" 
+            class="img-raised">
+        </div>
+        <h3 class="title">{{ user.username || 'Unknown User' }}</h3>
+        <p class="category">{{ user.job || 'No Role Assigned' }}</p>
+
+        <div class="content">
+          <div class="social-description">
+            <h2>Email</h2>
+            <p>{{ user.email || 'Not Provided' }}</p>
+          </div>
+          <div class="social-description">
+            <h2>Role</h2>
+            <p>{{ user.role || 'User' }}</p>
+          </div>
+          <div class="social-description">
+            <p><strong>Active:</strong> {{ user.isActive ? 'Yes' : 'No' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="container">
+      <div class="button-container">
+        <!-- Bouton Follow -->
+        <a href="#" class="btn btn-primary btn-round btn-lg">Follow</a>
+
+        <!-- Bouton Edit -->
+        <button 
+          class="btn btn-warning btn-round btn-lg" 
+          (click)="onEdit()" 
+          title="Edit User Profile">
+          Edit
+        </button>
+
+        <a href="#" class="btn btn-default btn-round btn-lg btn-icon" title="Follow on Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" class="btn btn-default btn-round btn-lg btn-icon" title="Follow on Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+      <h3 class="title">About</h3>
+      <h5 class="description">
+        {{ user.about || 'No description available for this user.' }}
+      </h5>
+    </div>
+  </div>
+</div>
