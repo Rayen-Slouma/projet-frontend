@@ -1,7 +1,7 @@
 /* Make sure the page header takes up full viewport height */
 .page-header {
   position: relative;
-  height: 200px; /* Reduced to avoid taking too much space */
+  height: 200px; /* Adjusted height */
   background-color: #f8f9fa;
   display: flex;
   justify-content: center; /* Horizontally center */
@@ -12,29 +12,45 @@
 /* Center content inside the container */
 .page-header .container {
   display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center;     /* Center vertically */
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start; /* Keep content at the top */
-  padding: 0;
   width: 100%;
+  padding: 0;
 }
 
 /* Card to display content */
 .card-login {
   width: 100%;
-  max-width: 800px;
-  margin: 10px 0; /* Add margin to separate it from the header */
+  max-width: 1000px; /* Increased max-width */
+  margin: 10px 0; /* Margin between card and header */
   padding: 40px;
   border-radius: 12px;
   box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column; /* Stacked vertically */
+  align-items: center;
 }
 
-/* Actions section with buttons in the same line */
+/* Header (Admin Dashboard text) and Buttons in the same line */
+.card-login .header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.card-login .header h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+
 .dashboard-actions {
   display: flex;
   justify-content: space-between; /* Space out buttons */
   gap: 20px; /* Add spacing between buttons */
-  margin-top: 1px; /* Add a small margin between the header and buttons */
+  margin-top: 1px; /* Small margin between the header and buttons */
 }
 
 /* Button styles */
