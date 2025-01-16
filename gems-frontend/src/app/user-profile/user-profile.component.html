@@ -13,6 +13,7 @@
         </div>
         <h3 class="title">{{ user.username || 'Unknown User' }}</h3>
         <p class="category">{{ user.job || 'No Role Assigned' }}</p>
+
         <div class="content">
           <div class="social-description">
             <h2>Email</h2>
@@ -32,7 +33,17 @@
   <div class="section">
     <div class="container">
       <div class="button-container">
+        <!-- Bouton Follow -->
         <a href="#" class="btn btn-primary btn-round btn-lg">Follow</a>
+
+        <!-- Bouton Edit -->
+        <button 
+          class="btn btn-warning btn-round btn-lg" 
+          (click)="onEdit()" 
+          title="Edit User Profile">
+          Edit
+        </button>
+
         <a href="#" class="btn btn-default btn-round btn-lg btn-icon" title="Follow on Twitter">
           <i class="fab fa-twitter"></i>
         </a>

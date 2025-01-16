@@ -45,4 +45,14 @@ export class UserProfileComponent implements OnInit {
     const target = event.target as HTMLImageElement;
     target.src = 'assets/img/ryan.jpg'; // Image par défaut en cas d'erreur
   }
+
+  // Redirection vers la page d'édition du profil
+  onEdit() {
+    const userId = this.user.id; // Assurez-vous que l'ID de l'utilisateur est défini
+    if (userId) {
+      window.location.href = `/edit-profile/${userId}`;
+    } else {
+      console.error('L\'ID utilisateur est manquant. Impossible de rediriger vers la page d\'édition.');
+    }
+  }
 }
