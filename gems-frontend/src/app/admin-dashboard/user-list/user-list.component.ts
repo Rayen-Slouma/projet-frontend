@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http'; // Import HttpClient
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-user-list',
@@ -7,25 +9,28 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-  users = [
-    { id: 1, name: 'John Doe', job: 'Software Engineer' },
-    { id: 2, name: 'Jane Smith', job: 'Designer' },
-    // Add more users or fetch them dynamically via a service
-  ];
+  users: any[] = [];  // Users array to hold fetched data
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private http: HttpClient) {}
 
   // Function to navigate to user detail page
   navigateToUser(userId: number) {
     this.router.navigate([`/user/${userId}`]);
   }
 
-  // Function to return the current year
-  currentYear() {
-    return new Date().getFullYear();
+  // Fetch users from the API
+  fetchUsers() {
+    this.http.get<any[]>('http://localhost:3000/users').subscribe(
+      (data) => {
+        this.users = data;  // Assign the fetched data to the users array
+      },
+      (error) => {
+        console.error('Error fetching users', error);
+      }
+    );
   }
 
   ngOnInit() {
-    // Additional initialization if needed
+    this.fetchUsers();  // Fetch users when the component initializes
   }
 }

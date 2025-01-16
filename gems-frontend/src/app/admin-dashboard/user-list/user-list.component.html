@@ -6,8 +6,8 @@
       <!-- User List content -->
       <div class="user-list">
         <div class="user-block" *ngFor="let user of users" (click)="navigateToUser(user.id)">
-          <h3>{{ user.name }}</h3>
-          <p>{{ user.job || 'No job title' }}</p>
+          <h3>{{ user.username }}</h3>  <!-- Display the username from API -->
+          <p>{{ user.email || 'No email' }}</p>  <!-- Display the email from API -->
         </div>
       </div>
     </div>

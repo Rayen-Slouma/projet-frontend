@@ -11,22 +11,25 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { AdminDashboardModule } from './admin-dashboard/admin-dashboard.module';  
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
-    declarations: [
-        AppComponent,
-        NavbarComponent
-    ],
-    imports: [
-        BrowserAnimationsModule,
-        NgbModule,
-        FormsModule,
-        RouterModule,
-        AppRoutingModule,
-        ComponentsModule,
-        ExamplesModule,
-        AdminDashboardModule 
-    ],
-    providers: [],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+  ],
+  imports: [
+    BrowserAnimationsModule,
+    NgbModule,
+    FormsModule,
+    RouterModule,
+    AppRoutingModule,
+    ComponentsModule,
+    ExamplesModule,
+    AdminDashboardModule,  // Import AdminDashboardModule
+    HttpClientModule,
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
