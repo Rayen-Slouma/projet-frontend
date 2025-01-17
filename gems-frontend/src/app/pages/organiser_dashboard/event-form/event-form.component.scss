@@ -1,0 +1,85 @@
+::ng-deep .ngb-dp-container {
+  right: 0;
+}
+
+.container {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.vertical-line {
+  border-left: 2px solid orange;
+  height: 90%;
+  margin: auto;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.floating-container {
+  border: 2px solid neonorange;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+}
+
+.floating-container:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.btn-preview {
+  background-color: #ffb236;
+  border-color: #ffb236;
+  color: #fff;
+}
+
+.btn-preview:hover {
+  background-color: #e6a32e;
+  border-color: #e6a32e;
+}
+
+.custom-file-input {
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  padding: 0.375rem 0.75rem;
+  height: calc(2.25rem + 2px);
+  color: #495057;
+}
+
+.custom-file-label {
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  padding: 0.375rem 0.75rem;
+  height: calc(2.25rem + 2px);
+  color: #495057;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.custom-file-input:focus ~ .custom-file-label {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.custom-file-input::file-selector-button {
+  background-color: #ffb236;
+  border: none;
+  color: #fff;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.custom-file-input::file-selector-button:hover {
+  background-color: #e6a32e;
+}
+
+.custom-file-input::file-selector-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(255, 178, 54, 0.25);
+}

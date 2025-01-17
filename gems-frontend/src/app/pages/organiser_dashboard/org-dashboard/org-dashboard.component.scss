@@ -1,0 +1,149 @@
+.dashboard-container {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0;
+  width: 100%;
+  min-height: 100vh; /* Ensure it grows with the content */
+}
+
+.title-container {
+  position: absolute;
+  top: 500px; /* Bring the title a little further down */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10; /* Ensure the title is above other elements */
+}
+
+.dashboard-title {
+  text-align: center;
+  margin-top: 0; /* Adjusted to leave space for the navbar */
+  margin-bottom: 20px;
+  color: #ffffff; /* Changed to white for better visibility */
+  font-size: 4rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Added text shadow for better visibility */
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0%   { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.page-header .container {
+  position: static; /* Use static so it doesn't affect .title-container */
+  height: auto;
+}
+
+.page-header .content-center {
+  position: static; /* or remove this rule */
+  transform: none;
+  top: auto;
+  left: auto;
+}
+
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.col-md-2 {
+  flex: 1;
+}
+
+.col-md-10 {
+  flex: 5;
+}
+
+.col-md-8 {
+  flex: 2;
+}
+
+.col-md-4 {
+  flex: 1;
+  text-align: center;
+}
+
+.content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  min-height: 400px;
+}
+
+.event-list-container {
+  flex: 0 0 auto;
+  width: 80%;
+  margin: 0 auto;
+  transition: all 0.8s ease-in-out;
+  padding: 20px;
+}
+
+.event-form-container {
+  position: absolute;
+  right: 0;
+  width: 35%;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.event-form-container.ng-trigger.ng-trigger-fadeIn {
+  opacity: 1;
+}
+
+.page-header-slideshow {
+  position: relative;
+  height: 100%;
+}
+
+.page-header-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.page-header-image.active {
+  opacity: 1;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.events-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #343a40;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #343a40;
+  padding-bottom: 10px;
+}
+
+.centered {
+  margin: 0 auto;
+  transition: all 0.8s ease-in-out;
+  transform: translateX(0); /* Ensure it starts at the correct position */
+}

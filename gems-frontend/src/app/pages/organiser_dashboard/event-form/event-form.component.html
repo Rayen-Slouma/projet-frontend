@@ -1,0 +1,81 @@
+<div class="container mt-5 mb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="floating-container">
+        <h2 class="text-center">New Event</h2>
+        <ngb-progressbar [value]="progressValue" type="primary" class="mb-3">
+          {{ progressValue }}%
+        </ngb-progressbar>
+        <form (ngSubmit)="createEvent()">
+          <div class="row">
+            <div class="col-md-5">
+              <div class="form-group">
+                <label for="eventName">Event Name</label>
+                <input type="text" class="form-control" id="eventName" [(ngModel)]="eventName" name="eventName" required (input)="updateProgress()">
+              </div>
+              <div class="form-group">
+                <label for="eventDescription">Description</label>
+                <textarea class="form-control" id="eventDescription" [(ngModel)]="eventDescription" name="eventDescription" required (input)="updateProgress()"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" class="form-control" id="location" [(ngModel)]="location" name="location" placeholder="Enter Google Maps link" required (input)="updateLocation()">
+              </div>
+              <div class="form-group">
+                <label for="eventPictures">Event Pictures</label>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="eventPictures" (change)="onFileChange($event)" multiple>
+                  <label class="custom-file-label" for="eventPictures">Choose files</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="category">Category</label>
+                <select class="form-control" id="category" [(ngModel)]="selectedCategory" name="category" required (change)="updateProgress()">
+                  <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div *ngIf="selectedCategory === 'Other'" class="form-group">
+                <label for="otherCategory">Specify Category</label>
+                <input type="text" class="form-control" id="otherCategory" [(ngModel)]="otherCategory" name="otherCategory" required (input)="updateProgress()">
+              </div>
+            </div>
+            <div class="col-md-1 d-flex align-items-center justify-content-center">
+              <div class="vertical-line"></div>
+            </div>
+            <div class="col-md-5">
+              <div class="form-group">
+                <label for="startDate">Start Date</label>
+                <input class="form-control datetimepicker" placeholder="Select start date" name="startDate" [(ngModel)]="startDate" ngbDatepicker #startDp="ngbDatepicker" (click)="startDp.toggle()" required (dateSelect)="updateProgress()">
+              </div>
+              <div class="form-group">
+                <label for="startTime">Start Time</label>
+                <input type="time" class="form-control" id="startTime" [(ngModel)]="startTime" name="startTime" required (input)="updateProgress()">
+              </div>
+              <div class="form-group">
+                <label for="endDate">End Date</label>
+                <input class="form-control datetimepicker" placeholder="Select end date" name="endDate" [(ngModel)]="endDate" ngbDatepicker #endDp="ngbDatepicker" (click)="endDp.toggle()" required (dateSelect)="updateProgress()">
+              </div>
+              <div class="form-group">
+                <label for="endTime">End Time</label>
+                <input type="time" class="form-control" id="endTime" [(ngModel)]="endTime" name="endTime" required (input)="updateProgress()">
+              </div>
+              <div class="form-group">
+                <label for="numberOfPlaces">Number of Places Available</label>
+                <input type="number" class="form-control" id="numberOfPlaces" [(ngModel)]="numberOfPlaces" name="numberOfPlaces" required (input)="updateProgress()">
+              </div>
+              <div class="form-group">
+                <label for="prices">Prices</label>
+                <input type="number" class="form-control" id="prices" [(ngModel)]="prices" name="prices" required (input)="updateProgress()">
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-end mt-3">
+            <button type="submit" class="btn btn-primary mr-2">Create Event</button>
+            <button type="button" class="btn btn-preview" (click)="previewEvent()">Preview</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -13,12 +13,18 @@ import { AdminDashboardModule } from './admin-dashboard/admin-dashboard.module';
 
 import { HttpClientModule } from '@angular/common/http';
 import { EventEditComponent } from './event-edit/edit-event.component';
+import { EventFormComponent } from './pages/organiser_dashboard/event-form/event-form.component';
+import { EventListComponent } from './pages/organiser_dashboard/event-list/event-list.component';
+import { OrgDashboardComponent } from './pages/organiser_dashboard/org-dashboard/org-dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     EventEditComponent,
+    EventFormComponent,
+    EventListComponent,
+    OrgDashboardComponent,
   ],
   imports: [
     BrowserAnimationsModule,

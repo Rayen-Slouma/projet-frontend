@@ -9,11 +9,13 @@ import { LandingComponent } from './examples/landing/landing.component';
 import { LoginComponent } from './examples/login/login.component';
 import { ProfileComponent } from './examples/profile/profile.component';
 import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.component';
+import { EventFormComponent } from './pages/organiser_dashboard/event-form/event-form.component';
+import { EventListComponent } from './pages/organiser_dashboard/event-list/event-list.component';
+import { OrgDashboardComponent } from './pages/organiser_dashboard/org-dashboard/org-dashboard.component';
 
 // Import des nouveaux composants du dashboard
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { UserListComponent } from './admin-dashboard/user-list/user-list.component';
-import { EventListComponent } from './admin-dashboard/event-list/event-list.component';
 import { UserProfileComponent } from './user-profile/user-profile.component'; 
 import { EventDetailsComponent } from './event-details/event-details.component';
 import { EventEditComponent } from './event-edit/edit-event.component'; // Import du composant d'édition
@@ -30,6 +32,7 @@ const routes: Routes = [
     { path: 'user/:id', component: UserProfileComponent }, 
     { path: 'edit/:id', component: EventEditComponent },
     { path: 'edit-profile/:id', component: EditProfileComponent }, // Nouvelle route
+    { path: 'dashboard',     component: OrgDashboardComponent },
     { path: '**', redirectTo: 'user-profile' },
     {
         path: 'event/:id',
