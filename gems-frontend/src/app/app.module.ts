@@ -16,7 +16,7 @@ import { EventEditComponent } from './event-edit/edit-event.component';
 import { EventFormComponent } from './pages/organiser_dashboard/event-form/event-form.component';
 import { EventListComponent } from './pages/organiser_dashboard/event-list/event-list.component';
 import { OrgDashboardComponent } from './pages/organiser_dashboard/org-dashboard/org-dashboard.component';
-
+import { ReservationComponent } from './components/pages/reservation/reservation.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +25,7 @@ import { OrgDashboardComponent } from './pages/organiser_dashboard/org-dashboard
     EventFormComponent,
     EventListComponent,
     OrgDashboardComponent,
+    ReservationComponent,
   ],
   imports: [
     BrowserAnimationsModule,

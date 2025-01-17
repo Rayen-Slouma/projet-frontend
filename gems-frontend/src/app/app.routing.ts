@@ -21,7 +21,7 @@ import { EventDetailsComponent } from './event-details/event-details.component';
 import { EventEditComponent } from './event-edit/edit-event.component'; // Import du composant d'édition
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { AdminEventListComponent } from './admin-dashboard/admin-event-list/admin-event-list.component';
-
+import { ReservationComponent } from './components/pages/reservation/reservation.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'index', pathMatch: 'full' },
@@ -32,9 +32,9 @@ const routes: Routes = [
     { path: 'examples/profile', component: ProfileComponent },
     { path: 'user/:id', component: UserProfileComponent }, 
     { path: 'edit/:id', component: EventEditComponent },
-    { path: 'edit-profile/:id', component: EditProfileComponent }, // Nouvelle route
+    { path: 'edit-profile/:id', component: EditProfileComponent },
+    { path: 'reservation', component: ReservationComponent },
     { path: 'dashboard',     component: OrgDashboardComponent },
-    { path: '**', redirectTo: 'user-profile' },
     {
         path: 'event/:id',
         component: EventDetailsComponent,
@@ -51,7 +51,7 @@ const routes: Routes = [
             { path: '', redirectTo: 'users', pathMatch: 'full' }, // Redirect to users by default
         ],
     },
-    { path: '', redirectTo: '/admin-dashboard', pathMatch: 'full' },
+    { path: '**', redirectTo: 'user-profile' },
 ];
 
 @NgModule({
