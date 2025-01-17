@@ -1,0 +1,59 @@
+.page-header {
+  &.clear-filter {
+    &[filter-color="orange"] {
+      background: rgba(44, 44, 44, 0.2);
+      background: linear-gradient(0deg, rgba(44, 44, 44, 0.2), rgba(224, 23, 3, 0.6));
+    }
+  }
+}
+
+.card-login {
+  .card-header {
+    padding: 25px 0 35px;
+  }
+}
+
+.seat-selector {
+  position: absolute;
+  background: white;
+  padding: 8px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  z-index: 1000;
+  width: 100%;
+  left: 0;
+}
+
+.seat-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 35px);
+  gap: 5px;
+  justify-content: center;
+  padding: 10px;
+}
+
+.seat {
+  width: 35px;
+  height: 35px;
+  background: #ff8c00;
+  border: 1px solid #ff6b00;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: white;
+
+  &:hover {
+    background: #ff6b00;
+  }
+
+  &.selected {
+    background: #ff4500;
+  }
+}
+
+input[name="seatNumber"] {
+  cursor: text !important;
+}
