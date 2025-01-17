@@ -19,8 +19,6 @@ const routes: Routes =[
     { path: 'examples/landing',     component: LandingComponent },
     { path: 'examples/login',       component: LoginComponent },
     { path: 'examples/profile',     component: ProfileComponent },
-    { path: 'event',     component: EventFormComponent },
-    { path: 'list',     component: EventListComponent },
     { path: 'dashboard',     component: OrgDashboardComponent },
 ];
 
