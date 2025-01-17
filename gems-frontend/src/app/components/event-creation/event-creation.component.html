@@ -1,0 +1,203 @@
+<div class="event-creation-page" [ngStyle]="{ '--section-color': event.sectionColor, '--text-color': event.textColor }">
+  <div class="event-preview">
+    <div class="cover-photo-container">
+      <label class="cover-photo-upload">
+        <input type="file" (change)="onFileSelected($event)" />
+        <span *ngIf="!event.eventPicture">Click to upload a cover photo</span>
+        <img *ngIf="event.eventPicture" [src]="event.eventPicture" alt="Cover Photo" />
+      </label>
+    </div>
+    <div class="event-title-preview">
+      <h1 *ngIf="event.name">{{ event.name }}</h1>
+      <h1 *ngIf="!event.name" class="placeholder">Event Title</h1>
+    </div>
+    <div class="event-info-preview">
+      <p *ngIf="event.startDate && event.endDate">
+        {{ event.startDate | date: 'fullDate' }} - {{ event.endDate | date: 'fullDate' }}
+      </p>
+      <p *ngIf="!event.startDate || !event.endDate" class="placeholder">Select Event Dates</p>
+      <p *ngIf="event.location">{{ event.location }}</p>
+      <p *ngIf="!event.location" class="placeholder">Enter Event Location</p>
+    </div>
+   
+  </div>
+
+  <form class="event-details-form" (ngSubmit)="onSubmit()" #eventForm="ngForm">
+    <!-- Event Title -->
+    <div class="form-group">
+      <label for="name">Event Title</label>
+      <input
+        type="text"
+        id="title"
+        class="form-control"
+        [(ngModel)]="event.name"
+        name="title"
+        required
+      />
+    </div>
+
+    <!-- Event Description -->
+    <div class="form-group">
+      <label for="description">Event Description</label>
+      <textarea
+        id="description"
+        class="form-control"
+        [(ngModel)]="event.description"
+        name="description"
+        rows="4"
+        required
+      ></textarea>
+    </div>
+
+    <!-- Event Dates -->
+    <div class="form-group dates-group">
+      <div>
+        <label for="startDate">Start Date</label>
+        <input
+          type="datetime-local"
+          id="startDate"
+          class="form-control"
+          [(ngModel)]="event.startDate"
+          name="startDate"
+          required
+        />
+      </div>
+      <div>
+        <label for="endDate">End Date</label>
+        <input
+          type="datetime-local"
+          id="endDate"
+          class="form-control"
+          [(ngModel)]="event.endDate"
+          name="endDate"
+          required
+        />
+      </div>
+    </div>
+
+    <!-- Event Category -->
+<div class="form-group">
+  <label for="category">Event Category</label>
+  <select
+    id="category"
+    class="form-control"
+    [(ngModel)]="event.category"
+    (change)="selectedCategory === 'Other' && (event.category = newCategory)"
+  >
+    <option *ngFor="let category of categories" [value]="category">
+      {{ category }}
+    </option>
+  </select>
+</div>
+
+<!-- New Category Input -->
+<div *ngIf="event.category === 'Other'" class="form-group">
+  <label for="newCategory">New Category</label>
+  <input
+    type="text"
+    id="newCategory"
+    class="form-control"
+    [(ngModel)]="newCategory"
+    (blur)="addCategory()"
+  />
+</div>
+
+    <!-- Price and Ticket Limit -->
+    <div class="form-group">
+      <label for="price">Ticket Price</label>
+      <input
+        type="number"
+        id="price"
+        class="form-control"
+        [(ngModel)]="event.price"
+        name="price"
+        min="0"
+        placeholder="Enter ticket price"
+      />
+    </div>
+    <div class="form-group">
+      <label for="ticketLimit">Ticket Limit</label>
+      <input
+        type="number"
+        id="ticketLimit"
+        class="form-control"
+        [(ngModel)]="event.ticketLimit"
+        name="ticketLimit"
+        min="0"
+        placeholder="Enter maximum tickets"
+      />
+    </div>
+
+    <!-- Online or Onsite -->
+    <div class="form-group">
+      <label for="eventMode">Event Mode</label>
+      <select id="eventMode" class="form-control" [(ngModel)]="event.mode" name="mode" required>
+        <option value="online">Online</option>
+        <option value="onsite">On-Site</option>
+      </select>
+    </div>
+
+    <!-- Event Location -->
+    <div *ngIf="event.mode === 'onsite'" class="form-group">
+      <label for="location">Event Location</label>
+      <input
+        type="text"
+        id="location"
+        class="form-control"
+        [(ngModel)]="event.location"
+        name="location"
+        placeholder="Enter event location"
+      />
+    </div>
+
+    <!-- Organizers -->
+    <div class="form-group">
+      <label for="organizers">Organizers</label>
+      <select
+        class="form-control"
+        [(ngModel)]="selectedOrganizer"
+        name="organizers"
+        (change)="addOrganizer()"
+      >
+        <option *ngFor="let user of users" [value]="user">{{ user }}</option>
+      </select>
+      <div class="organizers-list">
+        <span *ngFor="let organizer of event.organizers" class="badge badge-info">
+          {{ organizer }}
+          <button type="button" (click)="removeOrganizer(organizer)">x</button>
+        </span>
+      </div>
+    </div>
+
+    <!-- Event Color Palette -->
+    <div class="form-group color-palette">
+      <div>
+        <label for="sectionColor">Section Background Color</label>
+        <input
+          type="color"
+          id="sectionColor"
+          [(ngModel)]="event.sectionColor"
+          name="sectionColor"
+          class="form-control"
+          (change)="updateColors()"
+        />
+      </div>
+      <div>
+        <label for="textColor">Text Color</label>
+        <input
+          type="color"
+          id="textColor"
+          [(ngModel)]="event.textColor"
+          name="textColor"
+          class="form-control"
+          (change)="updateColors()"
+        />
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary" [disabled]="!eventForm.valid">
+      Create Event
+    </button>
+  </form>
+</div>

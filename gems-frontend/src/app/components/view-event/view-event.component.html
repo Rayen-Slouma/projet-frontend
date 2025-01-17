@@ -1,0 +1,33 @@
+<div *ngIf="event">
+
+<div class="event-container" [style.background-color]="event.sectionColor" [style.color]="event.textColor">
+  <!-- Cover Photo -->
+  <div class="cover-photo">
+    <img *ngIf="event.eventPicture" [src]="event.eventPicture" alt="Event Cover Photo" class="cover-photo-image" />
+    <div *ngIf="!event.eventPicture" class="placeholder">No Cover Photo Available</div>
+  </div>
+
+  
+
+  <!-- Event Details -->
+  <div class="event-details">
+    <h1 class="event-title">{{ event.name }}</h1>
+    <p class="event-description">{{ event.description }}</p>
+
+    <!-- Highlight Section -->
+    <div class="event-highlight">
+      <p class="event-price">${{ event.price }}</p>
+      <button class="reserve-btn">Reserve Now</button>
+    </div>
+<!-- Debugging Cover Photo -->
+<p *ngIf="event?.eventPicture">Cover Photo Exists: {{ event.eventPicture | slice:0:50 }}...</p>
+
+    <!-- Additional Information -->
+    <div class="event-infos">
+      <p><strong  [style.color]="event.textColor">Date:</strong> {{ event.startDate | date: 'fullDate' }} - {{ event.endDate | date: 'fullDate' }}</p>
+      <p><strong  [style.color]="event.textColor">Location:</strong> {{ event.mode === 'online' ? 'Online' : event.location }}</p>
+      <p><strong  [style.color]="event.textColor">Category:</strong> {{ event.category.name }}</p>
+    </div>
+  </div>
+</div>
+</div>

@@ -6,9 +6,12 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { ExamplesModule } from './examples/examples.module';
-import { HttpClientModule } from '@angular/common/http';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { ViewEventComponent } from './components/view-event/view-event.component';
 import { AdminDashboardModule } from './admin-dashboard/admin-dashboard.module';  
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
@@ -28,6 +31,7 @@ import { ReservationComponent } from './components/pages/reservation/reservation
     ReservationComponent,
     LoginComponent,
     RegisterComponent,
+    ViewEventComponent,
   ],
   imports: [
     BrowserAnimationsModule,

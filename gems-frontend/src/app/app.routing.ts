@@ -13,6 +13,8 @@ import { EventListComponent } from './pages/organiser_dashboard/event-list/event
 import { OrgDashboardComponent } from './pages/organiser_dashboard/org-dashboard/org-dashboard.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { EventCreationComponent } from './components/event-creation/event-creation.component';
+import { ViewEventComponent } from './components/view-event/view-event.component';
 
 // Import des nouveaux composants du dashboard
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
@@ -38,6 +40,8 @@ const routes: Routes = [
     { path: 'dashboard',     component: OrgDashboardComponent },
     { path: 'login',     component:LoginComponent },
     { path:'register',component:RegisterComponent},
+    { path: 'create-event', component: EventCreationComponent }, // Add your event route here
+    { path: 'view-event/:id', component: ViewEventComponent },
     {
         path: 'event/:id',
         component: EventDetailsComponent,
@@ -45,6 +49,20 @@ const routes: Routes = [
             { path: 'edit', component: EventEditComponent }, // Route pour éditer un événement
         ],
     },
+    { path: 'create-event', component: EventCreationComponent }, // Add your event route here
+    { path: 'view-event/:id', component: ViewEventComponent },
+
+    { path: 'index',                component: ComponentsComponent },
+    { path: 'nucleoicons',          component: NucleoiconsComponent },
+    { path: 'examples/landing',     component: LandingComponent },
+    { path: 'examples/login',       component: LoginComponent },
+    { path: 'examples/profile',     component: ProfileComponent },
+   
+    { path: 'user/:id', component: UserProfileComponent }, 
+    { path: 'edit/:id', component: EventEditComponent },
+    { path: 'edit-profile/:id', component: EditProfileComponent }, // Nouvelle route
+    { path: '**', redirectTo: 'user-profile' },
+   
     {
         path: 'admin-dashboard',
         component: AdminDashboardComponent,

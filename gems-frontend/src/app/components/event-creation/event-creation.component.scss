@@ -1,0 +1,121 @@
+.event-creation-page {
+  background-color: var(--section-color);
+  color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+
+  }
+  
+  .event-preview {
+    width: 100%;
+    border: 1px solid var(--text-color);
+    padding: 20px;
+    background-color: var(--section-color);    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .cover-photo-container {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+  
+  .cover-photo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .cover-photo-upload {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+  }
+  
+  .cover-photo-upload input {
+    display: none;
+  }
+  
+  .event-title-preview h1 {
+    margin: 0;
+    font-size: 1.8rem;
+  }
+  
+  .placeholder {
+    color: #888;
+  }
+  
+  .event-details-form {
+    width: 100%;
+    background-color: var(--section-color);
+  color: var(--text-color);
+  border: 1px solid var(--text-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .color-palette {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .color-palette div {
+    flex: 1;
+  }
+  
+  .color-palette input {
+    width: 100%;
+  }
+  
+  .map-container {
+    width: 100%;
+    height: 300px;
+    margin-top: 10px;
+    border: 1px solid var(--text-color);
+  }
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .dates-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .dates-group div {
+    flex: 1;
+  }
+  
+  .organizers-list {
+    margin-top: 10px;
+  }
+  
+  .organizers-list .badge {
+    margin-right: 5px;
+  }
+ 
+  
+  .event-details-form {
+    background-color: var(--section-color, #ffffff);
+  }
+  
+  
