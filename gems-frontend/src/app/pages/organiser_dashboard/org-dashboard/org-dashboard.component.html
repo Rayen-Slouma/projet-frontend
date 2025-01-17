@@ -1,7 +1,31 @@
-<app-navbar></app-navbar>
-<div class="section section-basic">
-  <div class="container">
-    <h3 class="title">Organiser Dashboard</h3>
-    <app-event-list></app-event-list>
+<div class="wrapper">
+  <div class="page-header clear-filter" filter-color="orange">
+    <div class="page-header-slideshow">
+      <div class="page-header-image rellax-header" *ngFor="let image of images; let i = index" [ngClass]="{'active': i === currentImageIndex}" [style.backgroundImage]="'url(' + image + ')'"></div>
+    </div>
+    <div class="title-container">
+      <h1 class="h1-seo dashboard-title">Welcome Organiser to your Dashboard</h1>
+    </div>
+  </div>
+  <div class="main">
+    <div class="section section-basic">
+      <div class="container-fluid dashboard-container">
+        <div class="content-wrapper">
+          <div class="event-list-container" [@slideInOut]="showForm ? 'out' : 'in'">
+            <h3 class="events-title">Your Events</h3>
+            <app-event-list></app-event-list>
+          </div>
+          <div class="event-form-container" *ngIf="showForm" [@fadeSlideIn]>
+            <app-event-form></app-event-form>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col text-center">
+            <button class="btn btn-primary" (click)="toggleForm()" *ngIf="!showForm">Display</button>
+            <button class="btn btn-secondary" (click)="undisplayForm()" *ngIf="showForm">Undisplay</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

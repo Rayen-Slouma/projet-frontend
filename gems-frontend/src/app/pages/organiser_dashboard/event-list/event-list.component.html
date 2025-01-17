@@ -1,6 +1,9 @@
 <div class="container mt-5 mb-5">
   <div class="row justify-content-center">
     <div class="col-md-10">
+      <div class="d-flex justify-content-end mb-3">
+        <button class="btn btn-success" (click)="addEvent()">Add Event</button>
+      </div>
       <div class="event-list-container" [class.blurred]="isAnyEventHovered()">
         <div *ngFor="let event of events" class="event-item" [class.hovered]="event.hover" [style.backgroundColor]="event.backgroundColor" (mouseover)="event.hover = true" (mouseleave)="event.hover = false">
           <div class="event-details">
@@ -31,9 +34,6 @@
             <input type="color" class="form-control mb-2" (input)="changeBackgroundColor(event, $event)">
           </div>
         </div>
-      </div>
-      <div class="d-flex justify-content-end mt-3">
-        <button class="btn btn-success" (click)="addEvent()">Add Event</button>
       </div>
     </div>
   </div>
