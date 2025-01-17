@@ -20,6 +20,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { EventDetailsComponent } from './event-details/event-details.component';
 import { EventEditComponent } from './event-edit/edit-event.component'; // Import du composant d'édition
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { AdminEventListComponent } from './admin-dashboard/admin-event-list/admin-event-list.component';
 
 
 const routes: Routes = [
@@ -46,7 +47,7 @@ const routes: Routes = [
         component: AdminDashboardComponent,
         children: [
             { path: 'users', component: UserListComponent },
-            { path: 'events', component: EventListComponent },
+            { path: 'events', component: AdminEventListComponent },
             { path: '', redirectTo: 'users', pathMatch: 'full' }, // Redirect to users by default
         ],
     },
