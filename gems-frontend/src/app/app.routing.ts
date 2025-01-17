@@ -32,7 +32,7 @@ const routes: Routes = [
         ],
     },
     { path: 'create-event', component: EventCreationComponent }, // Add your event route here
-    { path: 'view-event', component: ViewEventComponent }, // Add this route
+    { path: 'view-event/:id', component: ViewEventComponent },
 
     { path: 'index',                component: ComponentsComponent },
     { path: 'nucleoicons',          component: NucleoiconsComponent },

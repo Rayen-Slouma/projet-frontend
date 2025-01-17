@@ -1,4 +1,4 @@
-<div class="event-creation-page" [ngStyle]="{ '--section-color': sectionColor, '--text-color': textColor }">
+<div class="event-creation-page" [ngStyle]="{ '--section-color': event.sectionColor, '--text-color': event.textColor }">
   <div class="event-preview">
     <div class="cover-photo-container">
       <label class="cover-photo-upload">
@@ -8,8 +8,8 @@
       </label>
     </div>
     <div class="event-title-preview">
-      <h1 *ngIf="event.title">{{ event.title }}</h1>
-      <h1 *ngIf="!event.title" class="placeholder">Event Title</h1>
+      <h1 *ngIf="event.name">{{ event.name }}</h1>
+      <h1 *ngIf="!event.name" class="placeholder">Event Title</h1>
     </div>
     <div class="event-info-preview">
       <p *ngIf="event.startDate && event.endDate">
@@ -25,12 +25,12 @@
   <form class="event-details-form" (ngSubmit)="onSubmit()" #eventForm="ngForm">
     <!-- Event Title -->
     <div class="form-group">
-      <label for="title">Event Title</label>
+      <label for="name">Event Title</label>
       <input
         type="text"
         id="title"
         class="form-control"
-        [(ngModel)]="event.title"
+        [(ngModel)]="event.name"
         name="title"
         required
       />
@@ -76,13 +76,31 @@
     </div>
 
     <!-- Event Category -->
-    <div class="form-group">
-      <label for="category">Event Category</label>
-      <select id="category" class="form-control" [(ngModel)]="event.category" name="category" required>
-        <option value="" disabled selected>Select Category</option>
-        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
-      </select>
-    </div>
+<div class="form-group">
+  <label for="category">Event Category</label>
+  <select
+    id="category"
+    class="form-control"
+    [(ngModel)]="event.category"
+    (change)="selectedCategory === 'Other' && (event.category = newCategory)"
+  >
+    <option *ngFor="let category of categories" [value]="category">
+      {{ category }}
+    </option>
+  </select>
+</div>
+
+<!-- New Category Input -->
+<div *ngIf="event.category === 'Other'" class="form-group">
+  <label for="newCategory">New Category</label>
+  <input
+    type="text"
+    id="newCategory"
+    class="form-control"
+    [(ngModel)]="newCategory"
+    (blur)="addCategory()"
+  />
+</div>
 
     <!-- Price and Ticket Limit -->
     <div class="form-group">
@@ -158,7 +176,7 @@
         <input
           type="color"
           id="sectionColor"
-          [(ngModel)]="sectionColor"
+          [(ngModel)]="event.sectionColor"
           name="sectionColor"
           class="form-control"
           (change)="updateColors()"
@@ -169,7 +187,7 @@
         <input
           type="color"
           id="textColor"
-          [(ngModel)]="textColor"
+          [(ngModel)]="event.textColor"
           name="textColor"
           class="form-control"
           (change)="updateColors()"
