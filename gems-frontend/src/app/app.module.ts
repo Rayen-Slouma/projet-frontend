@@ -6,14 +6,24 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { ExamplesModule } from './examples/examples.module';
+import { HttpClientModule } from '@angular/common/http';
+
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { LandingComponent } from './pages/landing/landing.component';
+import { EventsComponent } from './pages/events/events.component';
+import { OverlayComponent } from './pages/overlay/overlay.component';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     declarations: [
         AppComponent,
-        NavbarComponent
+        NavbarComponent,
+        LandingComponent,
+        EventsComponent,
+
+        OverlayComponent
     ],
     imports: [
         BrowserAnimationsModule,
@@ -22,7 +32,9 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
         RouterModule,
         AppRoutingModule,
         ComponentsModule,
-        ExamplesModule
+        ExamplesModule,
+        HttpClientModule,
+        NgbCarouselModule
     ],
     providers: [],
     bootstrap: [AppComponent]

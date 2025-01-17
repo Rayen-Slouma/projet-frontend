@@ -1,0 +1,155 @@
+<div class="wrapper">
+    <!-- Hero Section -->
+    <div class="page-header page-header-small">
+      <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-image: url('assets/img/bg66.jpg');"></div>
+      <div class="container">
+        <div class="content-center">
+            <h1 class="title">
+                Welcome to GEMS <span class="icon-text">
+                  <i class="now-ui-icons objects_diamond"></i> 
+                </span>
+            </h1>
+            <h3 class="subtitle">Discover, Book, and Enjoy the Best Events</h3>
+            <div class="text-center">
+                <a href="#" class="btn btn-primary btn-icon btn-round">
+                  <i class="fab fa-facebook-square"></i>
+                </a>
+                <a href="#" class="btn btn-primary btn-icon btn-round">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="btn btn-primary btn-icon btn-round">
+                  <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+      </div>
+    </div>
+
+   <!-- About Us Section -->
+<div class="section section-about-us">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto text-center">
+          <h2 class="title">Who We Are</h2>
+          <h5 class="description">
+            At GEMS, we bring you closer to unforgettable experiences by connecting you with the best events. From concerts to academic lectures, our platform allows you to browse, book, and enjoy events like never before!
+          </h5>
+        </div>
+      </div>
+      <div class="separator separator-primary"></div>
+      <div class="section-story-overview">
+        <div class="row">
+          <div class="col-md-6">
+            <!-- First image on the left side -->
+            <div class="image-container image-left" style="background-image: url('assets/img/login.jpg'); height: 300px; background-size: cover;">
+              <p class="blockquote blockquote-primary">"Discover events that enrich your life, from thrilling concerts to enlightening talks."
+                <br><br>
+                <small>- GEMS Team</small>
+              </p>
+            </div>
+            <!-- Second image on the left side -->
+            <div class="image-container" style="background-image: url('assets/img/bg3.jpg'); height: 300px; background-size: cover;"></div>
+          </div>
+          <div class="col-md-5">
+            <!-- First image on the right side, above the article -->
+            <div class="image-container image-right" style="background-image: url('assets/img/bg1.jpg'); height: 300px; background-size: cover;"></div>
+            <h3>Our Mission: Connecting People with Life-Changing Experiences</h3>
+            <p>At GEMS, we believe that every experience is an opportunity to learn, connect, and grow. Whether it's enjoying a music festival or attending an academic lecture, our platform brings you events that cater to all interests and passions.</p>
+            <p>We aim to provide a seamless experience, from discovering exciting events to booking your seat and attending them. With GEMS, your next unforgettable event is just a click away!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <div class="section" id="carousel">
+    <div class="container">
+      <div class="title text-center mb-4">
+        <h4 style="font-size: 2rem; font-weight: 600; color: #2c3e50; text-transform: uppercase; letter-spacing: 1px;">
+          Upcoming Events
+        </h4>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-8">
+          <ngb-carousel *ngIf="upcomingEvents.length > 0">
+            <ng-template ngbSlide *ngFor="let event of upcomingEvents">
+              <img class="d-block w-100 fixed-height" [src]="event.eventPicture" alt="Event image">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>{{ event.name }}</h5>
+                <p>{{ event.location }}</p>
+              </div>
+            </ng-template>
+          </ngb-carousel>
+          <div *ngIf="upcomingEvents.length === 0" class="text-center">
+            <p>No upcoming events available at the moment.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+    
+
+
+<footer class="footer" data-background-color="black">
+  <div class="container py-4">
+    <div class="row align-items-center">
+      <!-- Brand and Tagline -->
+      <div class="col-md-4 text-center text-md-left mb-3">
+        <h4 class="text-white font-weight-bold">GEMS Event Platform</h4>
+        <p class="text-white-50" style="font-size: 1rem;">
+          Bringing you closer to unforgettable experiences.
+        </p>
+      </div>
+<!-- Event Component Placeholder -->
+<div class="col-md-4 text-center mb-3">
+  <h5 class="text-white font-weight-bold">Upcoming Events</h5>
+  <div class="event-component text-white-50">
+    <a class="text-decoration-none text-white-50" [routerLink]="['/events']" style="cursor: pointer;">
+      <!-- Replace this placeholder with your event component -->
+      Stay tuned for amazing events!
+    </a>
+  </div>
+</div>
+
+      
+
+      <!-- Contact Section -->
+      <div class="col-md-4 text-center text-md-right">
+        <h5 class="text-white font-weight-bold">Contact Us</h5>
+        <p class="text-white-50 mb-0">
+          <i class="fas fa-phone-alt mr-2"></i>+1 234 567 890
+        </p>
+        <p class="text-white-50">
+          <i class="fas fa-envelope mr-2"></i>support@gemsevents.com
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer Navigation -->
+    <div class="row mt-4">
+      <div class="col text-center">
+        <nav>
+          <ul class="list-inline">
+            <li class="list-inline-item mx-3">
+              <a href="#" class="text-white-50" style="cursor: pointer;">About Us</a>
+            </li>
+            <li class="list-inline-item mx-3">
+              <a href="#" class="text-white-50" style="cursor: pointer;">Privacy Policy</a>
+            </li>
+          </ul>
+        </nav>
+        <p class="text-white-50 mt-2 mb-0">
+          &copy; 2025, Designed by GEMS Team. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</div>
