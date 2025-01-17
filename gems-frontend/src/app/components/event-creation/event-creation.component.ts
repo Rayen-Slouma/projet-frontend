@@ -10,7 +10,7 @@ export class EventCreationComponent implements OnInit {
   event = {
     name: '',
     description: '',
-    coverPhoto: '',
+    eventPicture: '',
     startDate: '',
     endDate: '',
     location: '',
@@ -83,7 +83,7 @@ export class EventCreationComponent implements OnInit {
     if (file) {
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        this.event.coverPhoto = e.target.result; // Save the base64 image to the event object
+        this.event.eventPicture = e.target.result; // Save the base64 image to the event object
       };
       reader.readAsDataURL(file);
     }

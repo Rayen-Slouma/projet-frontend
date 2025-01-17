@@ -33,14 +33,14 @@ export class ViewEventComponent implements OnInit {
         console.log('Event Data Retrieved:', data); // Log Full Event Data
         this.event = data;
 
-        console.log('Cover Photo Data:', this.event.coverPhoto); // Log Cover Photo
-        if (this.event.coverPhoto && !this.event.coverPhoto.startsWith('data:image')) {
+        console.log('Cover Photo Data:', this.event.eventPicture); // Log Cover Photo
+        if (this.event.eventPicture && !this.event.eventPicture.startsWith('data:image')) {
           console.warn('Cover photo is missing the data:image prefix. Adding prefix...');
-          this.event.coverPhoto = `data:image/png;base64,${this.event.coverPhoto}`;
+          this.event.eventPicture = `data:image/png;base64,${this.event.eventPicture}`;
         }
-        this.event.coverPhoto = this.sanitizeBase64(this.event.coverPhoto);
+        this.event.eventPicture = this.sanitizeBase64(this.event.eventPicture);
 
-        console.log('Cover Photo Data2:', this.event.coverPhoto); // Log Cover Photo
+        console.log('Cover Photo Data2:', this.event.eventPicture); // Log Cover Photo
 
         this.sectionColor = this.event.sectionColor || '#ffffff';
         this.textColor = this.event.textColor || '#000000';

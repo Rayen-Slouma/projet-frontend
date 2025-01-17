@@ -3,8 +3,8 @@
 <div class="event-container" [style.background-color]="event.sectionColor" [style.color]="event.textColor">
   <!-- Cover Photo -->
   <div class="cover-photo">
-    <img *ngIf="event.coverPhoto" [src]="event.coverPhoto" alt="Event Cover Photo" class="cover-photo-image" />
-    <div *ngIf="!event.coverPhoto" class="placeholder">No Cover Photo Available</div>
+    <img *ngIf="event.eventPicture" [src]="event.eventPicture" alt="Event Cover Photo" class="cover-photo-image" />
+    <div *ngIf="!event.eventPicture" class="placeholder">No Cover Photo Available</div>
   </div>
 
   
@@ -20,7 +20,7 @@
       <button class="reserve-btn">Reserve Now</button>
     </div>
 <!-- Debugging Cover Photo -->
-<p *ngIf="event?.coverPhoto">Cover Photo Exists: {{ event.coverPhoto | slice:0:50 }}...</p>
+<p *ngIf="event?.eventPicture">Cover Photo Exists: {{ event.eventPicture | slice:0:50 }}...</p>
 
     <!-- Additional Information -->
     <div class="event-infos">
