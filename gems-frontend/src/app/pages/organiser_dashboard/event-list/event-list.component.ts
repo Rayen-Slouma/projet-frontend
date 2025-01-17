@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../service/event.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-event-list',
@@ -7,44 +8,31 @@ import { EventService } from '../service/event.service';
   styleUrls: ['./event-list.component.scss']
 })
 export class EventListComponent implements OnInit {
+  events: any[] = [];
+  private apiUrl = 'http://localhost:3000/events';
 
-  events = [
-    {
-      eventName: 'Event 1',
-      eventDescription: 'Description for Event 1',
-      location: 'Location 1',
-      startDate: new Date(),
-      startTime: '10:00 AM',
-      endDate: new Date(),
-      endTime: '5:00 PM',
-      numberOfPlaces: 100,
-      prices: 50,
-      category: 'Conference',
-      hover: false,
-      backgroundColor: '#ffffff'
-    },
-    {
-      eventName: 'Event 2',
-      eventDescription: 'Description for Event 2',
-      location: 'Location 2',
-      startDate: new Date(),
-      startTime: '9:00 AM',
-      endDate: new Date(),
-      endTime: '4:00 PM',
-      numberOfPlaces: 200,
-      prices: 100,
-      category: 'Workshop',
-      hover: false,
-      backgroundColor: '#ffffff'
-    },
-    // Add more events as needed
-  ];
-
-  showForm = false;
-
-  constructor(private eventService: EventService) { }
+  constructor(
+    private eventService: EventService,
+    private http: HttpClient
+  ) { }
 
   ngOnInit(): void {
+    this.loadEvents();
+  }
+
+  loadEvents(): void {
+    this.http.get<any[]>(this.apiUrl).subscribe(
+      (data) => {
+        this.events = data.map(event => ({
+          ...event,
+          hover: false,
+          backgroundColor: '#ffffff'
+        }));
+      },
+      (error) => {
+        console.error('Error fetching events:', error);
+      }
+    );
   }
 
   editEvent(event) {
@@ -53,29 +41,43 @@ export class EventListComponent implements OnInit {
   }
 
   deleteEvent(event) {
-    // Logic to delete event
-    this.events = this.events.filter(e => e !== event);
-    console.log('Delete event:', event);
+    const confirmDelete = confirm('Are you sure you want to delete this event?');
+    if (confirmDelete) {
+      this.http.delete(`${this.apiUrl}/${event.id}`).subscribe(
+        () => {
+          console.log(`Event with ID ${event.id} deleted.`);
+          this.loadEvents(); // Reload the events list after deletion
+        },
+        (error) => {
+          console.error('Error deleting event:', error);
+        }
+      );
+    }
   }
 
   addEvent() {
-    // Logic to add a new event
     const newEvent = {
-      eventName: 'New Event',
-      eventDescription: 'Description for New Event',
+      name: 'New Event',
+      description: 'Description for New Event',
       location: 'New Location',
-      startDate: new Date(),
-      startTime: '12:00 PM',
-      endDate: new Date(),
-      endTime: '6:00 PM',
-      numberOfPlaces: 150,
-      prices: 75,
+      startDate: new Date().toISOString().split('T')[0],
+      startTime: '12:00',
+      endDate: new Date().toISOString().split('T')[0],
+      endTime: '18:00',
+      numberOfPlacesAvailable: 150,
+      price: 75,
       category: 'Meetup',
-      hover: false,
-      backgroundColor: '#ffffff'
     };
-    this.events.push(newEvent);
-    console.log('Add event:', newEvent);
+
+    this.http.post(this.apiUrl, newEvent).subscribe(
+      (response) => {
+        console.log('Event added:', response);
+        this.loadEvents(); // Reload the events list after adding
+      },
+      (error) => {
+        console.error('Error adding event:', error);
+      }
+    );
   }
 
   posterView(event) {
@@ -89,5 +91,4 @@ export class EventListComponent implements OnInit {
   changeBackgroundColor(event, colorEvent) {
     event.backgroundColor = colorEvent.target.value;
   }
-
 }
