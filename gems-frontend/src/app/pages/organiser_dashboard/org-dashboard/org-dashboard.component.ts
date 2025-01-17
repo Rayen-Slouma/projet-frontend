@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { EventListComponent } from '../event-list/event-list.component';
+import { EventService } from '../service/event.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-org-dashboard',
@@ -51,7 +53,7 @@ import { EventListComponent } from '../event-list/event-list.component';
     ])
   ]
 })
-export class OrgDashboardComponent implements OnInit {
+export class OrgDashboardComponent implements OnInit, OnDestroy {
   images = [
     'assets/img/header.jpg',
     'assets/img/bg1.jpg',
@@ -65,11 +67,21 @@ export class OrgDashboardComponent implements OnInit {
   ];
   currentImageIndex = 0;
   showForm = false;
+  private eventSubscription: Subscription;
+  private selectedEvent: any = null;
+  private currentEventId: number = null;
 
-  constructor() { }
+  constructor(private eventService: EventService) { }
 
   ngOnInit(): void {
     this.startSlideshow();
+    this.subscribeToEvents();
+  }
+
+  ngOnDestroy(): void {
+    if (this.eventSubscription) {
+      this.eventSubscription.unsubscribe();
+    }
   }
 
   startSlideshow(): void {
@@ -84,10 +96,36 @@ export class OrgDashboardComponent implements OnInit {
 
   undisplayForm(): void {
     this.showForm = false;
+    this.selectedEvent = null;
   }
 
   addEvent(): void {
     // Logic to add a new event
     console.log('Add new event');
+  }
+
+  private subscribeToEvents(): void {
+    this.eventSubscription = this.eventService.getEventObservable()
+      .subscribe(event => {
+        console.log('Received event in dashboard:', event);
+        
+        // If the same event is clicked again, just undisplay
+        if (this.selectedEvent && this.selectedEvent === event) {
+          this.undisplayForm();
+          return;
+        }
+
+        if (this.showForm) {
+          // If form is already shown, trigger undisplay first
+          this.showForm = false;
+          setTimeout(() => {
+            this.selectedEvent = event;
+            this.showForm = true;
+          }, 800); // Wait for undisplay animation to complete (matches animation duration)
+        } else {
+          this.selectedEvent = event;
+          this.showForm = true;
+        }
+      });
   }
 }

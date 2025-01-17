@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EventService } from '../service/event.service';
 
 @Component({
   selector: 'app-event-list',
@@ -41,7 +42,7 @@ export class EventListComponent implements OnInit {
 
   showForm = false;
 
-  constructor() { }
+  constructor(private eventService: EventService) { }
 
   ngOnInit(): void {
   }
@@ -78,8 +79,7 @@ export class EventListComponent implements OnInit {
   }
 
   posterView(event) {
-    // Logic to handle poster view
-    console.log('Poster view for event:', event);
+    this.eventService.emitEvent(event);
   }
 
   isAnyEventHovered() {
