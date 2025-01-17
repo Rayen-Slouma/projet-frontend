@@ -1,103 +1,115 @@
-/* Make sure the page header takes up full viewport height */
+/* General Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Page header styling */
 .page-header {
   position: relative;
-  height: 200px; /* Adjusted height */
-  background-color: #f8f9fa;
+  height: 180px; /* Reduced height */
+  background-color: transparent;
   display: flex;
-  justify-content: center; /* Horizontally center */
-  align-items: center;     /* Vertically center */
-  margin-bottom: 1px; /* Small margin between header and buttons */
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
-/* Center content inside the container */
 .page-header .container {
-  display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center;     /* Center vertically */
-  flex-direction: column;
-  width: 100%;
-  padding: 0;
+  text-align: center;
 }
 
-/* Card to display content */
+/* Card and header styles */
 .card-login {
   width: 100%;
-  max-width: 1000px; /* Increased max-width */
-  margin: 10px 0; /* Margin between card and header */
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  display: flex;
-  flex-direction: column; /* Stacked vertically */
-  align-items: center;
+  max-width: 800px;
+  padding: 20px;
+  background: transparent;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Header (Admin Dashboard text) and Buttons in the same line */
 .card-login .header {
   display: flex;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
   justify-content: space-between;
-  width: 100%;
   align-items: center;
+  gap: 10px;
 }
 
 .card-login .header h1 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   margin: 0;
 }
 
 .dashboard-actions {
   display: flex;
-  justify-content: space-between; /* Space out buttons */
-  gap: 20px; /* Add spacing between buttons */
-  margin-top: 1px; /* Small margin between the header and buttons */
+  flex-wrap: wrap; /* Ensure buttons wrap if space is limited */
+  gap: 10px;
 }
 
-/* Button styles */
 .dashboard-actions .btn {
-  width: auto;
-  font-size: 1rem;
-  padding: 12px 20px;
+  font-size: 0.9rem;
+  padding: 10px 20px;
+  white-space: nowrap; /* Prevent text wrapping in buttons */
 }
 
-/* Wrapper for the list (router-outlet content) */
+/* Scrollable List Wrapper */
 .list-wrapper {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: calc(100vh - 280px); /* Adjust height to fit content above (header + buttons) */
-  width: 100%;
+  align-items: flex-start;
+  min-height: calc(100vh - 240px); /* Adjust height dynamically */
   padding: 20px;
   background-color: #ffffff;
-  text-align: center;
+  overflow: hidden; /* Prevent overflow outside the wrapper */
 }
 
-/* Centered router-outlet */
 router-outlet {
-  display: block;
   width: 100%;
   max-width: 800px;
 }
 
-/* Footer section */
+/* Scrollable lists for users and events */
+.scrollable-list {
+  max-height: 400px; /* Set a fixed height for the list */
+  overflow-y: auto; /* Enable vertical scrolling */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.scrollable-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollable-list::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 8px;
+}
+
+.scrollable-list::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Footer styling */
 .footer {
-  position: relative;
-  bottom: 0;
-  width: 100%;
   background-color: #343a40;
   color: white;
-  padding: 20px 0;
+  padding: 15px 0;
 }
 
 .footer ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  text-align: center;
 }
 
 .footer ul li {
   display: inline;
-  margin-right: 10px;
+  margin: 0 5px;
 }
 
 .footer ul li a {
@@ -107,6 +119,6 @@ router-outlet {
 
 .footer .copyright {
   text-align: center;
-  margin-top: 20px;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  margin-top: 10px;
 }

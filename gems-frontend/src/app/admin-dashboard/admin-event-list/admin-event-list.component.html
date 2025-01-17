@@ -1,22 +1,19 @@
 <div class="event-list-container">
-    <div class="card card-login card-plain">
-      <div class="content">
-        <h1>Event List</h1>
-        <!-- Contenu de la liste des événements -->
-        <div class="user-list">
-          <div class="user-block" *ngFor="let event of events">
-            <h3>{{ event.name }}</h3>
-            <p>{{ event.description }}</p>
-            <p>{{ event.location }}</p>
-  
-            <!-- Boutons View et Delete -->
-            <div class="user-actions">
-              <button (click)="viewEvent(event.id)" class="btn btn-primary">View</button>
-              <button (click)="deleteEvent(event.id)" class="btn btn-danger">Delete</button>
-            </div>
+  <div class="card card-login card-plain">
+    <div class="content">
+      <h1>Event List</h1>
+      <div class="flex-wrap-container">
+        <!-- Liste des événements -->
+        <div class="flex-item" *ngFor="let event of events">
+          <h3>{{ event.name }}</h3>
+          <p>{{ event.description }}</p>
+          <p><strong>Location:</strong> {{ event.location }}</p>
+          <div class="item-actions">
+            <button (click)="viewEvent(event.id)" class="btn btn-primary">View</button>
+            <button (click)="deleteEvent(event.id)" class="btn btn-danger">Delete</button>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

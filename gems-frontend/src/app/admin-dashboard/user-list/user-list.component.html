@@ -2,14 +2,12 @@
   <div class="card card-login card-plain">
     <div class="content">
       <h1>User List</h1>
-      <!-- User List content -->
-      <div class="user-list">
-        <div class="user-block" *ngFor="let user of users">
+      <div class="flex-wrap-container">
+        <!-- Liste des utilisateurs -->
+        <div class="flex-item" *ngFor="let user of users">
           <h3>{{ user.username }}</h3>
           <p>{{ user.email }}</p>
-
-          <!-- View and Delete Buttons -->
-          <div class="user-actions">
+          <div class="item-actions">
             <button (click)="viewUser(user.id)" class="btn btn-primary">View</button>
             <button (click)="deleteUser(user.id)" class="btn btn-danger">Delete</button>
           </div>
