@@ -7,6 +7,7 @@ body {
 
 /* Page header styling */
 .page-header {
+  margin-bottom: 20px; 
   position: relative;
   height: 180px; /* Reduced height */
   background-color: transparent;
@@ -57,10 +58,11 @@ body {
 
 /* Scrollable List Wrapper */
 .list-wrapper {
+  margin-top: 40px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  min-height: calc(100vh - 240px); /* Adjust height dynamically */
+  min-height: calc(100vh - 300px);/* Adjust height dynamically */
   padding: 20px;
   background-color: #ffffff;
   overflow: hidden; /* Prevent overflow outside the wrapper */
