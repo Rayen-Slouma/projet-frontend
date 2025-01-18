@@ -38,7 +38,13 @@ export class EventEditComponent implements OnInit {
 
   // Sauvegarder les modifications de l'événement
   saveEvent(): void {
-    this.http.put(`${this.apiUrl}/${this.event.id}`, this.event).subscribe(
+    // Créez un nouvel objet sans l'`organizer`
+    const eventToUpdate = {
+      ...this.event,
+      organizers: undefined, // Exclure les organisateurs de l'objet
+    };
+  
+    this.http.put(`${this.apiUrl}/${this.event.id}`, eventToUpdate).subscribe(
       () => {
         alert('Événement mis à jour avec succès !');
         this.router.navigate(['/events', this.event.id]); // Navigation via router
@@ -48,4 +54,5 @@ export class EventEditComponent implements OnInit {
       }
     );
   }
+  
 }

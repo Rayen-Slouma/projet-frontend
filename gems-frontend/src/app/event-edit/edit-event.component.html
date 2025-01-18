@@ -1,8 +1,9 @@
 <div class="container">
   <h2 class="title">Edit Event</h2>
   <form (ngSubmit)="saveEvent()">
+    <!-- Name -->
     <div class="form-group">
-      <label for="name">Nom</label>
+      <label for="name">Name</label>
       <input
         type="text"
         id="name"
@@ -13,6 +14,7 @@
       />
     </div>
 
+    <!-- Description -->
     <div class="form-group">
       <label for="description">Description</label>
       <textarea
@@ -25,8 +27,9 @@
       ></textarea>
     </div>
 
+    <!-- Location -->
     <div class="form-group">
-      <label for="location">Emplacement</label>
+      <label for="location">Location</label>
       <input
         type="text"
         id="location"
@@ -37,8 +40,9 @@
       />
     </div>
 
+    <!-- Start Date -->
     <div class="form-group">
-      <label for="startDate">Date de début</label>
+      <label for="startDate">Start Date</label>
       <input
         type="date"
         id="startDate"
@@ -49,8 +53,9 @@
       />
     </div>
 
+    <!-- End Date -->
     <div class="form-group">
-      <label for="endDate">Date de fin</label>
+      <label for="endDate">End Date</label>
       <input
         type="date"
         id="endDate"
@@ -61,13 +66,42 @@
       />
     </div>
 
-    <button type="submit" class="btn btn-primary">Enregistrer</button>
+    <!-- Section Color -->
+    <div class="form-group">
+      <label for="sectionColor">Section Color</label>
+      <input
+        type="color"
+        id="sectionColor"
+        [(ngModel)]="event.sectionColor"
+        name="sectionColor"
+        class="form-control"
+        required
+      />
+    </div>
+
+    <!-- Text Color -->
+    <div class="form-group">
+      <label for="textColor">Text Color</label>
+      <input
+        type="color"
+        id="textColor"
+        [(ngModel)]="event.textColor"
+        name="textColor"
+        class="form-control"
+        required
+      />
+    </div>
+
+    <!-- Submit -->
+    <button type="submit" class="btn btn-primary">Save</button>
+
+    <!-- Cancel -->
     <button
       type="button"
       class="btn btn-secondary"
-      (click)="router.navigate(['/events', event.id])"
+      (click)="router.navigate(['/admin-dashboard/events'])"
     >
-      Annuler
+      Cancel
     </button>
   </form>
 </div>
