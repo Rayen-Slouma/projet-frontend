@@ -15,7 +15,7 @@ export class EventEditComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
-    public router: Router // Déclarez le router comme public
+    public router: Router
   ) {}
 
   ngOnInit(): void {
@@ -38,21 +38,24 @@ export class EventEditComponent implements OnInit {
 
   // Sauvegarder les modifications de l'événement
   saveEvent(): void {
-    // Créez un nouvel objet sans l'`organizer`
     const eventToUpdate = {
       ...this.event,
-      organizers: undefined, // Exclure les organisateurs de l'objet
+      organizers: undefined, // Exclure les organisateurs si nécessaire
     };
-  
+
     this.http.put(`${this.apiUrl}/${this.event.id}`, eventToUpdate).subscribe(
       () => {
         alert('Événement mis à jour avec succès !');
-        this.router.navigate(['/events', this.event.id]); // Navigation via router
+        this.router.navigate(['/admin-dashboard/events']); // Rediriger après la sauvegarde
       },
       (error) => {
         console.error('Erreur lors de la mise à jour de l\'événement', error);
       }
     );
   }
-  
+
+  // Annuler les modifications et revenir à la liste des événements
+  cancelEdit(): void {
+    this.router.navigate(['/admin-dashboard/events']);
+  }
 }

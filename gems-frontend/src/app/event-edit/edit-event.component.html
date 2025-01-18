@@ -92,16 +92,19 @@
       />
     </div>
 
-    <!-- Submit -->
-    <button type="submit" class="btn btn-primary">Save</button>
+    <!-- Action Buttons -->
+    <div class="form-group">
+      <!-- Save -->
+      <button type="submit" class="btn btn-primary">Save</button>
 
-    <!-- Cancel -->
-    <button
-      type="button"
-      class="btn btn-secondary"
-      (click)="router.navigate(['/admin-dashboard/events'])"
-    >
-      Cancel
-    </button>
+      <!-- Cancel -->
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="cancelEdit()"
+      >
+        Cancel
+      </button>
+    </div>
   </form>
 </div>
