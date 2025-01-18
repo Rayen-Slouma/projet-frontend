@@ -36,7 +36,7 @@ export class AdminEventListComponent implements OnInit {
 
   // Fonction pour modifier un événement
   editEvent(eventId: number): void {
-    this.router.navigate([`/edit-event/${eventId}`]); // Naviguer vers la page de modification de l'événement
+    this.router.navigate([`/edit/${eventId}`]); // Naviguer vers la page d'édition de l'événement
   }
 
   // Fonction pour supprimer un événement

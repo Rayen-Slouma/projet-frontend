@@ -34,7 +34,7 @@ const routes: Routes = [
     { path: 'examples/login', component: LoginComponent },
     { path: 'examples/profile', component: ProfileComponent },
     { path: 'user/:id', component: UserProfileComponent }, 
-    { path: 'edit/:id', component: EventEditComponent },
+    { path: 'edit/:id', component: EventEditComponent },//non utilisé(de nourhen)
     { path: 'edit-profile/:id', component: EditProfileComponent },
     { path: 'reservation', component: ReservationComponent },
     { path: 'dashboard',     component: OrgDashboardComponent },
