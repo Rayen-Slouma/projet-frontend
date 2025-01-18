@@ -1,5 +1,7 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
+import { EventService } from '../../pages/organiser_dashboard/service/event.service';
 
 @Component({
   selector: 'app-event-creation',
@@ -28,14 +30,32 @@ export class EventCreationComponent implements OnInit {
   selectedCategory: string = '';
   users = ['John Doe', 'Jane Smith', 'Alice Johnson', 'Bob Williams'];
   selectedOrganizer: string;
+  isEditMode = false;
+  editingEventId: number | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private route: ActivatedRoute,
+    private router: Router,
+    private eventService: EventService
+  ) { }
 
   ngOnInit(): void {
     this.applySavedColors();
     this.fetchCategories();
 
+    this.route.queryParams.subscribe(params => {
+      if (params['edit']) {
+        const editingEvent = this.eventService.getEditingEvent();
+        if (editingEvent) {
+          this.isEditMode = true;
+          this.editingEventId = editingEvent.id;
+          this.populateForm(editingEvent);
+        }
+      }
+    });
   }
+
   fetchCategories(): void {
     this.http.get<string[]>('http://localhost:3000/categories').subscribe({
       next: (data: any) => {
@@ -57,6 +77,7 @@ export class EventCreationComponent implements OnInit {
       });
     }
   }
+
   applySavedColors(): void {
     const savedSectionColor = localStorage.getItem('sectionColor');
     const savedTextColor = localStorage.getItem('textColor');
@@ -100,22 +121,52 @@ export class EventCreationComponent implements OnInit {
     this.event.organizers = this.event.organizers.filter((org) => org !== organizer);
   }
 
+  private populateForm(event: any): void {
+    console.log('Populating form with event:', event);
+    this.editingEventId = event.id;  // Ensure the ID is set
+    this.event = {
+      ...event,
+      category: event.category?.name || '',  // Handle nested category object
+      startDate: new Date(event.startDate).toISOString().slice(0, 16),
+      endDate: new Date(event.endDate).toISOString().slice(0, 16),
+      organizers: event.organizers || []
+    };
+  }
+
   onSubmit(): void {
     const eventData = {
       ...this.event,
-      startDate: new Date(this.event.startDate).toISOString(), // Ensure ISO date format
-      endDate: new Date(this.event.endDate).toISOString(),     // Ensure ISO date format
+      startDate: new Date(this.event.startDate).toISOString(),
+      endDate: new Date(this.event.endDate).toISOString(),
     };
 
-    this.http.post('http://localhost:3000/events', eventData).subscribe({
-      next: (response) => {
-        console.log('Event created successfully:', response);
-        alert('Event created successfully!');
-      },
-      error: (error) => {
-        console.error('Error creating event:', error);
-        alert('Failed to create event. Please try again.');
-      },
-    });
+    console.log('Submitting form in', this.isEditMode ? 'edit' : 'create', 'mode');
+    console.log('Event ID:', this.editingEventId);
+    console.log('Event Data:', eventData);
+
+    if (this.isEditMode && this.editingEventId) {
+      this.eventService.updateEvent(this.editingEventId, eventData).subscribe({
+        next: (response) => {
+          console.log('Event updated successfully:', response);
+          this.eventService.clearEditingEvent();
+          this.router.navigate(['/dashboard']);
+        },
+        error: (error) => {
+          console.error('Error updating event:', error);
+          alert('Failed to update event. Please try again.');
+        }
+      });
+    } else {
+      this.http.post('http://localhost:3000/events', eventData).subscribe({
+        next: (response) => {
+          console.log('Event created successfully:', response);
+          alert('Event created successfully!');
+        },
+        error: (error) => {
+          console.error('Error creating event:', error);
+          alert('Failed to create event. Please try again.');
+        },
+      });
+    }
   }
 }

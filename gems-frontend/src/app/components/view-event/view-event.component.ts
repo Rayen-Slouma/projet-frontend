@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
@@ -7,22 +7,31 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './view-event.component.html',
   styleUrls: ['./view-event.component.scss'],
 })
-export class ViewEventComponent implements OnInit {
+export class ViewEventComponent implements OnInit, OnChanges {
+  @Input() id: string;
   event: any = {};
   sectionColor = '#ffffff';
   textColor = '#000000';
 
   constructor(private route: ActivatedRoute, private http: HttpClient) {}
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['id'] && changes['id'].currentValue) {
+      this.fetchEvent(changes['id'].currentValue);
+    }
+  }
+
   ngOnInit(): void {
     console.log('ViewEventComponent Initialized'); // Debug Component Initialization
-    const eventId = this.route.snapshot.paramMap.get('id');
-    console.log('Route Event ID:', eventId); // Log the route parameter
+    const routeId = this.route.snapshot.paramMap.get('id');
+    console.log('Route Event ID:', routeId); // Log the route parameter
 
-    if (eventId) {
-      this.fetchEvent(eventId);
+    if (routeId) {
+      this.fetchEvent(routeId);
+    } else if (this.id) {
+      this.fetchEvent(this.id);
     } else {
-      console.warn('No Event ID found in route!');
+      console.warn('No Event ID found in route or input!');
     }
   }
 

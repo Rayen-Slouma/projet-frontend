@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { EventService } from '../service/event.service';
 import { HttpClient } from '@angular/common/http';
+import { Event } from '../models/event.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-event-list',
@@ -8,12 +10,14 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./event-list.component.scss']
 })
 export class EventListComponent implements OnInit {
-  events: any[] = [];
+  @Input() showAddEventButton: boolean = true; // Add input property
+  events: Event[] = [];
   private apiUrl = 'http://localhost:3000/events';
 
   constructor(
     private eventService: EventService,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -21,12 +25,14 @@ export class EventListComponent implements OnInit {
   }
 
   loadEvents(): void {
-    this.http.get<any[]>(this.apiUrl).subscribe(
+    this.http.get<Event[]>(this.apiUrl).subscribe(
       (data) => {
         this.events = data.map(event => ({
           ...event,
           hover: false,
-          backgroundColor: '#ffffff'
+          backgroundColor: event.sectionColor || '#ffffff',
+          startDate: new Date(event.startDate),
+          endDate: new Date(event.endDate)
         }));
       },
       (error) => {
@@ -35,9 +41,8 @@ export class EventListComponent implements OnInit {
     );
   }
 
-  editEvent(event) {
-    // Logic to edit event
-    console.log('Edit event:', event);
+  editEvent(event: any): void {
+    this.eventService.setEditingEvent(event);
   }
 
   deleteEvent(event) {
@@ -55,29 +60,8 @@ export class EventListComponent implements OnInit {
     }
   }
 
-  addEvent() {
-    const newEvent = {
-      name: 'New Event',
-      description: 'Description for New Event',
-      location: 'New Location',
-      startDate: new Date().toISOString().split('T')[0],
-      startTime: '12:00',
-      endDate: new Date().toISOString().split('T')[0],
-      endTime: '18:00',
-      numberOfPlacesAvailable: 150,
-      price: 75,
-      category: 'Meetup',
-    };
-
-    this.http.post(this.apiUrl, newEvent).subscribe(
-      (response) => {
-        console.log('Event added:', response);
-        this.loadEvents(); // Reload the events list after adding
-      },
-      (error) => {
-        console.error('Error adding event:', error);
-      }
-    );
+  addEvent(): void {
+    this.router.navigate(['/organiser-dashboard/create-event']);
   }
 
   posterView(event) {
@@ -86,9 +70,5 @@ export class EventListComponent implements OnInit {
 
   isAnyEventHovered() {
     return this.events.some(event => event.hover);
-  }
-
-  changeBackgroundColor(event, colorEvent) {
-    event.backgroundColor = colorEvent.target.value;
   }
 }

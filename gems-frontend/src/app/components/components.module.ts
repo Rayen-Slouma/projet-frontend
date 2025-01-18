@@ -14,8 +14,6 @@ import { ComponentsComponent } from './components.component';
 import { NotificationComponent } from './notification/notification.component';
 import { NgbdModalBasic } from './modal/modal.component';
 import { EventCreationComponent } from './event-creation/event-creation.component';  
-import { ViewEventComponent } from './view-event/view-event.component';  
-
 @NgModule({
     imports: [
         CommonModule,
@@ -33,8 +31,7 @@ import { ViewEventComponent } from './view-event/view-event.component';
         NucleoiconsComponent,
         NotificationComponent,
         NgbdModalBasic,
-        EventCreationComponent, 
-        ViewEventComponent,  
+        EventCreationComponent,  
     ],
     exports: [ NavigationComponent, ComponentsComponent ]
 })

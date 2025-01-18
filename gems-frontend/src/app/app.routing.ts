@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ComponentsComponent } from './components/components.component';
-import { LoginComponent } from './examples/login/login.component';  // from 'examples'
+import { LoginComponent } from './auth/login/login.component'; 
 import { ProfileComponent } from './examples/profile/profile.component';  // from 'examples'
 import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.component';
 import { LandingComponent } from './pages/landing/landing.component';
@@ -19,18 +19,18 @@ import { EventEditComponent } from './event-edit/edit-event.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { AdminEventListComponent } from './admin-dashboard/admin-event-list/admin-event-list.component';
 import { ReservationComponent } from './components/pages/reservation/reservation.component';
+import { OrgDashboardComponent } from './pages/organiser_dashboard/org-dashboard/org-dashboard.component';
+import { RegisterComponent } from './auth/register/register.component';
 import { EventCreationComponent } from './components/event-creation/event-creation.component';
-
 // Existing routes
 const routes: Routes = [
     { path: '', component: LandingComponent },
-    { path: 'index', component: ComponentsComponent },
-    { path: 'nucleoicons', component: NucleoiconsComponent },
-    { path: 'examples/login', component: LoginComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
     { path: 'examples/profile', component: ProfileComponent },
     { path: 'events', component: EventsComponent },
     { path: 'view-event/:id', component: ViewEventComponent },
-
+    { path: 'dashboard', component: OrgDashboardComponent },
     // Admin Dashboard and user-related routes
     {
         path: 'admin-dashboard',
@@ -41,12 +41,15 @@ const routes: Routes = [
             { path: '', redirectTo: 'users', pathMatch: 'full' }, 
         ],
     },
+    {
+        path: 'organiser-dashboard/create-event',
+        component: EventCreationComponent
+    },
 
     // Other important routes
     { path: 'user/:id', component: UserProfileComponent },
     { path: 'edit-profile/:id', component: EditProfileComponent },
     { path: 'reservation', component: ReservationComponent },
-    { path: 'create-event', component: EventCreationComponent },
     { path: 'event/:id', component: EventDetailsComponent, children: [
         { path: 'edit', component: EventEditComponent },
     ]},

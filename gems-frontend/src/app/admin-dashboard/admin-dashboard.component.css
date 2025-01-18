@@ -9,118 +9,146 @@ body {
 .page-header {
   margin-bottom: 20px; 
   position: relative;
-  height: 180px; /* Reduced height */
+  height: 100vh; /* Adjusted height */
   background-color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 10px;
+  background-size: cover;
+  background-position: center center;
+}
+
+.page-header-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  z-index: -1;
+}
+
+.title-container {
+  position: absolute;
+  top: 40%; /* Adjusted to bring the title a little further down */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10; /* Ensure the title is above other elements */
+  text-align: center; /* Center the text */
+}
+
+.dashboard-title {
+  margin-top: 0; /* Adjusted to leave space for the navbar */
+  margin-bottom: 20px;
+  color: #ffffff; /* Changed to white for better visibility */
+  font-size: 4rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Added text shadow for better visibility */
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0%   { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 .page-header .container {
-  text-align: center;
+  position: static; /* Use static so it doesn't affect .title-container */
+  height: auto;
 }
 
-/* Card and header styles */
-.card-login {
-  width: 100%;
-  max-width: 800px;
+.page-header .content-center {
+  position: static; /* or remove this rule */
+  transform: none;
+  top: auto;
+  left: auto;
+}
+
+.dashboard-container {
   padding: 20px;
-  background: transparent;
-  border-radius: 8px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.card-login .header {
-  display: flex;
-  flex-wrap: wrap; /* Allow wrapping on smaller screens */
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-}
-
-.card-login .header h1 {
-  font-size: 1.8rem;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 0;
+  width: 100%;
+  min-height: 100vh; /* Ensure it grows with the content */
 }
 
+.content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  min-height: 400px;
+}
+
+.event-list-container {
+  flex: 0 0 auto;
+  width: 80%;
+  margin: 0 auto;
+  transition: all 0.8s ease-in-out;
+  padding: 20px;
+}
+
+.event-form-container {
+  position: absolute;
+  right: 0;
+  top: 100px; /* Adjusted to bring the poster down */
+  width: 35%;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.event-form-container.ng-trigger.ng-trigger-fadeIn {
+  opacity: 1;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.events-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #343a40;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #343a40;
+  padding-bottom: 10px;
+}
+
+.centered {
+  margin: 0 auto;
+  transition: all 0.8s ease-in-out;
+  transform: translateX(0); /* Ensure it starts at the correct position */
+}
+
+/* Dashboard actions styling */
 .dashboard-actions {
   display: flex;
-  flex-wrap: wrap; /* Ensure buttons wrap if space is limited */
-  gap: 10px;
+  justify-content: center;
+  gap: 20px; /* Add space between buttons */
+  margin-top: 20px;
 }
 
 .dashboard-actions .btn {
-  font-size: 0.9rem;
-  padding: 10px 20px;
-  white-space: nowrap; /* Prevent text wrapping in buttons */
+  font-size: 1.5rem; /* Increase font size */
+  padding: 20px 40px; /* Increase padding */
+  border-radius: 50px; /* Make buttons more rounded */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for a stylish look */
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
 }
 
-/* Scrollable List Wrapper */
-.list-wrapper {
-  margin-top: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: calc(100vh - 300px);/* Adjust height dynamically */
-  padding: 20px;
-  background-color: #ffffff;
-  overflow: hidden; /* Prevent overflow outside the wrapper */
-}
-
-router-outlet {
-  width: 100%;
-  max-width: 800px;
-}
-
-/* Scrollable lists for users and events */
-.scrollable-list {
-  max-height: 400px; /* Set a fixed height for the list */
-  overflow-y: auto; /* Enable vertical scrolling */
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 10px;
-}
-
-.scrollable-list::-webkit-scrollbar {
-  width: 8px;
-}
-
-.scrollable-list::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 8px;
-}
-
-.scrollable-list::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-/* Footer styling */
-.footer {
-  background-color: #343a40;
-  color: white;
-  padding: 15px 0;
-}
-
-.footer ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  text-align: center;
-}
-
-.footer ul li {
-  display: inline;
-  margin: 0 5px;
-}
-
-.footer ul li a {
-  color: white;
-  text-decoration: none;
-}
-
-.footer .copyright {
-  text-align: center;
-  font-size: 0.8rem;
-  margin-top: 10px;
+.dashboard-actions .btn:hover {
+  transform: translateY(-5px); /* Lift the button on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
 }

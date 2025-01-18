@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import { EventListComponent } from '../event-list/event-list.component';
 import { EventService } from '../service/event.service';
 import { Subscription } from 'rxjs';
+import { EventListComponent } from '../event-list/event-list.component';
 
 @Component({
   selector: 'app-org-dashboard',
@@ -67,9 +67,8 @@ export class OrgDashboardComponent implements OnInit, OnDestroy {
   ];
   currentImageIndex = 0;
   showForm = false;
+  selectedEventId: number = null;
   private eventSubscription: Subscription;
-  private selectedEvent: any = null;
-  private currentEventId: number = null;
 
   constructor(private eventService: EventService) { }
 
@@ -84,6 +83,31 @@ export class OrgDashboardComponent implements OnInit, OnDestroy {
     }
   }
 
+  private subscribeToEvents(): void {
+    this.eventSubscription = this.eventService.getEventObservable()
+      .subscribe(event => {
+        // If the same event is clicked again, just trigger undisplay
+        if (this.selectedEventId === event.id) {
+          this.undisplayForm();
+          this.selectedEventId = null;
+          return;
+        }
+
+        // If it's a different event
+        if (this.showForm) {
+          // Trigger undisplay first
+          this.showForm = false;
+          setTimeout(() => {
+            this.selectedEventId = event.id;
+            this.showForm = true;
+          }, 800); // Wait for undisplay animation to complete
+        } else {
+          this.selectedEventId = event.id;
+          this.showForm = true;
+        }
+      });
+  }
+
   startSlideshow(): void {
     setInterval(() => {
       this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
@@ -96,36 +120,10 @@ export class OrgDashboardComponent implements OnInit, OnDestroy {
 
   undisplayForm(): void {
     this.showForm = false;
-    this.selectedEvent = null;
   }
 
   addEvent(): void {
     // Logic to add a new event
     console.log('Add new event');
-  }
-
-  private subscribeToEvents(): void {
-    this.eventSubscription = this.eventService.getEventObservable()
-      .subscribe(event => {
-        console.log('Received event in dashboard:', event);
-        
-        // If the same event is clicked again, just undisplay
-        if (this.selectedEvent && this.selectedEvent === event) {
-          this.undisplayForm();
-          return;
-        }
-
-        if (this.showForm) {
-          // If form is already shown, trigger undisplay first
-          this.showForm = false;
-          setTimeout(() => {
-            this.selectedEvent = event;
-            this.showForm = true;
-          }, 800); // Wait for undisplay animation to complete (matches animation duration)
-        } else {
-          this.selectedEvent = event;
-          this.showForm = true;
-        }
-      });
   }
 }

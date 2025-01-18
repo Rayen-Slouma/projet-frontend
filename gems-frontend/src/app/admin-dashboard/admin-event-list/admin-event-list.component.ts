@@ -1,23 +1,83 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { trigger, state, style, animate, transition } from '@angular/animations';
+import { EventService } from '../../pages/organiser_dashboard/service/event.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-admin-event-list',
   templateUrl: './admin-event-list.component.html',
   styleUrls: ['./admin-event-list.component.css'],
+  animations: [
+    trigger('slideInOut', [
+      state('in', style({ 
+        transform: 'translateX(0)',
+        width: '100%',
+        marginLeft: 'auto',
+        marginRight: 'auto'
+      })),
+      state('out', style({ 
+        transform: 'translateX(0)',
+        width: '60%',
+        marginLeft: '0',
+        marginRight: 'auto'
+      })),
+      transition('in => out', [
+        animate('0.8s ease-in-out')
+      ]),
+      transition('out => in', [
+        animate('0.8s ease-in-out')
+      ])
+    ]),
+    trigger('fadeSlideIn', [
+      transition(':enter', [
+        style({ 
+          opacity: 0, 
+          transform: 'translateX(100%)'
+        }),
+        animate('0.8s ease-in-out', 
+          style({ 
+            opacity: 1, 
+            transform: 'translateX(0)'
+          })
+        )
+      ]),
+      transition(':leave', [
+        animate('0.8s ease-in-out', 
+          style({ 
+            opacity: 0, 
+            transform: 'translateX(100%)'
+          })
+        )
+      ])
+    ])
+  ]
 })
-export class AdminEventListComponent implements OnInit {
+export class AdminEventListComponent implements OnInit, OnDestroy {
   events: any[] = [];
   private apiUrl = 'http://localhost:3000/events';
+  showForm = false;
+  selectedEventId: number = null;
+  private eventSubscription: Subscription;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private eventService: EventService
+  ) {}
 
   ngOnInit(): void {
     this.loadEvents();
+    this.subscribeToEvents();
   }
 
-  // Charger les événements depuis l'API
+  ngOnDestroy(): void {
+    if (this.eventSubscription) {
+      this.eventSubscription.unsubscribe();
+    }
+  }
+
   loadEvents(): void {
     this.http.get<any[]>(this.apiUrl).subscribe(
       (data) => {
@@ -29,23 +89,20 @@ export class AdminEventListComponent implements OnInit {
     );
   }
 
-  // Fonction pour afficher les détails d'un événement
   viewEvent(eventId: number): void {
-    this.router.navigate([`/view-event/${eventId}`]); // Naviguer vers la page de détails de l'événement
+    this.router.navigate([`/view-event/${eventId}`]);
   }
 
-  // Fonction pour modifier un événement
-  editEvent(eventId: number): void {
-    this.router.navigate([`/edit/${eventId}`]); // Naviguer vers la page d'édition de l'événement
+  editEvent(event: any): void {
+    this.eventService.setEditingEvent(event);
   }
 
-  // Fonction pour supprimer un événement
-  deleteEvent(eventId: number): void {
+  deleteEvent(event: any): void {
     const confirmDelete = confirm('Voulez-vous vraiment supprimer cet événement ?');
     if (confirmDelete) {
-      this.http.delete(`${this.apiUrl}/${eventId}`).subscribe(
+      this.http.delete(`${this.apiUrl}/${event.id}`).subscribe(
         () => {
-          console.log(`Événement avec l'ID ${eventId} supprimé.`);
+          console.log(`Événement avec l'ID ${event.id} supprimé.`);
           this.loadEvents(); // Recharger la liste des événements après suppression
         },
         (error) => {
@@ -53,5 +110,38 @@ export class AdminEventListComponent implements OnInit {
         }
       );
     }
+  }
+
+  private subscribeToEvents(): void {
+    this.eventSubscription = this.eventService.getEventObservable()
+      .subscribe(event => {
+        // If the same event is clicked again, just trigger undisplay
+        if (this.selectedEventId === event.id) {
+          this.undisplayForm();
+          this.selectedEventId = null;
+          return;
+        }
+
+        // If it's a different event
+        if (this.showForm) {
+          // Trigger undisplay first
+          this.showForm = false;
+          setTimeout(() => {
+            this.selectedEventId = event.id;
+            this.showForm = true;
+          }, 800); // Wait for undisplay animation to complete
+        } else {
+          this.selectedEventId = event.id;
+          this.showForm = true;
+        }
+      });
+  }
+
+  toggleForm(): void {
+    this.showForm = !this.showForm;
+  }
+
+  undisplayForm(): void {
+    this.showForm = false;
   }
 }

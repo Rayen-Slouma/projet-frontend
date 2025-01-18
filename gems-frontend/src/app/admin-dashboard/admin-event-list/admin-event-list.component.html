@@ -1,17 +1,14 @@
-<div class="event-list-container">
-  <div class="card card-login card-plain">
-    <div class="content">
-      <h1>Event List</h1>
-      <div class="flex-wrap-container">
-        <!-- Liste des événements -->
-        <div class="flex-item" *ngFor="let event of events">
-          <h3>{{ event.name }}</h3>
-          <p>{{ event.description }}</p>
-          <p><strong>Location:</strong> {{ event.location }}</p>
-          <div class="item-actions">
-            <button (click)="viewEvent(event.id)" class="btn btn-primary">View</button>
-            <button (click)="editEvent(event.id)" class="btn btn-warning">Edit</button>
-            <button (click)="deleteEvent(event.id)" class="btn btn-danger">Delete</button>
+<div class="wrapper">
+  <div class="main">
+    <div class="section section-basic">
+      <div class="container-fluid dashboard-container">
+        <div class="content-wrapper">
+          <div class="event-list-container" [@slideInOut]="showForm ? 'out' : 'in'">
+            <h3 class="events-title">Manage Events</h3>
+            <app-event-list></app-event-list>
+          </div>
+          <div class="event-form-container" *ngIf="showForm" [@fadeSlideIn]>
+            <app-view-event [id]="selectedEventId"></app-view-event>
           </div>
         </div>
       </div>
