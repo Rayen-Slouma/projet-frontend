@@ -1,0 +1,153 @@
+/* Overlay Styles */
+#searchOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  color: white;
+  z-index: -1;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  overflow: hidden; /* Remove the scrollbar */
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Show the overlay when active */
+#searchOverlay.show {
+  opacity: 1;
+  z-index: 9999;
+  display: flex;
+}
+
+.overlay-content {
+  width: 100%;
+  max-width: 900px;
+  margin-top: 100px;
+  max-height: 80vh; /* Limiting height to allow scrolling */
+  overflow-y: scroll; /* Enable vertical scrolling */
+}
+
+/* Hide scrollbar visually but keep scrolling functionality */
+.overlay-content::-webkit-scrollbar {
+  width: 0px;  /* Hide the scrollbar */
+}
+
+.overlay-content::-webkit-scrollbar-thumb {
+  background-color: transparent;  /* Make the thumb invisible */
+}
+
+/* Search Input */
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 800px;
+  padding: 15px 15px 15px 40px;
+  background-color: #333;
+  border: 1px solid #4a4a4a;
+  color: white;
+  border-radius: 25px;
+  font-size: 1rem;
+}
+
+.search-input:focus {
+  outline: none;
+  border: 1px solid #f39c12;
+}
+
+.search-icon {
+  position: absolute;
+  left: 15px;
+  color: #f39c12;
+  font-size: 1.5rem;
+}
+
+/* Event Results */
+.event-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  border-bottom: 1px solid #555;
+  font-size: 0.9rem;
+  cursor: pointer; /* Make event item clickable */
+  transition: background-color 0.3s ease;
+}
+
+.event-item:hover {
+  background-color: #333; /* Add hover effect */
+}
+
+.event-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 20px;
+  border-radius: 10px;
+}
+
+.event-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.event-time-location {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.event-time,
+.event-location {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.event-location {
+  color: #aaa;
+}
+
+.event-name {
+  font-size: 1.5rem; /* Larger font size for the event name */
+  font-weight: bold;
+  color: #f39c12;
+  margin-top: 10px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+  color: #f39c12;
+}
+
+.no-results {
+  color: #f39c12;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-top: 20px;
+}

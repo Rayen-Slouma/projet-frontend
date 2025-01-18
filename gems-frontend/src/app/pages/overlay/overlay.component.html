@@ -1,0 +1,40 @@
+<div id="searchOverlay" class="overlay" [class.show]="isSearchActive">
+  <button class="close-btn" (click)="close()">
+    <i class="now-ui-icons ui-1_simple-remove"></i>
+  </button>
+  <div class="overlay-content">
+    <!-- Search Bar -->
+    <div class="search-wrapper">
+      <i class="now-ui-icons ui-1_zoom-bold search-icon"></i>
+      <input
+        type="text"
+        [(ngModel)]="searchQuery"
+        (input)="onSearch()"
+        placeholder="Search for events..."
+        class="search-input"
+      />
+    </div>
+
+    <!-- Search Results -->
+    <div *ngIf="searchResults.length">
+      <div *ngFor="let event of searchResults" class="event-item" (click)="navigateToEvent(event.id)">
+        <!-- Event Image -->
+        <img *ngIf="event.eventPicture" [src]="event.eventPicture" alt="Event Image" class="event-image" />
+
+        <!-- Event Details -->
+        <div class="event-details">
+          <div class="event-time-location">
+            <span class="event-time">{{ event.startTime }} | {{ event.startDate }}</span>
+            <span class="event-location">{{ event.location }}</span>
+          </div>
+          <h5 class="event-name">{{ event.name }}</h5>
+        </div>
+      </div>
+    </div>
+
+    <!-- No Results Found -->
+    <div *ngIf="!searchResults.length && searchQuery">
+      <p class="no-results">No results found.</p>
+    </div>
+  </div>
+</div>

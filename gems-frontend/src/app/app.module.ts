@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { ExamplesModule } from './examples/examples.module';
+<<<<<<< HEAD
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
@@ -47,5 +48,39 @@ import { ReservationComponent } from './components/pages/reservation/reservation
   ],
   providers: [],
   bootstrap: [AppComponent],
+=======
+import { HttpClientModule } from '@angular/common/http';
+
+
+import { AppComponent } from './app.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { LandingComponent } from './pages/landing/landing.component';
+import { EventsComponent } from './pages/events/events.component';
+import { OverlayComponent } from './pages/overlay/overlay.component';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+
+@NgModule({
+    declarations: [
+        AppComponent,
+        NavbarComponent,
+        LandingComponent,
+        EventsComponent,
+
+        OverlayComponent
+    ],
+    imports: [
+        BrowserAnimationsModule,
+        NgbModule,
+        FormsModule,
+        RouterModule,
+        AppRoutingModule,
+        ComponentsModule,
+        ExamplesModule,
+        HttpClientModule,
+        NgbCarouselModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
+>>>>>>> landingpage+events+search
 })
 export class AppModule {}
