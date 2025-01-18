@@ -1,5 +1,5 @@
 <div class="container">
-  <h2 class="title">Modifier l'événement</h2>
+  <h2 class="title">Edit Event</h2>
   <form (ngSubmit)="saveEvent()">
     <div class="form-group">
       <label for="name">Nom</label>
@@ -12,6 +12,7 @@
         required
       />
     </div>
+
     <div class="form-group">
       <label for="description">Description</label>
       <textarea
@@ -23,6 +24,7 @@
         required
       ></textarea>
     </div>
+
     <div class="form-group">
       <label for="location">Emplacement</label>
       <input
@@ -34,6 +36,7 @@
         required
       />
     </div>
+
     <div class="form-group">
       <label for="startDate">Date de début</label>
       <input
@@ -45,6 +48,7 @@
         required
       />
     </div>
+
     <div class="form-group">
       <label for="endDate">Date de fin</label>
       <input
@@ -56,6 +60,7 @@
         required
       />
     </div>
+
     <button type="submit" class="btn btn-primary">Enregistrer</button>
     <button
       type="button"

@@ -1,0 +1,35 @@
+.container {
+    margin-top: 50px; /* Ajoute un espacement au-dessus de la section */
+    padding: 20px;
+    background-color: #f9f9f9; /* Couleur de fond pour améliorer la lisibilité */
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Légère ombre */
+  }
+  
+  .title {
+    text-align: center; /* Centre le titre horizontalement */
+    margin-bottom: 30px; /* Ajoute de l'espacement sous le titre */
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .form-group {
+    margin-bottom: 20px; /* Espacement entre chaque champ du formulaire */
+  }
+  
+  .form-control {
+    font-size: 16px; /* Taille de police pour les champs d'entrée */
+    padding: 10px; /* Espacement interne pour les champs d'entrée */
+  }
+  
+  button {
+    margin-right: 10px; /* Espacement entre les boutons */
+  }
+  
+ 
+  button.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: #fff;
+  }
+  

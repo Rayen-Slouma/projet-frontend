@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';  // Importer Router
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-event-edit',
