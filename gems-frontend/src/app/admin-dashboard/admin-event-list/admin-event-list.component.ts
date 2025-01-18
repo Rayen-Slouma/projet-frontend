@@ -31,7 +31,12 @@ export class AdminEventListComponent implements OnInit {
 
   // Fonction pour afficher les détails d'un événement
   viewEvent(eventId: number): void {
-    this.router.navigate([`/event/${eventId}`]); // Naviguer vers la page de détails de l'événement
+    this.router.navigate([`/view-event/${eventId}`]); // Naviguer vers la page de détails de l'événement
+  }
+
+  // Fonction pour modifier un événement
+  editEvent(eventId: number): void {
+    this.router.navigate([`/edit-event/${eventId}`]); // Naviguer vers la page de modification de l'événement
   }
 
   // Fonction pour supprimer un événement

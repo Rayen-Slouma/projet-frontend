@@ -10,6 +10,7 @@
           <p><strong>Location:</strong> {{ event.location }}</p>
           <div class="item-actions">
             <button (click)="viewEvent(event.id)" class="btn btn-primary">View</button>
+            <button (click)="editEvent(event.id)" class="btn btn-warning">Edit</button>
             <button (click)="deleteEvent(event.id)" class="btn btn-danger">Delete</button>
           </div>
         </div>
