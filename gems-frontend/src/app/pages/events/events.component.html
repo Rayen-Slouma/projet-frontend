@@ -12,13 +12,12 @@
         <ngb-carousel [interval]="5000" [pauseOnHover]="true" class="rounded shadow-lg overflow-hidden" [showNavigationArrows]="true" [showNavigationIndicators]="false">
           <ng-template ngbSlide *ngFor="let event of carouselEvents">
             <div class="carousel-image-wrapper position-relative">
-              <!-- Fix image binding to match your data model -->
               <img [src]="event.eventPicture" alt="{{ event.name }}" class="d-block w-100">
               <div class="carousel-overlay position-absolute text-light p-4">
                 <h5 class="font-weight-bold mb-1">{{ event.name }}</h5>
                 <p class="mb-0">{{ event.description }}</p>
                 <div class="carousel-btn-container">
-                  <!-- Buttons or other content can go here if needed -->
+                  <!-- Add any buttons or actions here -->
                 </div>
               </div>
             </div>
@@ -26,43 +25,42 @@
         </ngb-carousel>
       </div>
     </div>
+
     <br><br>
     <div class="separator separator-primary"></div>
 
     <!-- Categories Section -->
-    <div class="mt-5">
-      <div *ngFor="let category of categories" class="mb-5">
-        <h5 class="text-uppercase font-weight-bold text-muted">
-          {{ category }}
-        </h5>
-
-        <div class="d-flex align-items-center position-relative">
-          <span class="arrow-icon mr-3 text-muted" (click)="scrollLeft(category)">
-            <i class="now-ui-icons arrows-1_minimal-left" style="font-size: 1.8rem;"></i>
-          </span>
-          <div class="category-carousel d-flex w-100" id="{{ category }}">
-            <div
-              *ngFor="let event of getEventsByCategory(category)"
-              class="event-card card border-0 shadow-sm rounded mx-2 overflow-hidden"
-              (click)="navigateToEvent(event)"  
-              [routerLink]="['/view-event', event.id]"  
-            >
-              <div class="image-container">
-                <img [src]="event.eventPicture" alt="{{ event.name }}" class="card-img-top">
-              </div>
-              <div class="card-body text-center p-3">
-                <h6 class="font-weight-bold">{{ event.name }}</h6>
-                <p class="text-muted small mb-1">{{ event.location }}</p>
-                <p class="text-muted small">{{ event.startDate | date: 'longDate' }} - {{ event.startTime }}</p>
-              </div>
+    <div *ngFor="let category of categories" class="mb-5">
+      <h5 class="text-uppercase font-weight-bold text-muted">
+        {{ category.name }}
+      </h5>
+    
+      <div class="d-flex align-items-center position-relative">
+        <span class="arrow-icon mr-3 text-muted" (click)="scrollLeft(category.id)">
+          <i class="now-ui-icons arrows-1_minimal-left" style="font-size: 1.8rem;"></i>
+        </span>
+        <div class="category-carousel d-flex w-100" id="category-{{ category.id }}">
+          <div
+            *ngFor="let event of categoryEvents[category.id] || []"
+            class="event-card card border-0 shadow-sm rounded mx-2 overflow-hidden"
+            (click)="navigateToEvent(event)"
+            [routerLink]="['/view-event', event.id]"
+          >
+            <div class="image-container">
+              <img [src]="event.eventPicture" alt="{{ event.name }}" class="card-img-top">
+            </div>
+            <div class="card-body text-center p-3">
+              <h6 class="font-weight-bold">{{ event.name }}</h6>
+              <p class="text-muted small mb-1">{{ event.location }}</p>
+              <p class="text-muted small">{{ event.startDate | date: 'longDate' }} - {{ event.startTime }}</p>
             </div>
           </div>
-          
-          <span class="arrow-icon ml-3 text-muted" (click)="scrollRight(category)">
-            <i class="now-ui-icons arrows-1_minimal-right" style="font-size: 1.8rem;"></i>
-          </span>
         </div>
+        <span class="arrow-icon ml-3 text-muted" (click)="scrollRight(category.id)">
+          <i class="now-ui-icons arrows-1_minimal-right" style="font-size: 1.8rem;"></i>
+        </span>
       </div>
     </div>
+    
   </div>
 </div>

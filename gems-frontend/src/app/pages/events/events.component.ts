@@ -1,7 +1,5 @@
-// events.component.ts
-
 import { Component, OnInit } from '@angular/core';
-import { EventsService } from './events.service'; // Import EventsService
+import { EventsService } from './events.service';
 
 @Component({
   selector: 'app-events',
@@ -10,14 +8,22 @@ import { EventsService } from './events.service'; // Import EventsService
 })
 export class EventsComponent implements OnInit {
   events = [];
-  categories = ['Music', 'Concert', 'Cinema']; // Update categories as per your backend
+  categories = [];
   carouselEvents = [];
+  categoryEvents: { [key: number]: any[] } = {}; // Store events by category
 
   constructor(private eventsService: EventsService) {}
 
   ngOnInit(): void {
+    this.fetchCategories();
     this.fetchEvents();
-    this.startAutoRotateCarousel();
+  }
+
+  fetchCategories() {
+    this.eventsService.getCategories().subscribe((data) => {
+      this.categories = data; // Set categories dynamically
+      this.categories.forEach((category) => this.fetchEventsByCategory(category.id));
+    });
   }
 
   fetchEvents() {
@@ -27,35 +33,23 @@ export class EventsComponent implements OnInit {
     });
   }
 
-  getEventsByCategory(category: string) {
-    return this.events.filter((event) => event.category === category);
+  fetchEventsByCategory(categoryId: number) {
+    this.eventsService.getEventsByCategory(categoryId).subscribe((data) => {
+      this.categoryEvents[categoryId] = data; // Store events for the category
+    });
   }
 
-  scrollLeft(category: string) {
-    const container = document.getElementById(category);
+  scrollLeft(categoryId: number) {
+    const container = document.getElementById(`category-${categoryId}`);
     if (container) {
       container.scrollBy({ left: -300, behavior: 'smooth' });
     }
   }
 
-  scrollRight(category: string) {
-    const container = document.getElementById(category);
+  scrollRight(categoryId: number) {
+    const container = document.getElementById(`category-${categoryId}`);
     if (container) {
       container.scrollBy({ left: 300, behavior: 'smooth' });
     }
-  }
-
-  navigateToEvent(event: any) {
-    console.log(`Navigating to event: ${event.eventName}`);
-    // Add navigation logic here, e.g., this.router.navigate(['/event', event.id]);
-  }
-
-  startAutoRotateCarousel() {
-    setInterval(() => {
-      const firstEvent = this.carouselEvents.shift();
-      if (firstEvent) {
-        this.carouselEvents.push(firstEvent);
-      }
-    }, 3000); // Adjust interval as needed (3000ms = 3 seconds)
   }
 }

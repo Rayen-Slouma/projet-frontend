@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class EventsService {
-  private baseUrl = 'http://localhost:3000/allevents'; // Update this URL based on your backend
+  private baseUrl = 'http://localhost:3000/allevents';
 
   constructor(private http: HttpClient) {}
 
@@ -14,7 +14,12 @@ export class EventsService {
     return this.http.get<any>(this.baseUrl);
   }
 
-  getEventsByCategory(category: string): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/${category}`);
+  getCategories(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/categories`);
   }
+
+  getEventsByCategory(categoryId: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/category/${categoryId}`);
+  }
+  
 }
