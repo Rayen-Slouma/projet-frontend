@@ -3,8 +3,8 @@
     <div class="cover-photo-container">
       <label class="cover-photo-upload">
         <input type="file" (change)="onFileSelected($event)" />
-        <span *ngIf="!event.eventPicture">Click to upload a cover photo</span>
-        <img *ngIf="event.eventPicture" [src]="event.eventPicture" alt="Cover Photo" />
+        <span *ngIf="!filePreviewUrl">Click to upload a cover photo</span>
+        <img *ngIf="filePreviewUrl" [src]="filePreviewUrl" alt="Cover Photo Preview" />
       </label>
     </div>
     <div class="event-title-preview">
@@ -150,24 +150,6 @@
       />
     </div>
 
-    <!-- Organizers -->
-    <div class="form-group">
-      <label for="organizers">Organizers</label>
-      <select
-        class="form-control"
-        [(ngModel)]="selectedOrganizer"
-        name="organizers"
-        (change)="addOrganizer()"
-      >
-        <option *ngFor="let user of users" [value]="user">{{ user }}</option>
-      </select>
-      <div class="organizers-list">
-        <span *ngFor="let organizer of event.organizers" class="badge badge-info">
-          {{ organizer }}
-          <button type="button" (click)="removeOrganizer(organizer)">x</button>
-        </span>
-      </div>
-    </div>
 
     <!-- Event Color Palette -->
     <div class="form-group color-palette">

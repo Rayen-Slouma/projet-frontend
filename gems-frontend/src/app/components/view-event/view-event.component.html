@@ -3,7 +3,7 @@
 <div class="event-container" [style.background-color]="event.sectionColor" [style.color]="event.textColor">
   <!-- Cover Photo -->
   <div class="cover-photo">
-    <img *ngIf="event.eventPicture" [src]="event.eventPicture" alt="Event Cover Photo" class="cover-photo-image" />
+    <img *ngIf="event.eventPicture" [src]="'http://localhost:3000' + event.eventPicture" alt="Event Cover Photo" class="cover-photo-image" />
     <div *ngIf="!event.eventPicture" class="placeholder">No Cover Photo Available</div>
   </div>
 
@@ -27,6 +27,8 @@
       <p><strong  [style.color]="event.textColor">Date:</strong> {{ event.startDate | date: 'fullDate' }} - {{ event.endDate | date: 'fullDate' }}</p>
       <p><strong  [style.color]="event.textColor">Location:</strong> {{ event.mode === 'online' ? 'Online' : event.location }}</p>
       <p><strong  [style.color]="event.textColor">Category:</strong> {{ event.category.name }}</p>
+      <p><strong  [style.color]="event.textColor">Organizer:</strong> {{ event.organizer.username }}</p>
+
     </div>
   </div>
 </div>
