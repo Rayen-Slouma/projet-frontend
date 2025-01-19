@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-view-event',
   templateUrl: './view-event.component.html',
@@ -12,8 +12,7 @@ export class ViewEventComponent implements OnInit, OnChanges {
   event: any = {};
   sectionColor = '#ffffff';
   textColor = '#000000';
-
-  constructor(private route: ActivatedRoute, private http: HttpClient) {}
+  constructor(private route: ActivatedRoute, private http: HttpClient,private router: Router) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['id'] && changes['id'].currentValue) {
@@ -69,5 +68,8 @@ export class ViewEventComponent implements OnInit, OnChanges {
     console.log('Applying Dynamic Styles'); // Debug Dynamic Style Application
     document.documentElement.style.setProperty('--section-color', this.sectionColor);
     document.documentElement.style.setProperty('--text-color', this.textColor);
+  }
+  reservation(): void {
+    this.router.navigate(['reservation']);
   }
 }
