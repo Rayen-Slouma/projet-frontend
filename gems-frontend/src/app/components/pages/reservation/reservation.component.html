@@ -1,52 +1,44 @@
 <div class="page-header clear-filter" filter-color="orange">
-    <div class="page-header-image" style="background-image:url(../../../../assets/img/bg5.jpg)"></div>
-    <div class="container">
-        <div class="col-md-8 content-center">
-            <div class="card card-login card-plain">
-                <form class="form" (ngSubmit)="onSubmit()">
-                    <div class="card-header text-center">
-                        <h3>Reservation</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="input-group form-group-no-border input-lg">
-                            <input type="text" class="form-control" [(ngModel)]="reservationForm.name" name="name" placeholder="Full Name">
-                        </div>
-                        <div class="input-group form-group-no-border input-lg">
-                            <input type="email" class="form-control" [(ngModel)]="reservationForm.email" name="email" placeholder="Email">
-                        </div>
-                        <div class="input-group form-group-no-border input-lg">
-                            <input type="text" class="form-control" [(ngModel)]="reservationForm.seatNumber"
-                                   name="seatNumber" placeholder="Select Seat" readonly
-                                   (click)="toggleSeatSelector()">
-                        </div>
-
-                        <div class="seat-selector" *ngIf="showSeatSelector">
-                            <div class="seat-grid">
-                                <div class="seat" *ngFor="let seat of seats"
-                                     (click)="selectSeat(seat)"
-                                     [class.selected]="reservationForm.seatNumber === seat.toString()">
-                                    {{seat}}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="input-group form-group-no-border input-lg">
-                            <select class="form-control custom-select" [(ngModel)]="reservationForm.paymentMethod" name="paymentMethod">
-                                <option value="">Select Payment Method</option>
-                                <option value="credit"><i class="fas fa-credit-card"></i> Credit Card</option>
-                                <option value="debit"><i class="fas fa-credit-card"></i> Debit Card</option>
-                                <option value="paypal"><i class="fab fa-paypal"></i> PayPal</option>
-                            </select>
-                        </div>
-                        <div class="input-group form-group-no-border input-lg">
-                            <input type="tel" class="form-control" [(ngModel)]="reservationForm.phone" name="phone" placeholder="Phone Number">
-                        </div>
-                    </div>
-                    <div class="card-footer text-center">
-                        <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">Submit Reservation</button>
-                    </div>
-                </form>
+  <div class="page-header-image" style="background-image:url(../../../../assets/img/bg5.jpg)"></div>
+  <div class="container">
+    <div class="col-md-8 content-center">
+      <div class="card card-login card-plain">
+        <form class="form" (ngSubmit)="onSubmit()">
+          <div class="card-header text-center">
+            <h3>Reservation</h3>
+          </div>
+          <div class="card-body">
+            <div class="input-group form-group-no-border input-lg">
+              <input type="text" class="form-control" [(ngModel)]="reservationForm.seatNumber"
+                     name="seatNumber" placeholder="Select Seat" readonly
+                     (click)="toggleSeatSelector()">
             </div>
-        </div>
+
+            <div class="seat-selector" *ngIf="showSeatSelector">
+              <div class="seat-grid">
+                <div class="seat" *ngFor="let seat of seats"
+                     (click)="selectSeat(seat)"
+                     [class.selected]="reservationForm.seatNumber === seat.toString()"
+                     [class.unavailable]="reservedSeats.includes(seat)">
+                  {{seat}}
+                </div>
+              </div>
+            </div>
+
+            <div class="input-group form-group-no-border input-lg">
+              <select class="form-control custom-select" [(ngModel)]="reservationForm.paymentMethod" name="paymentMethod">
+                <option value="">Select Payment Method</option>
+                <option value="credit"><i class="fas fa-credit-card"></i> Credit Card</option>
+                <option value="debit"><i class="fas fa-credit-card"></i> Debit Card</option>
+                <option value="paypal"><i class="fab fa-paypal"></i> PayPal</option>
+              </select>
+            </div>
+          </div>
+          <div class="card-footer text-center">
+            <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">Submit Reservation</button>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </div>

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { EventService } from '../service/event.service';
 import { Subscription } from 'rxjs';
-import { EventListComponent } from '../event-list/event-list.component';
+import { AuthService } from '../../../auth/auth.service';
 
 @Component({
   selector: 'app-org-dashboard',
@@ -69,12 +69,14 @@ export class OrgDashboardComponent implements OnInit, OnDestroy {
   showForm = false;
   selectedEventId: number = null;
   private eventSubscription: Subscription;
+  organizer: string;
 
-  constructor(private eventService: EventService) { }
+  constructor(private eventService: EventService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.startSlideshow();
     this.subscribeToEvents();
+    this.organizer = this.authService.getUserInfoFromToken()?.username || 'Organiser';
   }
 
   ngOnDestroy(): void {
@@ -122,8 +124,5 @@ export class OrgDashboardComponent implements OnInit, OnDestroy {
     this.showForm = false;
   }
 
-  addEvent(): void {
-    // Logic to add a new event
-    console.log('Add new event');
-  }
+  
 }

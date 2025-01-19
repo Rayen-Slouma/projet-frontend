@@ -4,7 +4,7 @@ import { AdminDashboardComponent } from './admin-dashboard.component';
 import { AdminEventListComponent } from './admin-event-list/admin-event-list.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { RouterModule } from '@angular/router';
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '../shared/shared.module'; // Correct import path
 
 @NgModule({
   declarations: [
@@ -15,7 +15,7 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     RouterModule,
-    SharedModule
+    SharedModule // Import SharedModule
   ],
   exports: [AdminDashboardComponent]
 })

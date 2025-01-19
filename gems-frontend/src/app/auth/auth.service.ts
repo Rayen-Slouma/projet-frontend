@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 import { LoginDto } from './authDtos/login.dto';
 import { RegisterDto } from './authDtos/register.dto';
+import { jwtDecode } from 'jwt-decode'; // Correct import for jwt-decode
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,6 @@ export class AuthService {
   private apiUrl = 'http://localhost:3000/auth'; 
 
   constructor(private http: HttpClient) {}
-
 
   login(loginData: LoginDto): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, loginData).pipe(
@@ -23,6 +23,23 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/register`, registerData).pipe(
       catchError(this.handleError) 
     );
+  }
+
+  getUserInfoFromToken(): any {
+    const token = localStorage.getItem('token');
+    console.log('Token from localStorage:', token); // Log the token
+    if (!token) {
+      return null;
+    }
+
+    try {
+      const decodedToken = jwtDecode(token);
+      console.log('Decoded Token:', decodedToken); // Log the decoded token
+      return decodedToken;
+    } catch (error) {
+      console.error('Error decoding token:', error);
+      return null;
+    }
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {

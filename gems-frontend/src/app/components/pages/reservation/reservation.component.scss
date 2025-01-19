@@ -52,6 +52,11 @@
   &.selected {
     background: #ff4500;
   }
+
+  &.unavailable {
+    background: grey;
+    cursor: not-allowed;
+  }
 }
 
 input[name="seatNumber"] {

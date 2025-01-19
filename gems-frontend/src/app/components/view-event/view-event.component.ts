@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { AuthService } from '../../auth/auth.service'; // Correct import path
+
 @Component({
   selector: 'app-view-event',
   templateUrl: './view-event.component.html',
@@ -12,7 +13,13 @@ export class ViewEventComponent implements OnInit, OnChanges {
   event: any = {};
   sectionColor = '#ffffff';
   textColor = '#000000';
-  constructor(private route: ActivatedRoute, private http: HttpClient,private router: Router) {}
+
+  constructor(
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['id'] && changes['id'].currentValue) {
@@ -61,15 +68,24 @@ export class ViewEventComponent implements OnInit, OnChanges {
       error: (err) => console.error('Error fetching event:', err),
     });
   }
+
   sanitizeBase64(base64: string): string {
     return base64.trim().replace(/\s+/g, ''); // Remove unnecessary spaces and line breaks
   }
+
   applyDynamicStyles(): void {
     console.log('Applying Dynamic Styles'); // Debug Dynamic Style Application
     document.documentElement.style.setProperty('--section-color', this.sectionColor);
     document.documentElement.style.setProperty('--text-color', this.textColor);
   }
+
   reservation(): void {
-    this.router.navigate(['reservation']);
+    const userId = this.authService.getUserInfoFromToken()?.sub;
+    console.log('User ID:', userId); // Log the user ID
+    if (userId) {
+      this.router.navigate(['reservation'], { queryParams: { eventId: this.event.id, userId } });
+    } else {
+      console.error('User not logged in');
+    }
   }
 }

@@ -4,7 +4,7 @@
       <div class="page-header-image rellax-header" *ngFor="let image of images; let i = index" [ngClass]="{'active': i === currentImageIndex}" [style.backgroundImage]="'url(' + image + ')'"></div>
     </div>
     <div class="title-container">
-      <h1 class="h1-seo dashboard-title">Welcome Organiser to your Dashboard</h1>
+      <h1 class="h1-seo dashboard-title">Welcome {{organizer}} to your Dashboard</h1>
     </div>
   </div>
   <div class="main">

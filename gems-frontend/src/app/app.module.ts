@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { AdminDashboardModule } from './admin-dashboard/admin-dashboard.module';
+import { AdminDashboardModule } from './admin-dashboard/admin-dashboard.module'; // Correct import path
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { EventEditComponent } from './event-edit/edit-event.component';
@@ -22,7 +22,8 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { OverlayComponent } from './pages/overlay/overlay.component';
 import { EventsComponent } from './pages/events/events.component';
 import { LandingComponent } from './pages/landing/landing.component';
-import { SharedModule } from './shared/shared.module';
+import { SharedModule } from './shared/shared.module'; // Correct import path
+import { ToastrModule } from 'ngx-toastr'; // Import ToastrModule
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { SharedModule } from './shared/shared.module';
     ReactiveFormsModule,
     NgbCarouselModule,
     ComponentsModule,
-    SharedModule  // Import SharedModule
+    SharedModule,  // Import SharedModule
+    ToastrModule.forRoot() // Configure ToastrModule
   ],
   providers: [],
   bootstrap: [AppComponent],
