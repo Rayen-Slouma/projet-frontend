@@ -29,7 +29,7 @@ export class EventCreationComponent implements OnInit {
   categories: string[] = [];
   newCategory: string = '';
   selectedCategory: string = '';
-  users = ['John Doe', 'Jane Smith', 'Alice Johnson', 'Bob Williams'];
+  users: any[] = [];
   selectedOrganizer: string;
   isEditMode = false;
   editingEventId: number | null = null;
@@ -45,6 +45,7 @@ export class EventCreationComponent implements OnInit {
   ngOnInit(): void {
     this.applySavedColors();
     this.fetchCategories();
+    this.fetchUsers();
 
     this.route.queryParams.subscribe(params => {
       if (params['edit']) {
@@ -64,6 +65,16 @@ export class EventCreationComponent implements OnInit {
         this.categories = [...data.map((cat: any) => cat.name), 'Other'];
       },
       error: (err) => console.error('Error fetching categories:', err),
+    });
+  }
+
+  fetchUsers(): void {
+    const currentUser = this.authService.getUserInfoFromToken();
+    this.http.get<any[]>('http://localhost:3000/users').subscribe({
+      next: (data: any) => {
+        this.users = data.filter(user => user.username !== 'admin' && user.id !== currentUser.sub);
+      },
+      error: (err) => console.error('Error fetching users:', err),
     });
   }
 
@@ -113,14 +124,20 @@ export class EventCreationComponent implements OnInit {
   }
 
   addOrganizer(): void {
-    if (this.selectedOrganizer && !this.event.organizers.includes(this.selectedOrganizer)) {
-      this.event.organizers.push(this.selectedOrganizer);
+    const selectedUser = this.users.find(user => user.username === this.selectedOrganizer);
+    if (selectedUser && !this.event.organizers.includes(selectedUser.id)) {
+      this.event.organizers.push(selectedUser.id);
     }
     this.selectedOrganizer = '';
   }
 
-  removeOrganizer(organizer: string): void {
-    this.event.organizers = this.event.organizers.filter((org) => org !== organizer);
+  removeOrganizer(organizerId: string): void {
+    this.event.organizers = this.event.organizers.filter((id) => id !== organizerId);
+  }
+
+  getUsernameById(userId: string): string {
+    const user = this.users.find(user => user.id === userId);
+    return user ? user.username : '';
   }
 
   private populateForm(event: any): void {
