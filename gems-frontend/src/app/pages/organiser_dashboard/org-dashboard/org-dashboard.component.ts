@@ -70,6 +70,7 @@ export class OrgDashboardComponent implements OnInit, OnDestroy {
   selectedEventId: number = null;
   private eventSubscription: Subscription;
   organizer: string;
+  userId: number;
 
   constructor(private eventService: EventService, private authService: AuthService) { }
 
@@ -77,6 +78,7 @@ export class OrgDashboardComponent implements OnInit, OnDestroy {
     this.startSlideshow();
     this.subscribeToEvents();
     this.organizer = this.authService.getUserInfoFromToken()?.username || 'Organiser';
+    this.userId = this.authService.getUserInfoFromToken()?.sub;
   }
 
   ngOnDestroy(): void {
@@ -123,6 +125,4 @@ export class OrgDashboardComponent implements OnInit, OnDestroy {
   undisplayForm(): void {
     this.showForm = false;
   }
-
-  
 }
