@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventService } from '../../pages/organiser_dashboard/service/event.service';
+import { AuthService } from '../../auth/auth.service'; // Import AuthService
 
 @Component({
   selector: 'app-event-creation',
@@ -37,7 +38,8 @@ export class EventCreationComponent implements OnInit {
     private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router,
-    private eventService: EventService
+    private eventService: EventService,
+    private authService: AuthService // Inject AuthService
   ) { }
 
   ngOnInit(): void {
@@ -134,6 +136,11 @@ export class EventCreationComponent implements OnInit {
   }
 
   onSubmit(): void {
+    const userInfo = this.authService.getUserInfoFromToken();
+    if (userInfo && userInfo.sub) {
+      this.event.organizers.push(userInfo.sub); // Add the user ID to the organizers list
+    }
+
     const eventData = {
       ...this.event,
       startDate: new Date(this.event.startDate).toISOString(),
