@@ -17,9 +17,6 @@
       <p class="event-price">${{ event.price }}</p>
       <button class="reserve-btn" (click)="reservation()">Reserve Now</button>
     </div>
-<!-- Debugging Cover Photo -->
-<p *ngIf="event?.eventPicture">Cover Photo Exists: {{ event.eventPicture | slice:0:50 }}...</p>
-
     <!-- Additional Information -->
     <div class="event-infos">
       <p><strong  [style.color]="event.textColor">Date:</strong> {{ event.startDate | date: 'fullDate' }} - {{ event.endDate | date: 'fullDate' }}</p>
