@@ -118,6 +118,7 @@ export class EventCreationComponent implements OnInit {
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.event.eventPicture = e.target.result; // Save the base64 image to the event object
+        console.log('Base64 Image:', this.event.eventPicture); // Log the base64 image to the console
       };
       reader.readAsDataURL(file);
     }
