@@ -29,6 +29,7 @@
                 <p><strong>Price:</strong> {{ event.price | currency }}</p>
                 <p><strong>Category:</strong> {{ event.category?.name }}</p>
                 <p><strong>Status:</strong> {{ event.isActive ? 'Active' : 'Inactive' }}</p>
+                <p><strong>Organizers:</strong> {{ getOrganizerNames(event.organizers) }}</p>
               </div>
             </div>
           </div>

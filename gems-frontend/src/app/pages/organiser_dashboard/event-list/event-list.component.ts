@@ -43,11 +43,25 @@ export class EventListComponent implements OnInit {
           startDate: new Date(event.startDate),
           endDate: new Date(event.endDate)
         }));
+        this.loadOrganizers();
       },
       (error) => {
         console.error('Error fetching events:', error);
       }
     );
+  }
+
+  loadOrganizers(): void {
+    this.events.forEach(event => {
+      this.http.get<any[]>(`${this.apiUrl}/${event.id}/organizers`).subscribe(
+        (organizers) => {
+          event.organizers = organizers;
+        },
+        (error) => {
+          console.error('Error fetching organizers:', error);
+        }
+      );
+    });
   }
 
   editEvent(event: any): void {
@@ -79,5 +93,9 @@ export class EventListComponent implements OnInit {
 
   isAnyEventHovered() {
     return this.events.some(event => event.hover);
+  }
+
+  getOrganizerNames(organizers: any[]): string {
+    return organizers.map(organizer => organizer.username).join(', ');
   }
 }
