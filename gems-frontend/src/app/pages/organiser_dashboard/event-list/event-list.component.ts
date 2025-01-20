@@ -13,6 +13,7 @@ import { AuthService } from '../../../auth/auth.service';
 export class EventListComponent implements OnInit {
   @Input() showAddEventButton: boolean = true; // Add input property
   @Input() userId: number; // Add input property for userId
+  @Input() isAdmin: boolean; // Add input property for isAdmin
   events: Event[] = [];
   private apiUrl = 'http://localhost:3000/events';
 
@@ -28,22 +29,25 @@ export class EventListComponent implements OnInit {
   }
 
   loadEvents(): void {
-    if (this.userId) {
-      this.http.get<Event[]>(`${this.apiUrl}?organizerId=${this.userId}`).subscribe(
-        (data) => {
-          this.events = data.map(event => ({
-            ...event,
-            hover: false,
-            backgroundColor: event.sectionColor || '#ffffff',
-            startDate: new Date(event.startDate),
-            endDate: new Date(event.endDate)
-          }));
-        },
-        (error) => {
-          console.error('Error fetching events:', error);
-        }
-      );
+    let url = this.apiUrl;
+    if (!this.isAdmin && this.userId) {
+      url += `?organizerId=${this.userId}`;
     }
+
+    this.http.get<Event[]>(url).subscribe(
+      (data) => {
+        this.events = data.map(event => ({
+          ...event,
+          hover: false,
+          backgroundColor: event.sectionColor || '#ffffff',
+          startDate: new Date(event.startDate),
+          endDate: new Date(event.endDate)
+        }));
+      },
+      (error) => {
+        console.error('Error fetching events:', error);
+      }
+    );
   }
 
   editEvent(event: any): void {

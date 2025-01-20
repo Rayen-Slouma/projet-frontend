@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { EventService } from '../pages/organiser_dashboard/service/event.service';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -59,8 +60,9 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
   showForm = false;
   selectedEventId: number = null;
   private eventSubscription: Subscription;
+  isAdmin: boolean;
 
-  constructor(public router: Router, private eventService: EventService) { }
+  constructor(public router: Router, private eventService: EventService, private authService: AuthService) { }
 
   ngOnInit() {
     // Add specific body or navbar class modifications here if needed
@@ -70,6 +72,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
     var navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.add('navbar-transparent');
 
+    this.isAdmin = this.authService.getUserInfoFromToken()?.username === 'admin';
     this.subscribeToEvents();
   }
 

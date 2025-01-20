@@ -21,7 +21,7 @@
       <div class="content-wrapper">
         <div class="event-list-container" [@slideInOut]="showForm ? 'out' : 'in'">
           <h3 class="events-title">Manage Events</h3>
-          <app-event-list [showAddEventButton]="false"></app-event-list> <!-- Hide Add Event button -->
+          <app-event-list [showAddEventButton]="false" [isAdmin]="isAdmin"></app-event-list> <!-- Pass isAdmin to EventListComponent -->
         </div>
         <div class="event-form-container" *ngIf="showForm" [@fadeSlideIn]>
           <app-view-event [id]="selectedEventId"></app-view-event>
