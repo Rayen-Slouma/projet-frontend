@@ -15,9 +15,17 @@ export class AuthService {
 
   login(loginData: LoginDto): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, loginData).pipe(
-      catchError(this.handleError) 
+      tap((response: any) => {
+        localStorage.setItem('token', response.token); // Save token
+      }),
+      catchError(this.handleError)
     );
   }
+  
+  logout() {
+    localStorage.removeItem('token'); // Clear token on logout
+  }
+  
 
   register(registerData: RegisterDto): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, registerData).pipe(
