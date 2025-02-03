@@ -72,7 +72,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
     var navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.add('navbar-transparent');
 
-    this.isAdmin = this.authService.getUserInfoFromToken()?.username === 'admin';
+    this.isAdmin = this.authService.getUserInfoFromToken()?.role === 'admin';
     this.subscribeToEvents();
   }
 

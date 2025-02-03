@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, throwError , tap} from 'rxjs';
 import { LoginDto } from './authDtos/login.dto';
 import { RegisterDto } from './authDtos/register.dto';
 import { jwtDecode } from 'jwt-decode'; // Correct import for jwt-decode
@@ -16,7 +16,8 @@ export class AuthService {
   login(loginData: LoginDto): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, loginData).pipe(
       tap((response: any) => {
-        localStorage.setItem('token', response.token); // Save token
+        // Store access token under 'token'
+        localStorage.setItem('token', response.access_token);
       }),
       catchError(this.handleError)
     );
@@ -26,6 +27,9 @@ export class AuthService {
     localStorage.removeItem('token'); // Clear token on logout
   }
   
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem('token'); // Returns true if token exists, false otherwise
+  }
 
   register(registerData: RegisterDto): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, registerData).pipe(
@@ -34,18 +38,20 @@ export class AuthService {
   }
 
   getUserInfoFromToken(): any {
-    const token = localStorage.getItem('token');
-    console.log('Token from localStorage:', token); // Log the token
+    const token = localStorage.getItem('token'); // <-- ensure consistent key
     if (!token) {
       return null;
     }
 
     try {
-      const decodedToken = jwtDecode(token);
-      console.log('Decoded Token:', decodedToken); // Log the decoded token
-      return decodedToken;
-    } catch (error) {
-      console.error('Error decoding token:', error);
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return {
+        username: payload.username,
+        role: payload.role,
+        sub: payload.sub
+      };
+    } catch (err) {
+      console.error('Error parsing token:', err);
       return null;
     }
   }

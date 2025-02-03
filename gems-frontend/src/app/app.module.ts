@@ -25,6 +25,7 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { SharedModule } from './shared/shared.module'; // Correct import path
 import { ToastrModule } from 'ngx-toastr'; // Import ToastrModule
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +39,7 @@ import { ToastrModule } from 'ngx-toastr'; // Import ToastrModule
     OverlayComponent,
     EventsComponent,
     LandingComponent,
+    ReservationComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -52,7 +54,11 @@ import { ToastrModule } from 'ngx-toastr'; // Import ToastrModule
     NgbCarouselModule,
     ComponentsModule,
     SharedModule,  // Import SharedModule
-    ToastrModule.forRoot() // Configure ToastrModule
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }) // Configure ToastrModule
   ],
   providers: [],
   bootstrap: [AppComponent],

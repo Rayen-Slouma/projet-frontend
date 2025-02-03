@@ -39,11 +39,9 @@ export class LoginComponent implements OnInit, OnDestroy {
       const loginDto: LoginDto = this.loginForm.value;
       this.authService.login(loginDto).subscribe(
         (response) => {
-          console.log('Login successful', response);
-          localStorage.setItem('access_token', response.access_token); // Consistent key
+          // AuthService already writes `token` to localStorage
           this.loading = false;
-
-          this.router.navigate(['/dashboard']); 
+          this.router.navigate(['/dashboard']);
         },
         (error) => {
           console.error('Login failed', error);

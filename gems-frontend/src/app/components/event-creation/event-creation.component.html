@@ -159,12 +159,15 @@
         name="organizers"
         (change)="addOrganizer()"
       >
-        <option *ngFor="let user of users" [value]="user.username">{{ user.username }}</option>
+        <option value="">Select an organizer</option>
+        <option *ngFor="let user of users" [value]="user.id">
+          {{ getUsernameById(user.id) }}
+        </option>
       </select>
       <div class="organizers-list">
         <span *ngFor="let organizerId of event.organizers" class="badge badge-info">
           {{ getUsernameById(organizerId) }}
-          <button type="button" (click)="removeOrganizer(organizerId)">x</button>
+          <button type="button" (click)="removeOrganizer(organizerId)">×</button>
         </span>
       </div>
     </div>

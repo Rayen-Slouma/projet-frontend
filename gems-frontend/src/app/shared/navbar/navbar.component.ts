@@ -1,5 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location } from '@angular/common';
+import { AuthService } from '../../auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -10,13 +12,23 @@ export class NavbarComponent implements OnInit {
   private toggleButton: any;
   private sidebarVisible: boolean;
 
-  constructor(public location: Location, private element: ElementRef) {
+  constructor(
+    public location: Location, 
+    private element: ElementRef,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.sidebarVisible = false;
   }
 
   ngOnInit() {
     const navbar: HTMLElement = this.element.nativeElement;
     this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
+  }
+
+  get isAdmin(): boolean {
+    const userInfo = this.authService.getUserInfoFromToken();
+    return userInfo?.role === 'admin';
   }
 
   sidebarOpen() {
@@ -54,5 +66,22 @@ export class NavbarComponent implements OnInit {
 
   closeOverlay() {
     this.isOverlayOpen = false;
+  }
+
+  isLoggedIn(): boolean {
+    return this.authService.isAuthenticated();
+  }
+
+  handleAuthAction() {
+    if (this.isLoggedIn()) {
+      this.authService.logout();
+      this.router.navigate(['/login']);
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
+  
+  navigateToEvents() {
+    this.router.navigate(['/events']);
   }
 }

@@ -1,0 +1,32 @@
+<div class="events-container">
+  <a *ngIf="showAddEventButton" 
+     routerLink="/organiser-dashboard/create-event" 
+     class="btn btn-primary create-event-btn">
+    Create New Event
+  </a>
+
+  <div class="events-list">
+    <div *ngFor="let event of events" class="event-card">
+      <div class="event-header">
+        <h3>{{ event.name }}</h3>
+        <div class="event-actions">
+          <button class="btn btn-info btn-sm" (click)="viewEventDetails(event.id)">
+            <i class="now-ui-icons ui-1_zoom-bold"></i> View
+          </button>
+          <button class="btn btn-warning btn-sm" (click)="editEvent(event)">
+            <i class="now-ui-icons ui-2_settings-90"></i> Edit
+          </button>
+          <button class="btn btn-danger btn-sm" (click)="deleteEvent(event.id)">
+            <i class="now-ui-icons ui-1_simple-remove"></i> Delete
+          </button>
+        </div>
+      </div>
+      
+      <div class="event-details">
+        <p><strong>Date:</strong> {{ event.startDate | date }}</p>
+        <p><strong>Location:</strong> {{ event.location || 'Online' }}</p>
+        <p><strong>Category:</strong> {{ event.category?.name }}</p>
+      </div>
+    </div>
+  </div>
+</div>

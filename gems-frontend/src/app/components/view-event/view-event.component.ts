@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/cor
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../auth/auth.service'; // Correct import path
+import { EventService } from '../../pages/organiser_dashboard/service/event.service';
 
 @Component({
   selector: 'app-view-event',
@@ -13,12 +14,14 @@ export class ViewEventComponent implements OnInit, OnChanges {
   event: any = {};
   sectionColor = '#ffffff';
   textColor = '#000000';
+  organizers: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private eventService: EventService
   ) {}
 
   ngOnChanges(changes: SimpleChanges) {
@@ -39,6 +42,11 @@ export class ViewEventComponent implements OnInit, OnChanges {
     } else {
       console.warn('No Event ID found in route or input!');
     }
+
+    this.route.params.subscribe(params => {
+      const id = +params['id'];
+      this.loadEvent(id);
+    });
   }
 
   fetchEvent(id: string): void {
@@ -67,6 +75,29 @@ export class ViewEventComponent implements OnInit, OnChanges {
       },
       error: (err) => console.error('Error fetching event:', err),
     });
+  }
+
+  loadEvent(id: number): void {
+    this.eventService.getEvent(id).subscribe({
+      next: (event) => {
+        this.event = event;
+        this.loadOrganizers();
+      },
+      error: (error) => console.error('Error loading event:', error)
+    });
+  }
+
+  loadOrganizers(): void {
+    if (this.event && this.event.organizers && this.event.organizers.length > 0) {
+      this.http.get('http://localhost:3000/users').subscribe({
+        next: (users: any[]) => {
+          this.organizers = this.event.organizers
+            .map(organizerId => users.find(user => user.id === organizerId))
+            .filter(organizer => organizer); // Remove any undefined entries
+        },
+        error: (error) => console.error('Error loading organizers:', error)
+      });
+    }
   }
 
   sanitizeBase64(base64: string): string {

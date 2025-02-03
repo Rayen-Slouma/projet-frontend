@@ -1,7 +1,4 @@
-<nav
-  class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent"
-  color-on-scroll="500"
->
+<nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent" color-on-scroll="500">
   <div class="container">
     <!-- Dropdown Menu -->
     <div class="dropdown button-dropdown">
@@ -12,26 +9,20 @@
           <span class="button-bar"></span>
         </a>
         <div ngbDropdownMenu>
-          <a class="dropdown-header">Dropdown header</a>
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-header">Navigation</a>
+          <a class="dropdown-item" [routerLink]="['/events']">Events</a>
+          <a class="dropdown-item" [routerLink]="['/about']">About</a>
+          <a class="dropdown-item" [routerLink]="['/contact']">Contact</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Separated link</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">One more separated link</a>
+          <a class="dropdown-item" [routerLink]="['/profile']" *ngIf="isLoggedIn()">Profile</a>
+          <a class="dropdown-item" [routerLink]="['/dashboard']" *ngIf="isLoggedIn()">Dashboard</a>
         </div>
       </div>
     </div>
     <!-- Navbar Brand -->
     <div class="navbar-translate">
-      <a
-        class="navbar-brand"
-        [routerLink]="['/index']"
-        placement="bottom"
-        ngbTooltip="Designed by Invision. Coded by Creative Tim"
-      >
-        Now Ui Kit
+      <a class="navbar-brand" [routerLink]="['/']" placement="bottom">
+        Home
       </a>
       <button
         class="navbar-toggler"
@@ -49,24 +40,16 @@
       </button>
     </div>
     <!-- Navbar Links -->
-    <div
-      class="collapse navbar-collapse"
-      id="navbarToggler"
-      data-nav-image="assets/img/blurred-image-1.jpg"
-      data-color="orange"
-    >
+    <div class="collapse navbar-collapse" id="navbarToggler" data-nav-image="assets/img/blurred-image-1.jpg" data-color="orange">
       <ul class="navbar-nav ml-auto">
-        <!-- Other Links -->
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            href="https://www.creative-tim.com/product/now-ui-kit-angular"
-            target="_blank"
-          >
-            <i class="now-ui-icons arrows-1_cloud-download-93"></i>
-            <p>Download</p>
+        <!-- Add Host Event button before other nav items -->
+        <li class="nav-item" *ngIf="isLoggedIn()">
+          <a class="nav-link" routerLink="/organiser-dashboard/create-event">
+            <i class="now-ui-icons ui-1_calendar-60"></i>
+            <p>Host Event</p>
           </a>
         </li>
+        <!-- Other Links -->
         <li class="nav-item">
           <a class="nav-link" href="#" (click)="openOverlay($event)">
             <i class="now-ui-icons ui-1_zoom-bold"></i>
@@ -74,15 +57,17 @@
           </a>
         </li>
 
-        <!-- Login Icon -->
+        <!-- Login/Logout Button -->
         <li class="nav-item">
-          <a
-            class="nav-link btn btn-neutral login-link"
-            [routerLink]="['/login']"
-          >
+          <a class="nav-link" href="#" (click)="handleAuthAction(); $event.preventDefault();">
             <i class="now-ui-icons users_single-02"></i>
-            <span class="login-text">Login</span>
+            <p>{{ isLoggedIn() ? 'Logout' : 'Login' }}</p>
           </a>
+        </li>
+
+        <!-- Admin Dashboard Link -->
+        <li class="nav-item" *ngIf="isAdmin">
+          <a class="nav-link" routerLink="/admin-dashboard">Admin Dashboard</a>
         </li>
       </ul>
     </div>

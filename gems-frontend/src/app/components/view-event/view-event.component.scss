@@ -101,3 +101,17 @@
 .event-infos {
   color: #000000;
 }
+
+.organizers-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.organizer-badge {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.9em;
+}

@@ -1,0 +1,48 @@
+.events-container {
+  padding: 20px;
+  
+  .create-event-btn {
+    margin-bottom: 20px;
+  }
+  
+  .events-list {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+  
+  .event-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 15px;
+    
+    .event-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 15px;
+      
+      h3 {
+        margin: 0;
+        font-size: 1.2rem;
+      }
+    }
+    
+    .event-actions {
+      display: flex;
+      gap: 8px;
+      
+      button {
+        padding: 4px 8px;
+      }
+    }
+    
+    .event-details {
+      p {
+        margin: 5px 0;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}

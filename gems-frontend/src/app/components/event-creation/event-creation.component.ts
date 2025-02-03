@@ -30,7 +30,7 @@ export class EventCreationComponent implements OnInit {
   newCategory: string = '';
   selectedCategory: string = '';
   users: any[] = [];
-  selectedOrganizer: string;
+  selectedOrganizer: string = ''; // Change type to string for ID
   isEditMode = false;
   editingEventId: number | null = null;
 
@@ -72,7 +72,12 @@ export class EventCreationComponent implements OnInit {
     const currentUser = this.authService.getUserInfoFromToken();
     this.http.get<any[]>('http://localhost:3000/users').subscribe({
       next: (data: any) => {
-        this.users = data.filter(user => user.username !== 'admin' && user.id !== currentUser.sub);
+        // Show all users, including current user if desired
+        // this.users = data; 
+        // Or filter out admin and current user if you prefer:
+        // this.users = data.filter(u => u.username !== 'admin' && +u.id !== +currentUser.sub);
+        this.users = data;
+        console.log('Users loaded:', this.users);
       },
       error: (err) => console.error('Error fetching users:', err),
     });
@@ -125,20 +130,22 @@ export class EventCreationComponent implements OnInit {
   }
 
   addOrganizer(): void {
-    const selectedUser = this.users.find(user => user.username === this.selectedOrganizer);
-    if (selectedUser && !this.event.organizers.includes(selectedUser.id)) {
-      this.event.organizers.push(selectedUser.id);
+    if (this.selectedOrganizer && !this.event.organizers.includes(this.selectedOrganizer)) {
+      console.log('Adding organizer:', this.selectedOrganizer);
+      this.event.organizers.push(this.selectedOrganizer);
+      console.log('Updated organizers:', this.event.organizers);
     }
     this.selectedOrganizer = '';
   }
 
   removeOrganizer(organizerId: string): void {
-    this.event.organizers = this.event.organizers.filter((id) => id !== organizerId);
+    this.event.organizers = this.event.organizers.filter(id => id !== organizerId);
   }
 
   getUsernameById(userId: string): string {
-    const user = this.users.find(user => user.id === userId);
-    return user ? user.username : '';
+    // Convert both to numbers if IDs in DB are numeric
+    const user = this.users.find(u => +u.id === +userId);
+    return user ? user.username : 'Unknown User';
   }
 
   private populateForm(event: any): void {
@@ -149,14 +156,19 @@ export class EventCreationComponent implements OnInit {
       category: event.category?.name || '',  // Handle nested category object
       startDate: new Date(event.startDate).toISOString().slice(0, 16),
       endDate: new Date(event.endDate).toISOString().slice(0, 16),
-      organizers: event.organizers || []
+      // Ensure organizers array is properly initialized
+      organizers: Array.isArray(event.organizers) ? event.organizers : []
     };
+    console.log('Populated organizers:', this.event.organizers);
   }
 
   onSubmit(): void {
     const userInfo = this.authService.getUserInfoFromToken();
-    if (userInfo && userInfo.sub) {
-      this.event.organizers.push(userInfo.sub); // Add the user ID to the organizers list
+    const currentUserId = userInfo?.sub;
+    
+    // Only add current user as organizer if not already in the list
+    if (currentUserId && !this.event.organizers.includes(currentUserId)) {
+      this.event.organizers.push(currentUserId);
     }
 
     const eventData = {

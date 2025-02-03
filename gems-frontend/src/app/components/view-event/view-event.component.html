@@ -22,6 +22,14 @@
       <p><strong  [style.color]="event.textColor">Date:</strong> {{ event.startDate | date: 'fullDate' }} - {{ event.endDate | date: 'fullDate' }}</p>
       <p><strong  [style.color]="event.textColor">Location:</strong> {{ event.mode === 'online' ? 'Online' : event.location }}</p>
       <p><strong  [style.color]="event.textColor">Category:</strong> {{ event.category.name }}</p>
+      <div class="event-organizers" *ngIf="organizers.length > 0">
+        <p><strong [style.color]="event.textColor">Organizers:</strong></p>
+        <div class="organizers-list">
+          <span *ngFor="let organizer of organizers" class="organizer-badge">
+            {{ organizer.username }}
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
